@@ -1,0 +1,243 @@
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\appsettings.Development.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\appsettings.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.exe
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.deps.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.runtimeconfig.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.pdb
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.AssemblyReference.cache
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.AssemblyInfoInputs.cache
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.AssemblyInfo.cs
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.CoreCompileInputs.cache
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.sourcelink.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.build.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.development.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.SeaFoodShop.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.build.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\scopedcss\bundle\SeaFoodShop.API.styles.css
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.CopyComplete
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\refint\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.pdb
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.genruntimeconfig.cache
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\ref\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Azure.Core.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Azure.Identity.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Memory.Data.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Runtime.Caching.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.DataContext.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.Repository.dll
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.DataContext.pdb
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.Repository.pdb
+C:\Workspace\C#\SeaFood Shop\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\appsettings.Development.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\appsettings.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.exe
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.deps.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.runtimeconfig.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.pdb
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Azure.Core.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Azure.Identity.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Memory.Data.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Runtime.Caching.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.DataContext.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.Repository.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.DataContext.pdb
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.Repository.pdb
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.AssemblyReference.cache
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.AssemblyInfoInputs.cache
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.AssemblyInfo.cs
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.CoreCompileInputs.cache
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.build.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.development.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.SeaFoodShop.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.build.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\scopedcss\bundle\SeaFoodShop.API.styles.css
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.CopyComplete
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\refint\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.pdb
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.genruntimeconfig.cache
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\ref\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Twilio.dll
+C:\Workspace\C#\SeaFood Shop - Copy\Source\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Dapper.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\appsettings.Development.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\appsettings.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.exe
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.deps.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.runtimeconfig.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.API.pdb
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Azure.Core.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Azure.Identity.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Dapper.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Memory.Data.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Runtime.Caching.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\Twilio.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.DataContext.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.Repository.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.DataContext.pdb
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\bin\Debug\net7.0\SeaFoodShop.Repository.pdb
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.AssemblyReference.cache
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.AssemblyInfoInputs.cache
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.AssemblyInfo.cs
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.CoreCompileInputs.cache
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.build.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.development.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.SeaFoodShop.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.build.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.SeaFoodShop.API.props
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\scopedcss\bundle\SeaFoodShop.API.styles.css
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.csproj.CopyComplete
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\refint\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.pdb
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.genruntimeconfig.cache
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\ref\SeaFoodShop.API.dll
