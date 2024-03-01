@@ -35,3 +35,4 @@ C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\Se
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\refint\SeaFoodShop.DataContext.dll
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.pdb
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\ref\SeaFoodShop.DataContext.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.sourcelink.json

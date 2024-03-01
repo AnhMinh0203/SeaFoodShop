@@ -14,7 +14,7 @@ using System.Security.Claims;
 
 namespace SeaFoodShop.Repository
 {
-    public class UserRespon: IUser
+    public class UserRespon: IUserRespon
     {
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
@@ -38,25 +38,16 @@ namespace SeaFoodShop.Repository
                         command.Parameters.AddWithValue("@phoneNumber", model.PhoneNumber);
                         using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
-                            if(reader.Read())
+                            if(reader.HasRows)
                             {
                                 string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                                 // Verify the input password against the hashed password using bcrypt
                                 bool passwordMatch = BCrypt.Net.BCrypt.Verify(model.Password, hashedPassword);
                                 if (passwordMatch)
                                 {
-                                    var role = reader.GetInt32(reader.GetOrdinal("Role"));
-                                    var claims = new List<Claim>
-                                    {
-                                        new Claim(ClaimTypes.Name, model.PhoneNumber), // Example claim
-                                        new Claim(ClaimTypes.Role, role.ToString()), // Example claim
-                                    };
-                                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-                                    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-                                    var Sectoken = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Issuer"],
-                                                    claims, expires: DateTime.Now.AddMinutes(120), 
-                                                    signingCredentials: credentials);
-                                    var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
+                                    var idUser = reader.GetGuid(reader.GetOrdinal("Id"));
+                                    var tokenRespon = new TokenRespon(_config);
+                                    var token = tokenRespon.GenerateJwtToken(model, idUser);
                                     return new CustomMessage
                                     {
                                         Message = "Login Successfully",

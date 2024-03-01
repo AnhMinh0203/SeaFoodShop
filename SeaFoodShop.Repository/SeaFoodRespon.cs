@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using SeaFoodShop.DataContext.Data;
 using SeaFoodShop.Models;
+using SeaFoodShop.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,14 +14,14 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SeaFoodShop.Repository
 {
-    public class SeaFoodRespon
+    public class SeaFoodRespon: ISeaFoodRespon
     {
         private readonly ConnectToSql _context;
         public SeaFoodRespon(ConnectToSql context)
         {
             _context = context;
         }
-        public async Task<List<SeaFoodModel>> getSeaFoodsAsync(int pageNumber, int pageSize)
+        /*public async Task<List<SeaFoodModel>> getSeaFoodsAsync(int pageNumber, int pageSize)
         {
             try
             {
@@ -53,7 +54,7 @@ namespace SeaFoodShop.Repository
             {
                 throw new Exception();
             }
-        }
+        }*/
 
         /*
         public async Task<SeaFoodDetailModel> getSeaFoodDetailAsync (int id)
@@ -92,6 +93,28 @@ namespace SeaFoodShop.Repository
             }
         }
          */
+        public async Task<List<SeaFoodModel>> getSeaFoodsAsync(int pageNumber, int pageSize)
+        {
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+
+                    var seaFoodList = await connection.QueryAsync<SeaFoodModel>(
+                        "GetSeaFoods",
+                        new { PageNumber = pageNumber, PageSize = pageSize },
+                        commandType: CommandType.StoredProcedure);
+
+                    return seaFoodList.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error fetching sea foods: {ex.Message}");
+            }
+        }
+
         public async Task<SeaFoodDetailModel> getSeaFoodDetailAsync (int id)
         {
             try
@@ -101,12 +124,13 @@ namespace SeaFoodShop.Repository
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
                     parameters.Add("@id", id);
-                    var result = await connection.QueryFirstOrDefaultAsync<SeaFoodDetailModel>(
-                        "GetSeaFoodDetail",
-                        parameters,
-                        commandType: CommandType.StoredProcedure
-                    );
-                    return result;
+                    SeaFoodDetailModel? seaFoodDetailModel = await connection.QueryFirstOrDefaultAsync<SeaFoodDetailModel>(
+                                            "GetSeaFoodDetail",
+                                            parameters,
+                                            commandType: CommandType.StoredProcedure,
+                                            commandTimeout: 5
+                                        );
+                    return seaFoodDetailModel;
                 }
             }
             catch (Exception ex)

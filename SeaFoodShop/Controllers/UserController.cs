@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Repository;
+using SeaFoodShop.Repository.Interface;
 
 namespace SeaFoodShop.API.Controllers
 {
@@ -11,8 +12,8 @@ namespace SeaFoodShop.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserRespon _userRespon;
-        public UserController (UserRespon userRespon)
+        private readonly IUserRespon _userRespon;
+        public UserController (IUserRespon userRespon)
         {
             _userRespon = userRespon;
         }

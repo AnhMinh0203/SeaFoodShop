@@ -26,13 +26,13 @@ namespace SeaFoodShop.API.Controllers
             return await _seaFoodRespon.getSeaFoodDetailAsync(id);
         }
 
-        [HttpPost("Name seafood")]
+        [HttpPost("SeafoodName")]
         public async Task<List<SeaFoodModel>> searchSeaFood (string nameSeaFood)
         {
             return await _seaFoodRespon.searchSeaFoodAsync(nameSeaFood);
         }
 
-        [HttpPost("Name type")]
+        [HttpPost("TypeName")]
         public async Task<List<SeaFoodModel>> searchSeaFoodByType(string nameSeaFood)
         {
             return await _seaFoodRespon.searchSeaFoodByTypeAsync(nameSeaFood);

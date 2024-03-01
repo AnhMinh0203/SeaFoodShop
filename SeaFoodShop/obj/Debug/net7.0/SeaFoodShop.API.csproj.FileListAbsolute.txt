@@ -241,3 +241,4 @@ C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\refint\
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.pdb
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.genruntimeconfig.cache
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\ref\SeaFoodShop.API.dll
+C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop\obj\Debug\net7.0\SeaFoodShop.API.sourcelink.json

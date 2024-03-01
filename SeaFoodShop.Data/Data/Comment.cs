@@ -15,6 +15,7 @@ namespace SeaFoodShop.DataContext.Data
         public int Status { get; set; }
         public int IdFood { get; set; }
         public int IdUser { get; set; }
+        public int Star { get; set; }   
 
     }
 }
