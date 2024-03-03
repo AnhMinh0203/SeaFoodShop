@@ -38,7 +38,7 @@ namespace SeaFoodShop.Repository
                         command.Parameters.AddWithValue("@phoneNumber", model.PhoneNumber);
                         using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
-                            if(reader.HasRows)
+                            if(reader.Read())
                             {
                                 string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                                 // Verify the input password against the hashed password using bcrypt

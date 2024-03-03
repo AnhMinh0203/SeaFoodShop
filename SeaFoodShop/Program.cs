@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using SeaFoodShop.API.Controllers;
 using SeaFoodShop.DataContext.Data;
 using SeaFoodShop.Repository;
 using SeaFoodShop.Repository.Interface;
@@ -39,6 +40,7 @@ builder.Services.AddSingleton<ConnectToSql>();
 builder.Services.AddScoped<IUserRespon, UserRespon>();
 builder.Services.AddScoped<SeaFoodRespon>();
 builder.Services.AddScoped<CommentRespon>();
+builder.Services.AddScoped<ShoppingCartRespon>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

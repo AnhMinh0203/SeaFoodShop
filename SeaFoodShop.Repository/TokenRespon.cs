@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.Jwt.AccessToken;
 
 namespace SeaFoodShop.Repository
 {
@@ -32,7 +33,7 @@ namespace SeaFoodShop.Repository
                    /* new Claim("phoneNumber", account.PhoneNumber.ToString()),*/
                     new Claim("userId", idUser.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -68,6 +69,18 @@ namespace SeaFoodShop.Repository
                 return null;
             }
         }
+/*
+        public string TokenResult(string token)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return "Vui lòng đăng nhập tài khoản";
+            }
+            return "";
+        }*/
 
         /*public SecurityToken ValidateToken(string token)
         {

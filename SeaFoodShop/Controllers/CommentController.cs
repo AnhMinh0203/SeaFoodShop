@@ -24,7 +24,7 @@ namespace SeaFoodShop.API.Controllers
             return "Bình luận thành công";
         }
 
-        [HttpPost("updateComment")]
+        [HttpPut("updateComment")]
         public async Task<string> updateComment(CommentUpdateModel comment, string token)
         {
             var commentResult = await _commentRespon.updateCommentAsync(comment, token);

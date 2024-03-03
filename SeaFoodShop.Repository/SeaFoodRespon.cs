@@ -21,41 +21,6 @@ namespace SeaFoodShop.Repository
         {
             _context = context;
         }
-        /*public async Task<List<SeaFoodModel>> getSeaFoodsAsync(int pageNumber, int pageSize)
-        {
-            try
-            {
-                List<SeaFoodModel> seaFoodList = new List<SeaFoodModel>();
-                using (var connection = (SqlConnection)_context.CreateConnection())
-                {
-                    await connection.OpenAsync();
-                    using (var command = new SqlCommand("GetSeaFoods", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@PageNumber", pageNumber);
-                        command.Parameters.AddWithValue("@PageSize", pageSize);
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
-                        {
-                            while (reader.Read())
-                            {
-                                SeaFoodModel seaFood = new SeaFoodModel();
-                                seaFood.Id = reader.GetInt32(0);
-                                seaFood.Name = reader.GetString(1);
-                                seaFood.Price = reader.GetDecimal(2);
-                                seaFood.Unit = reader.GetString(3);
-                                seaFoodList.Add(seaFood);
-                            }
-                        }
-                    }
-                    return seaFoodList;
-                }
-            }
-            catch(Exception ex)
-            {
-                throw new Exception();
-            }
-        }*/
-
         /*
         public async Task<SeaFoodDetailModel> getSeaFoodDetailAsync (int id)
         {
@@ -125,11 +90,11 @@ namespace SeaFoodShop.Repository
                     var parameters = new DynamicParameters();
                     parameters.Add("@id", id);
                     SeaFoodDetailModel? seaFoodDetailModel = await connection.QueryFirstOrDefaultAsync<SeaFoodDetailModel>(
-                                            "GetSeaFoodDetail",
-                                            parameters,
-                                            commandType: CommandType.StoredProcedure,
-                                            commandTimeout: 5
-                                        );
+                        "GetSeaFoodDetail",
+                        parameters,
+                        commandType: CommandType.StoredProcedure,
+                        commandTimeout: 5
+                    );
                     return seaFoodDetailModel;
                 }
             }

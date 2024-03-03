@@ -14,6 +14,7 @@ using System.Security.Claims;
 using Twilio.TwiML.Voice;
 using Twilio.Jwt.AccessToken;
 using SeaFoodShop.Models;
+using Newtonsoft.Json;
 
 namespace SeaFoodShop.Repository
 {
@@ -129,7 +130,6 @@ namespace SeaFoodShop.Repository
                     using (var command = new SqlCommand("DeleteComment", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        
                         command.Parameters.AddWithValue("@Id", id);
                         await command.ExecuteNonQueryAsync();
 
@@ -143,7 +143,8 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<List<CommentSearchModel>?> searchCommentAsync(string text, string token)
+        // C1
+        /*public async Task<List<CommentSearchModel>?> searchCommentAsync(string text, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var tokenValidate = tokenObject.ValidateJwtToken(token);
@@ -158,37 +159,76 @@ namespace SeaFoodShop.Repository
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    using (var command = new SqlCommand("SearchComments", connection))
+                    using var command = new SqlCommand("SearchComments", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@CommentText", text);
+                    using SqlDataReader reader = await command.ExecuteReaderAsync();
+                    while (reader.Read())
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@CommentText", text);
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        string commentText = reader.GetString(reader.GetOrdinal("Comment"));
+                        string imageName = reader.GetString(reader.GetOrdinal("Image"));
+
+                        // Check if the comment already exists in the results list
+                        var existingComment = results.FirstOrDefault(c => c.TextComment == commentText);
+
+                        if (existingComment != null)
                         {
-                            while (reader.Read())
-                            {
-                                string commentText = reader.GetString(reader.GetOrdinal("Comment"));
-                                string imageName = reader.GetString(reader.GetOrdinal("Image"));
-
-                                // Check if the comment already exists in the results list
-                                var existingComment = results.FirstOrDefault(c => c.TextComment == commentText);
-
-                                if (existingComment != null)
-                                {
-                                    // Comment already exists, add the image to its images list
-                                    existingComment.Images.Add(new ImageModel { nameImage = imageName });
-                                }
-                                else
-                                {
-                                    // Comment doesn't exist, create a new CommentSearchModel and add it to the results list
-                                    var newComment = new CommentSearchModel
-                                    {
-                                        TextComment = commentText,
-                                        Images = new List<ImageModel> { new ImageModel { nameImage = imageName } }
-                                    };
-                                    results.Add(newComment);
-                                }
-                            }
+                            // Comment already exists, add the image to its images list
+                            existingComment.Images.Add(new ImageModel { nameImage = imageName });
                         }
+                        else
+                        {
+                            // Comment doesn't exist, create a new CommentSearchModel and add it to the results list
+                            var newComment = new CommentSearchModel
+                            {
+                                TextComment = commentText,
+                                Images = new List<ImageModel> { new ImageModel { nameImage = imageName } }
+                            };
+                            results.Add(newComment);
+                        }
+                    }
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }*/
+
+        //C2
+
+        public async Task<List<CommentSearchModel>?> searchCommentAsync(string text, string token)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null) return null;
+            try
+            {
+                List<CommentSearchModel> results = new List<CommentSearchModel>();
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    using var command = new SqlCommand("SearchComments", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@CommentText", text);
+                    using SqlDataReader reader = await command.ExecuteReaderAsync();
+                    
+                    while(await reader.ReadAsync())
+                    {
+                        CommentSearchModel commentSearch = new CommentSearchModel
+                        {
+                            TextComment = reader.GetString(reader.GetOrdinal("Comment")),
+                            Images = new List<ImageModel>()
+                        };
+                        if (!reader.IsDBNull(reader.GetOrdinal("Pictures")))
+                        {
+                            var imagesJson = reader.GetString(reader.GetOrdinal("Pictures"));
+                            // Convert imageJson string to list object ImageModel
+                            var images = JsonConvert.DeserializeObject<List<ImageModel>>(imagesJson);
+                            commentSearch.Images.AddRange(images);
+                        }
+                        results.Add(commentSearch);  
                     }
                 }
                 return results;
