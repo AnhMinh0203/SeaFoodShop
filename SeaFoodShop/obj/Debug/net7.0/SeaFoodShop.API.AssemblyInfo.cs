@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeaFoodShop.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5346a3d11b95027827117807a9a900cde4868b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+844b7dc13f9c24dd594ebbfe59ee4ad0ba0edab7")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeaFoodShop.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeaFoodShop.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

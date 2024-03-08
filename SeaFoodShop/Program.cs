@@ -41,6 +41,7 @@ builder.Services.AddScoped<IUserRespon, UserRespon>();
 builder.Services.AddScoped<SeaFoodRespon>();
 builder.Services.AddScoped<CommentRespon>();
 builder.Services.AddScoped<ShoppingCartRespon>();
+builder.Services.AddScoped<TypeRespon>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
