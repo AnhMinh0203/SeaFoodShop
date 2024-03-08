@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "55x0tDUMPpg13tG5OBGRc7S8ReiTRCvr56N6iFWAdKfETEY/Y7fDojt9aBrM+Y+Ko4D7qQ71zjCJk3rLwZNx4A==",
+  "dgSpecHash": "St38FQje8fr8KbYNhV4Kj2G4jqNE7bIFAPuXqtTqTlJEf9v3DqEMbuEZ67Hcuey5bpmwfvAdzM7amCCEHCi52Q==",
   "success": true,
-  "projectFilePath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj",
+  "projectFilePath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leanh\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\leanh\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

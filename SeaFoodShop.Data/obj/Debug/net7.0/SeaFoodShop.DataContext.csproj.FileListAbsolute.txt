@@ -36,3 +36,16 @@ C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\re
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.pdb
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\ref\SeaFoodShop.DataContext.dll
 C:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.sourcelink.json
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\bin\Debug\net7.0\SeaFoodShop.DataContext.deps.json
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\bin\Debug\net7.0\SeaFoodShop.DataContext.dll
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\bin\Debug\net7.0\SeaFoodShop.DataContext.pdb
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.csproj.AssemblyReference.cache
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.AssemblyInfoInputs.cache
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.AssemblyInfo.cs
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.csproj.CoreCompileInputs.cache
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.sourcelink.json
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.dll
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\refint\SeaFoodShop.DataContext.dll
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.pdb
+D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\ref\SeaFoodShop.DataContext.dll

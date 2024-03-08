@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {}
+    "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {}
   },
   "projects": {
-    "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
+    "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
+        "projectUniqueName": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
         "projectName": "SeaFoodShop.DataContext",
-        "projectPath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
+        "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
         "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\obj\\",
+        "outputPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

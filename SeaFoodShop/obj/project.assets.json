@@ -4368,11 +4368,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
+      "projectUniqueName": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
       "projectName": "SeaFoodShop.API",
-      "projectPath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
+      "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
       "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
-      "outputPath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\obj\\",
+      "outputPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4393,11 +4393,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
-              "projectPath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj"
+            "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
+              "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj"
             },
-            "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj": {
-              "projectPath": "C:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj"
+            "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj": {
+              "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj"
             }
           }
         }
