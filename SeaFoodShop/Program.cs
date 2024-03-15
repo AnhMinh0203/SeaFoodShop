@@ -37,11 +37,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 // Register service
 builder.Services.AddSingleton<ConnectToSql>();
-builder.Services.AddScoped<IUserRespon, UserRespon>();
+builder.Services.AddScoped<IAccountRespon, AccountRespon>();
 builder.Services.AddScoped<SeaFoodRespon>();
 builder.Services.AddScoped<CommentRespon>();
 builder.Services.AddScoped<ShoppingCartRespon>();
 builder.Services.AddScoped<TypeRespon>();
+builder.Services.AddScoped<UserRespon>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

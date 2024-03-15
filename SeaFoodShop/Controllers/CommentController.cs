@@ -36,10 +36,7 @@ namespace SeaFoodShop.API.Controllers
         public async Task<string?> deleteComment(string idComment,string token)
         {
             var idCommentModel = await _commentRespon.deleteCommentAsync(idComment, token);
-            if (idCommentModel==true)
-            {
-                return "Xóa bình luận thành công";
-            }
+            if (idCommentModel==true) return "Xóa bình luận thành công";
             return "Xóa bình luận thành không thành công";
         }
 

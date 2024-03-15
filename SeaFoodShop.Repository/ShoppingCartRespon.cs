@@ -123,7 +123,7 @@ namespace SeaFoodShop.Repository
             }
         } 
 
-        public async Task<List<SeaFoodModel>?> searchShoppingCartAsync (string nameSeaFood, string token)
+        public async Task<List<SeaFoodModel>?> searchShoppingCartAsync (string? nameSeaFood, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);

@@ -10,6 +10,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.TwiML.Voice;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SeaFoodShop.Repository
@@ -17,9 +18,11 @@ namespace SeaFoodShop.Repository
     public class SeaFoodRespon: ISeaFoodRespon
     {
         private readonly ConnectToSql _context;
-        public SeaFoodRespon(ConnectToSql context)
+        private readonly IConfiguration _config;
+        public SeaFoodRespon(ConnectToSql context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
         /*
         public async Task<SeaFoodDetailModel> getSeaFoodDetailAsync (int id)
@@ -80,7 +83,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<SeaFoodDetailModel> getSeaFoodDetailAsync (int id)
+        public async Task<SeaFoodDetailModel?> getSeaFoodDetailAsync (int id)
         {
             try
             {
@@ -89,13 +92,8 @@ namespace SeaFoodShop.Repository
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
                     parameters.Add("@id", id);
-                    SeaFoodDetailModel? seaFoodDetailModel = await connection.QueryFirstOrDefaultAsync<SeaFoodDetailModel>(
-                        "GetSeaFoodDetail",
-                        parameters,
-                        commandType: CommandType.StoredProcedure,
-                        commandTimeout: 5
-                    );
-                    return seaFoodDetailModel;
+                    var result = await connection.QuerySingleOrDefaultAsync<SeaFoodDetailModel>("GetSeaFoodDetail", parameters, commandType: CommandType.StoredProcedure);
+                    return result;
                 }
             }
             catch (Exception ex)
@@ -160,6 +158,100 @@ namespace SeaFoodShop.Repository
             catch(Exception ex)
             {
                 throw new Exception(ex.Message);    
+            }
+        }
+
+        //favorite seafoods
+        public async Task<List<SeaFoodModel>?> getFavoriteSeafoodsAsync (string token)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return null;
+            }
+            try
+            {
+                using(var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    var parameters = new DynamicParameters();
+                    parameters.Add ("@idUser", idUser);
+                    var result = await connection.QueryAsync<SeaFoodModel>(
+                        "GetFavoriteSeafoods",
+                        parameters,
+                        commandType: CommandType.StoredProcedure
+                    );
+                    return result.ToList();
+                } 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<string> addFavoriteSeafoodAsync (string token,string idSeaFood)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return "Vui lòng đăng nhập tài khoản";
+            }
+            try
+            {
+                using(var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@@IdUser",  idUser);
+                    parameters.Add("@IdSeafood", idSeaFood);
+
+                    await connection.QueryAsync(
+                        "AddFavoriteSeafood",
+                        parameters,
+                        commandType: CommandType.StoredProcedure
+                    );
+                    return "Thêm sản phẩm vào danh sách yêu thích thành công";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        } 
+
+        public async Task<string> deleteFavoriteSeafoodAsync (string token, string idSeafood)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return "Vui lòng đăng nhập tài khoản";
+            }
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    using (var command = new SqlCommand("DeleteFavoriteSeafood", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@IdSeaFood", idSeafood);
+                        command.Parameters.AddWithValue("@IdUser", idUser);
+                        await command.ExecuteNonQueryAsync();
+
+                        return "Xóa sản phẩm khỏi danh sách yêu thích thành công";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
             }
         }
     }

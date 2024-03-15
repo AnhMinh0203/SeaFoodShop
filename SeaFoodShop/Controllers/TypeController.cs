@@ -21,13 +21,13 @@ namespace SeaFoodShop.API.Controllers
             return await _typeRespon.addTypeSeaFoodAsync(type, token);
         }
 
-        [HttpDelete("AddType")]
+        [HttpDelete("DeleteType")]
         public async Task<string> DeleteSeaFoodType (string nameType, string token)
         {
             return await _typeRespon.deleteTypeSeaFoodAsync (nameType, token);
         }
 
-        [HttpGet]
+        [HttpGet("GetTypes")]
         public async Task<List<TypeModel>> GetSeaFoodTypes (string token)
         {
             return await _typeRespon.getSeaFoodTypeAsync(token);

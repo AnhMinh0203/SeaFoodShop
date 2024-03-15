@@ -1,39 +1,36 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SeaFoodShop.DataContext.Data;
 using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Repository;
-using SeaFoodShop.Repository.Interface;
 
 namespace SeaFoodShop.API.Controllers
 {
-    
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRespon _userRespon;
-        public UserController (IUserRespon userRespon)
+        private readonly UserRespon _userRespon;
+        public UserController(UserRespon userRespon)
         {
             _userRespon = userRespon;
         }
-
-        [HttpPost("SignIn")]
-        public async Task<CustomMessage> SignIn(SignInModel signInModel)
+        [HttpPost("UpdateProfile")]
+        public async Task<string> updateUserProfile(UserProfileModel userProfileModel,string token)
         {
-            var result = await _userRespon.SignInAsync(signInModel);
-            return new CustomMessage { Message = result.Message, Token = result.Token };
+            return await _userRespon.updateUserProfileAsync(token, userProfileModel);
         }
-
-        [HttpPost("SignUp")]
-        public async Task<MethodResult> SignUp (SignUpModel signUpModel)
+        [HttpGet("GetProfile")]
+        public async Task<UserProfileModel?> getUserProfile(string token)
         {
-            var result = await _userRespon.SignUpAsync(signUpModel);
-            if (string.IsNullOrEmpty(result))
-            {
-                return MethodResult.ResultWithSuccess(result, false);
-            }
-            return MethodResult.ResultWithSuccess(result, true);
+            var result = await _userRespon.getUserProfile(token);
+            if(result == null) return null;
+            return result;
+        }
+        [HttpPost("Change Password")]
+        public async Task<string> changePassword(string token, ChangePasswordModel password)
+        {
+            return await _userRespon.changePasswordAsync(token, password);
         }
     }
 }

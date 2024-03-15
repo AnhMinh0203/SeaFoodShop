@@ -44,7 +44,7 @@ namespace SeaFoodShop.Repository
                     await connection.ExecuteAsync(
                         "AddSeaFoodType",
                         parameters,
-                        commandType: System.Data.CommandType.StoredProcedure);
+                        commandType: CommandType.StoredProcedure);
                     string result = parameters.Get<string>("@result");
 
                     return result;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Models;
 using SeaFoodShop.Repository;
 
@@ -20,13 +21,15 @@ namespace SeaFoodShop.API.Controllers
             return await _seaFoodRespon.getSeaFoodsAsync(pageNumber, pageSize);
         }
 
-        [HttpPost("id")]
-        public async Task<SeaFoodDetailModel> getSeaFoodDetail(int id)
+        [HttpGet("SeaFoodDetail")]
+        public async Task<MethodResult> getSeaFoodDetail(int id)
         {
-            return await _seaFoodRespon.getSeaFoodDetailAsync(id);
+            var result =  await _seaFoodRespon.getSeaFoodDetailAsync(id);
+            if (result == null) return MethodResult.Result(null, "Sản phẩm không tồn tại");
+            return MethodResult.Result(result,null);
         }
 
-        [HttpPost("SeafoodName")]
+        [HttpPost("SearchSeafood")]
         public async Task<List<SeaFoodModel>> searchSeaFood (string nameSeaFood)
         {
             return await _seaFoodRespon.searchSeaFoodAsync(nameSeaFood);
@@ -36,6 +39,23 @@ namespace SeaFoodShop.API.Controllers
         public async Task<List<SeaFoodModel>> searchSeaFoodByType(string nameSeaFood)
         {
             return await _seaFoodRespon.searchSeaFoodByTypeAsync(nameSeaFood);
+        }
+
+        [HttpGet("GetFavoriteSeafoods")]
+        public async Task<List<SeaFoodModel>?> getFavoriteSeafoods (string token)
+        {
+            return await _seaFoodRespon.getFavoriteSeafoodsAsync(token);
+
+        }
+        [HttpPost("AddFavoriteSeafood")]
+        public async Task<string> addFavoriteSeafood (string token, string idSeafood)
+        {
+            return await _seaFoodRespon.addFavoriteSeafoodAsync(token, idSeafood);
+        }
+        [HttpPost("DeleteFavoriteSeafood")]
+        public async Task<string> deleteFavoriteSeafood (string token, string idSeafood)
+        {
+            return await _seaFoodRespon.deleteFavoriteSeafoodAsync (token, idSeafood);  
         }
     }
 }
