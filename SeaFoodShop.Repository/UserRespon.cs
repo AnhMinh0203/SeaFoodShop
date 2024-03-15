@@ -207,10 +207,5 @@ namespace SeaFoodShop.Repository
                 throw new Exception (e.Message, e);
             }
         }
-
-        public async Task<string> addAddressAsync (string token, AddressModel address)
-        {
-            return "";
-        }
     }
 }

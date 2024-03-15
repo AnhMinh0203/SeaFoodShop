@@ -43,6 +43,7 @@ builder.Services.AddScoped<CommentRespon>();
 builder.Services.AddScoped<ShoppingCartRespon>();
 builder.Services.AddScoped<TypeRespon>();
 builder.Services.AddScoped<UserRespon>();
+builder.Services.AddScoped<AddressRespon>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
