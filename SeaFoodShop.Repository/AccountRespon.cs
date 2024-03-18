@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Dapper;
 
 namespace SeaFoodShop.Repository
 {
@@ -40,6 +41,15 @@ namespace SeaFoodShop.Repository
                         {
                             if(reader.Read())
                             {
+                                int statusAccount = reader.GetInt32(reader.GetOrdinal("Status"));
+                                if(statusAccount == -1)
+                                {
+                                    return new CustomMessage
+                                    {
+                                        Message = "Tài khoản đã bị khóa. Vui lòng liên hệ Admin",
+                                        Token = null
+                                    };
+                                }
                                 string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                                 // Verify the input password against the hashed password using bcrypt
                                 bool passwordMatch = BCrypt.Net.BCrypt.Verify(model.Password, hashedPassword);
@@ -74,7 +84,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<string> SignUpAsync(SignUpModel model)
+        public async Task<string?> SignUpAsync(SignUpModel model)
         {
             try
             {
@@ -114,6 +124,244 @@ namespace SeaFoodShop.Repository
         public async Task<string> ForgetPassword(string phoneNumber)
         {
             return "Your new password";
+        }
+
+        public async Task<string> LockAccountAsync (string phoneNumber)
+        {
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@phoneNumber", phoneNumber);
+                    parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+
+                    await connection.ExecuteAsync(
+                        "lockAccount",
+                        parameters,
+                        commandType: CommandType.StoredProcedure);
+                    return parameters.Get<string>("@result");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<string> UnlockAccountAsync (string phoneNumber)
+        {
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@phoneNumber", phoneNumber);
+                    parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+
+                    await connection.ExecuteAsync(
+                        "unLockAccount",
+                        parameters,
+                        commandType: CommandType.StoredProcedure);
+                    return parameters.Get<string>("@result");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<AccountModel>?> SearchAccountAsync (string token,string phoneNumber,string status)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null) return null;
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    var listAccount = await connection.QueryAsync<AccountModel>(
+                        "searchAccount",
+                        new { phoneNumber = phoneNumber , status = status},
+                        commandType: CommandType.StoredProcedure
+                    );
+                    
+                    return listAccount.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        // Cách 1
+        /*public async Task<string> changePasswordAsync (string token, ChangePasswordModel password)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return "Vui lòng đăng nhập";
+            }
+            try
+            {
+                using(var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Generate a salt for bcrypt encryption
+                    string hash = BCrypt.Net.BCrypt.HashPassword(password.OldPassword, salt);
+                    using (var command = new SqlCommand("getPassword", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idUser", idUser);
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        {
+                            if (reader.Read())
+                            {
+                                string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+                                // Verify the input password against the hashed password using bcrypt
+                                bool passwordMatch = BCrypt.Net.BCrypt.Verify(password.OldPassword, hashedPassword);
+                                if (passwordMatch)
+                                {
+                                    reader.Close();
+                                    string newSalt = BCrypt.Net.BCrypt.GenerateSalt(); // Generate a salt for bcrypt encryption
+                                    string newHash = BCrypt.Net.BCrypt.HashPassword(password.NewPassword, salt);
+
+                                    var parameters = new DynamicParameters();
+                                    parameters.Add("@idUser", idUser);
+                                    parameters.Add("@newPassword", newHash);
+                                    parameters.Add("@result", "", DbType.String, ParameterDirection.Output);
+                                    await connection.ExecuteAsync("ChangePassword", parameters, commandType: CommandType.StoredProcedure);
+
+                                    string resultMessage = parameters.Get<string>("@result");
+
+                                    return resultMessage;
+                                }
+                                else
+                                {
+                                    return "Mật khẩu không đúng";
+                                }
+                            }
+                            return "";
+                        }
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message, e);
+            }
+        }*/
+        // Cách 2
+        public async Task<string> changePasswordAsync(string token, ChangePasswordModel password)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return "Vui lòng đăng nhập";
+            }
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            string? currentPassword;
+                            using (var getPasswordCommand = new SqlCommand("GetPassword", connection, transaction))
+                            {
+                                getPasswordCommand.CommandType = CommandType.StoredProcedure;
+                                getPasswordCommand.Parameters.AddWithValue("@idUser", idUser);
+                                currentPassword = (string?)await getPasswordCommand.ExecuteScalarAsync();
+
+                                if (string.IsNullOrEmpty(currentPassword))
+                                {
+                                    transaction.Rollback();
+                                    return "Mật khẩu không tồn tại";
+                                }
+                            }
+                            if (!BCrypt.Net.BCrypt.Verify(password.OldPassword, currentPassword))
+                            {
+                                transaction.Rollback();
+                                return "Mật khẩu không đúng";
+                            }
+                            string newHash = BCrypt.Net.BCrypt.HashPassword(password.NewPassword);
+                            using (var changePasswordCommand = new SqlCommand("ChangePassword", connection, transaction))
+                            {
+                                changePasswordCommand.CommandType = CommandType.StoredProcedure;
+                                changePasswordCommand.Parameters.AddWithValue("@idUser", idUser);
+                                changePasswordCommand.Parameters.AddWithValue("@newPassword", newHash);
+                                await changePasswordCommand.ExecuteNonQueryAsync();
+
+                                transaction.Commit();
+                                return "Cập nhật mật khẩu thành công";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message, ex);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message, e);
+            }
+        }
+
+        public async Task<string> changePasswordAdminAsync(string token, ChangePasswordAdminModel password)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null)
+            {
+                return "Vui lòng đăng nhập";
+            }
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            string newHash = BCrypt.Net.BCrypt.HashPassword(password.NewPassword);
+                            using (var changePasswordCommand = new SqlCommand("ChangePasswordAdmin", connection, transaction))
+                            {
+                                changePasswordCommand.CommandType = CommandType.StoredProcedure;
+                                changePasswordCommand.Parameters.AddWithValue("@phoneNumber", password.PhoneNumber);
+                                changePasswordCommand.Parameters.AddWithValue("@newPassword", newHash);
+                                await changePasswordCommand.ExecuteNonQueryAsync();
+
+                                transaction.Commit();
+                                return "Cập nhật mật khẩu thành công";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message, ex);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message, e);
+            }
         }
     }
 }

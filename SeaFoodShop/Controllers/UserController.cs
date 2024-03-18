@@ -27,10 +27,6 @@ namespace SeaFoodShop.API.Controllers
             if(result == null) return null;
             return result;
         }
-        [HttpPost("Change Password")]
-        public async Task<string> changePassword(string token, ChangePasswordModel password)
-        {
-            return await _userRespon.changePasswordAsync(token, password);
-        }
+
     }
 }
