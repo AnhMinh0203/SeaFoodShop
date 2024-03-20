@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SeaFoodShop.DataContext.Models;
-using SeaFoodShop.Repository;
+using SeaFoodShop.Repository.Repositories;
 
 namespace SeaFoodShop.API.Controllers
 {

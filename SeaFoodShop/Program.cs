@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using SeaFoodShop.API.Controllers;
 using SeaFoodShop.DataContext.Data;
-using SeaFoodShop.Repository;
 using SeaFoodShop.Repository.Interface;
+using SeaFoodShop.Repository.Repositories;
 using System.Text;
 using Twilio.Clients;
 
@@ -38,6 +38,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 // Register service
 builder.Services.AddSingleton<ConnectToSql>();
 builder.Services.AddScoped<IAccountRespon, AccountRespon>();
+builder.Services.AddScoped<ManagerAccountRespon>();
 builder.Services.AddScoped<SeaFoodRespon>();
 builder.Services.AddScoped<CommentRespon>();
 builder.Services.AddScoped<ShoppingCartRespon>();
@@ -45,6 +46,10 @@ builder.Services.AddScoped<TypeRespon>();
 builder.Services.AddScoped<UserRespon>();
 builder.Services.AddScoped<AddressRespon>();
 builder.Services.AddScoped<BlogRespon>();
+builder.Services.AddScoped<ManagerCustomerRespon>();
+builder.Services.AddScoped<ManagerSeaFoodRespon>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

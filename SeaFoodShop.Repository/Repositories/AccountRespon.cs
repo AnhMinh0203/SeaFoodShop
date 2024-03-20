@@ -13,9 +13,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Dapper;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
-    public class AccountRespon: IAccountRespon
+    public class AccountRespon : IAccountRespon
     {
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
@@ -26,23 +26,23 @@ namespace SeaFoodShop.Repository
             _config = configuration;
         }
 
-        public async Task<CustomMessage> SignInAsync (SignInModel model)
+        public async Task<CustomMessage> SignInAsync(SignInModel model)
         {
             try
             {
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    using(var command = new SqlCommand("SignIn", connection))
+                    using (var command = new SqlCommand("SignIn", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@phoneNumber", model.PhoneNumber);
                         using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
-                            if(reader.Read())
+                            if (reader.Read())
                             {
                                 int statusAccount = reader.GetInt32(reader.GetOrdinal("Status"));
-                                if(statusAccount == -1)
+                                if (statusAccount == -1)
                                 {
                                     return new CustomMessage
                                     {
@@ -93,17 +93,17 @@ namespace SeaFoodShop.Repository
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    using(var command = new SqlCommand("SignUp", connection))
+                    using (var command = new SqlCommand("SignUp", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@fullName", model.FullName);
-                        command.Parameters.AddWithValue ("@password", hash);
+                        command.Parameters.AddWithValue("@password", hash);
                         command.Parameters.AddWithValue("@phoneNumber", model.PhoneNumber);
                         command.Parameters.AddWithValue("@dob", model.Dob);
 
                         // Add an output parameter to get the result from the stored procedure
-                        var resultParam = new SqlParameter("@result",SqlDbType.NVarChar, 100); 
-                        resultParam.Direction = ParameterDirection.Output; 
+                        var resultParam = new SqlParameter("@result", SqlDbType.NVarChar, 100);
+                        resultParam.Direction = ParameterDirection.Output;
                         command.Parameters.Add(resultParam);
 
                         await command.ExecuteNonQueryAsync();
@@ -126,79 +126,7 @@ namespace SeaFoodShop.Repository
             return "Your new password";
         }
 
-        public async Task<string> LockAccountAsync (string phoneNumber)
-        {
-            try
-            {
-                using (var connection = (SqlConnection)_context.CreateConnection())
-                {
-                    await connection.OpenAsync();
-                    var parameters = new DynamicParameters();
-                    parameters.Add("@phoneNumber", phoneNumber);
-                    parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
 
-                    await connection.ExecuteAsync(
-                        "lockAccount",
-                        parameters,
-                        commandType: CommandType.StoredProcedure);
-                    return parameters.Get<string>("@result");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public async Task<string> UnlockAccountAsync (string phoneNumber)
-        {
-            try
-            {
-                using (var connection = (SqlConnection)_context.CreateConnection())
-                {
-                    await connection.OpenAsync();
-                    var parameters = new DynamicParameters();
-                    parameters.Add("@phoneNumber", phoneNumber);
-                    parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
-
-                    await connection.ExecuteAsync(
-                        "unLockAccount",
-                        parameters,
-                        commandType: CommandType.StoredProcedure);
-                    return parameters.Get<string>("@result");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<List<AccountModel>?> SearchAccountAsync (string token,string phoneNumber,string status)
-        {
-            TokenRespon tokenObject = new TokenRespon(_config);
-            var idUser = tokenObject.ValidateJwtToken(token);
-            var tokenValidate = tokenObject.ValidateJwtToken(token);
-            if (tokenValidate == null) return null;
-            try
-            {
-                using (var connection = (SqlConnection)_context.CreateConnection())
-                {
-                    await connection.OpenAsync();
-                    var listAccount = await connection.QueryAsync<AccountModel>(
-                        "searchAccount",
-                        new { phoneNumber = phoneNumber , status = status},
-                        commandType: CommandType.StoredProcedure
-                    );
-                    
-                    return listAccount.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-        }
 
         // Cách 1
         /*public async Task<string> changePasswordAsync (string token, ChangePasswordModel password)
@@ -302,48 +230,6 @@ namespace SeaFoodShop.Repository
                             {
                                 changePasswordCommand.CommandType = CommandType.StoredProcedure;
                                 changePasswordCommand.Parameters.AddWithValue("@idUser", idUser);
-                                changePasswordCommand.Parameters.AddWithValue("@newPassword", newHash);
-                                await changePasswordCommand.ExecuteNonQueryAsync();
-
-                                transaction.Commit();
-                                return "Cập nhật mật khẩu thành công";
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            throw new Exception(ex.Message, ex);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message, e);
-            }
-        }
-
-        public async Task<string> changePasswordAdminAsync(string token, ChangePasswordAdminModel password)
-        {
-            TokenRespon tokenObject = new TokenRespon(_config);
-            var tokenValidate = tokenObject.ValidateJwtToken(token);
-            if (tokenValidate == null)
-            {
-                return "Vui lòng đăng nhập";
-            }
-            try
-            {
-                using (var connection = (SqlConnection)_context.CreateConnection())
-                {
-                    await connection.OpenAsync();
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            string newHash = BCrypt.Net.BCrypt.HashPassword(password.NewPassword);
-                            using (var changePasswordCommand = new SqlCommand("ChangePasswordAdmin", connection, transaction))
-                            {
-                                changePasswordCommand.CommandType = CommandType.StoredProcedure;
-                                changePasswordCommand.Parameters.AddWithValue("@phoneNumber", password.PhoneNumber);
                                 changePasswordCommand.Parameters.AddWithValue("@newPassword", newHash);
                                 await changePasswordCommand.ExecuteNonQueryAsync();
 

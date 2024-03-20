@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
     public class BlogRespon
     {

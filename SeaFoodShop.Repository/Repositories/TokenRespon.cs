@@ -12,9 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Twilio.Jwt.AccessToken;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
-    public class TokenRespon: ITokenRespon
+    public class TokenRespon : ITokenRespon
     {
         private readonly IConfiguration _config;
         public TokenRespon(IConfiguration config)
@@ -69,18 +69,18 @@ namespace SeaFoodShop.Repository
                 return null;
             }
         }
-/*
-        public string TokenResult(string token)
-        {
-            TokenRespon tokenObject = new TokenRespon(_config);
-            var idUser = tokenObject.ValidateJwtToken(token);
-            var tokenValidate = tokenObject.ValidateJwtToken(token);
-            if (tokenValidate == null)
-            {
-                return "Vui lòng đăng nhập tài khoản";
-            }
-            return "";
-        }*/
+        /*
+                public string TokenResult(string token)
+                {
+                    TokenRespon tokenObject = new TokenRespon(_config);
+                    var idUser = tokenObject.ValidateJwtToken(token);
+                    var tokenValidate = tokenObject.ValidateJwtToken(token);
+                    if (tokenValidate == null)
+                    {
+                        return "Vui lòng đăng nhập tài khoản";
+                    }
+                    return "";
+                }*/
 
         /*public SecurityToken ValidateToken(string token)
         {

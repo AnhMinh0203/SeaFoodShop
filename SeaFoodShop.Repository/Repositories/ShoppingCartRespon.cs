@@ -13,19 +13,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Twilio.TwiML.Voice;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
     public class ShoppingCartRespon
     {
 
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
-        public ShoppingCartRespon (ConnectToSql context,IConfiguration config)
+        public ShoppingCartRespon(ConnectToSql context, IConfiguration config)
         {
             _config = config;
             _context = context;
         }
-        public async Task<string> addToShoppingCart (ShoppingCartModel shoppingCartModel, string token)
+        public async Task<string> addToShoppingCart(ShoppingCartModel shoppingCartModel, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -36,10 +36,10 @@ namespace SeaFoodShop.Repository
             }
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    using(var command = new SqlCommand("AddToShoppingCart", connection))
+                    using (var command = new SqlCommand("AddToShoppingCart", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@IdSeafood", shoppingCartModel.IdFood);
@@ -57,10 +57,10 @@ namespace SeaFoodShop.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);    
+                throw new Exception(ex.Message, ex);
             }
         }
-        public async Task<string> updateShoppingCartAsync (ShoppingCartModel shoppingCartModel, string token)
+        public async Task<string> updateShoppingCartAsync(ShoppingCartModel shoppingCartModel, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -84,7 +84,7 @@ namespace SeaFoodShop.Repository
                         await command.ExecuteNonQueryAsync();
                     }
                     return "Cập nhật thành công";
-                }      
+                }
             }
             catch (Exception ex)
             {
@@ -92,7 +92,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<string> deleteShoppingCartAsync (string idSeaFood, string token)
+        public async Task<string> deleteShoppingCartAsync(string idSeaFood, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -117,13 +117,13 @@ namespace SeaFoodShop.Repository
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
             }
-        } 
+        }
 
-        public async Task<List<SeaFoodModel>?> searchShoppingCartAsync (string? nameSeaFood, string token)
+        public async Task<List<SeaFoodModel>?> searchShoppingCartAsync(string? nameSeaFood, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -145,7 +145,7 @@ namespace SeaFoodShop.Repository
                         parameters,
                         commandType: CommandType.StoredProcedure
                     );
-                    return result.ToList(); 
+                    return result.ToList();
                 }
             }
             catch (Exception ex)

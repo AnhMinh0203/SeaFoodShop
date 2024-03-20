@@ -10,19 +10,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
     public class UserRespon
     {
+        /*Status account = 0: hoạt động bth
+         *Status account = 1: Tài khoản bị khóa
+         *Status account = -1: Tài khoản bị xóa
+        */
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
-        public UserRespon (ConnectToSql context, IConfiguration config)
+        public UserRespon(ConnectToSql context, IConfiguration config)
         {
             _context = context;
             _config = config;
         }
 
-        public async Task<UserProfileModel?> getUserProfile (string token)
+        public async Task<UserProfileModel?> getUserProfile(string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -33,7 +37,7 @@ namespace SeaFoodShop.Repository
             }
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
@@ -51,7 +55,7 @@ namespace SeaFoodShop.Repository
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<string> updateUserProfileAsync(string token,UserProfileModel user)
+        public async Task<string> updateUserProfileAsync(string token, UserProfileModel user)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -62,7 +66,7 @@ namespace SeaFoodShop.Repository
             }
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
@@ -83,7 +87,7 @@ namespace SeaFoodShop.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);    
+                throw new Exception(ex.Message, ex);
             }
         }
     }

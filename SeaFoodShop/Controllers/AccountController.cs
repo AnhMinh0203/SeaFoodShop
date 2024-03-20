@@ -35,32 +35,12 @@ namespace SeaFoodShop.API.Controllers
             }
             return MethodResult.ResultWithSuccess(result, true);
         }
-        [HttpPut("LockAccount")]
-        public async Task<string> lockAccount (string phoneNumber)
-        {
-            return await _accountRespon.LockAccountAsync(phoneNumber);
-        }
-        [HttpPut("UnLockAccount")]
-        public async Task<string> unLockAccount(string phoneNumber)
-        {
-            return await _accountRespon.UnlockAccountAsync(phoneNumber);
-        }
-        [HttpGet("SearchAccount")]
-        public async Task<List<AccountModel>?> searchAccount (string token, string phoneNumber, string status)
-        {
-            return await _accountRespon.SearchAccountAsync(token, phoneNumber, status);
-        }
+
 
         [HttpPut("ChangePassword")]
         public async Task<string> changePassword(string token, ChangePasswordModel password)
         {
             return await _accountRespon.changePasswordAsync(token, password);
-        }
-
-        [HttpPut("ChangePasswordAdmin")]
-        public async Task<string> changePasswordAdmin(string token, ChangePasswordAdminModel password)
-        {
-            return await _accountRespon.changePasswordAdminAsync(token, password);
         }
     }
 }

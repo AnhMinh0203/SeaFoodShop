@@ -16,7 +16,7 @@ using Twilio.Jwt.AccessToken;
 using SeaFoodShop.Models;
 using Newtonsoft.Json;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
     public class CommentRespon
     {
@@ -57,9 +57,9 @@ namespace SeaFoodShop.Repository
                         command.Parameters.AddWithValue("@Dislike", comment.Dislike);
                         command.Parameters.AddWithValue("@IdFood", comment.IdFood);
                         command.Parameters.AddWithValue("@Stars", comment.Star);
-                        command.Parameters.AddWithValue("@IdUser", idUser.ToString()); 
+                        command.Parameters.AddWithValue("@IdUser", idUser.ToString());
                         await command.ExecuteNonQueryAsync();
-                       
+
                         return true;
                     }
                 }
@@ -213,8 +213,8 @@ namespace SeaFoodShop.Repository
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@CommentText", text);
                     using SqlDataReader reader = await command.ExecuteReaderAsync();
-                    
-                    while(await reader.ReadAsync())
+
+                    while (await reader.ReadAsync())
                     {
                         CommentSearchModel commentSearch = new CommentSearchModel
                         {
@@ -228,7 +228,7 @@ namespace SeaFoodShop.Repository
                             var images = JsonConvert.DeserializeObject<List<ImageModel>>(imagesJson);
                             commentSearch.Images.AddRange(images);
                         }
-                        results.Add(commentSearch);  
+                        results.Add(commentSearch);
                     }
                 }
                 return results;

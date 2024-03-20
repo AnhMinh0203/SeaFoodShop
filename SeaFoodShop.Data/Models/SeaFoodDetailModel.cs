@@ -8,6 +8,7 @@ namespace SeaFoodShop.Models
         public string ExpirationDate { get; set; }
         public string Origin { get; set; }
         public string TypeName { get; set; }
+        public string PrimaryImage { get; set; }
         public List<ImageDescModel> DescriptionImages { get; set; }
         public List<ImageSeaFoodModel> SeaFoodImages { get; set; }
     }

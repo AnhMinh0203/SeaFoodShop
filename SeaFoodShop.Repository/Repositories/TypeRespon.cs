@@ -12,19 +12,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
     public class TypeRespon
     {
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
-        public TypeRespon (ConnectToSql context, IConfiguration configuration)
+        public TypeRespon(ConnectToSql context, IConfiguration configuration)
         {
             _context = context;
             _config = configuration;
         }
 
-        public async Task<string> addTypeSeaFoodAsync (TypeModel type,string token)
+        public async Task<string> addTypeSeaFoodAsync(TypeModel type, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var tokenValidate = tokenObject.ValidateJwtToken(token);
@@ -39,8 +39,8 @@ namespace SeaFoodShop.Repository
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
                     parameters.Add("@nameType", type.NameType);
-                    parameters.Add("@result",dbType:DbType.String , direction: ParameterDirection.Output, size: 100);
-                    
+                    parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+
                     await connection.ExecuteAsync(
                         "AddSeaFoodType",
                         parameters,
@@ -56,7 +56,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task <string> deleteTypeSeaFoodAsync (string nameType, string token)
+        public async Task<string> deleteTypeSeaFoodAsync(string nameType, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var tokenValidate = tokenObject.ValidateJwtToken(token);
@@ -76,7 +76,7 @@ namespace SeaFoodShop.Repository
                     await connection.ExecuteAsync(
                         "DeleteSeaFoodType",
                         parameters,
-                        commandType: System.Data.CommandType.StoredProcedure);
+                        commandType: CommandType.StoredProcedure);
                     string result = parameters.Get<string>("@result");
 
                     return result;
@@ -97,8 +97,8 @@ namespace SeaFoodShop.Repository
                 throw new Exception("Vui lòng đăng nhập");
             }
             try
-            { 
-                using(var connection = (SqlConnection)_context.CreateConnection())
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
                     return (await connection.QueryAsync<TypeModel>("GetSeaFoodType", commandType: CommandType.StoredProcedure)).ToList();

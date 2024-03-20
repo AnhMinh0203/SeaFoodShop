@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using Twilio.TwiML.Voice;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
-    public class SeaFoodRespon: ISeaFoodRespon
+    public class SeaFoodRespon : ISeaFoodRespon
     {
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
@@ -83,7 +83,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<SeaFoodDetailModel?> getSeaFoodDetailAsync (int id)
+        public async Task<SeaFoodDetailModel?> getSeaFoodDetailAsync(int id)
         {
             try
             {
@@ -102,20 +102,20 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<List<SeaFoodModel>> searchSeaFoodAsync (string nameSeaFood)
+        public async Task<List<SeaFoodModel>> searchSeaFoodAsync(string nameSeaFood)
         {
             try
             {
                 List<SeaFoodModel> seaFoodList = new List<SeaFoodModel>();
-               
-                using(var connection = (SqlConnection)_context.CreateConnection())
+
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    using(var command = new SqlCommand("SearchSeaFood", connection))
+                    using (var command = new SqlCommand("SearchSeaFood", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@nameSeaFood", nameSeaFood);
-                        using(SqlDataReader reader = await command.ExecuteReaderAsync())
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
                             while (reader.Read())
                             {
@@ -131,18 +131,18 @@ namespace SeaFoodShop.Repository
                 }
                 return seaFoodList;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            
+
         }
 
-        public async Task<List<SeaFoodModel>> searchSeaFoodByTypeAsync (string nameType)
+        public async Task<List<SeaFoodModel>> searchSeaFoodByTypeAsync(string nameType)
         {
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
@@ -155,14 +155,14 @@ namespace SeaFoodShop.Repository
                     return result.ToList();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception(ex.Message);    
+                throw new Exception(ex.Message);
             }
         }
 
         //favorite seafoods
-        public async Task<List<SeaFoodModel>?> getFavoriteSeafoodsAsync (string token)
+        public async Task<List<SeaFoodModel>?> getFavoriteSeafoodsAsync(string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -173,18 +173,18 @@ namespace SeaFoodShop.Repository
             }
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
-                    parameters.Add ("@idUser", idUser);
+                    parameters.Add("@idUser", idUser);
                     var result = await connection.QueryAsync<SeaFoodModel>(
                         "GetFavoriteSeafoods",
                         parameters,
                         commandType: CommandType.StoredProcedure
                     );
                     return result.ToList();
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -192,7 +192,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<string> addFavoriteSeafoodAsync (string token,string idSeaFood)
+        public async Task<string> addFavoriteSeafoodAsync(string token, string idSeaFood)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -203,11 +203,11 @@ namespace SeaFoodShop.Repository
             }
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
-                    parameters.Add("@@IdUser",  idUser);
+                    parameters.Add("@@IdUser", idUser);
                     parameters.Add("@IdSeafood", idSeaFood);
 
                     await connection.QueryAsync(
@@ -222,9 +222,9 @@ namespace SeaFoodShop.Repository
             {
                 throw new Exception(ex.Message);
             }
-        } 
+        }
 
-        public async Task<string> deleteFavoriteSeafoodAsync (string token, string idSeafood)
+        public async Task<string> deleteFavoriteSeafoodAsync(string token, string idSeafood)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);

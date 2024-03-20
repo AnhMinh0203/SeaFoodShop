@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Twilio.TwiML.Messaging;
 
-namespace SeaFoodShop.Repository
+namespace SeaFoodShop.Repository.Repositories
 {
     public class AddressRespon
     {
@@ -24,7 +24,7 @@ namespace SeaFoodShop.Repository
             _config = config;
         }
 
-        public async Task <string> addAddressAsync (string token, AddressModel address)
+        public async Task<string> addAddressAsync(string token, AddressModel address)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -35,7 +35,7 @@ namespace SeaFoodShop.Repository
             }
             try
             {
-                using(var connection = (SqlConnection)_context.CreateConnection())
+                using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     var idAddress = Guid.NewGuid();
 
@@ -52,17 +52,17 @@ namespace SeaFoodShop.Repository
                         parameters,
                         commandType: CommandType.StoredProcedure
                     );
-                    var result = parameters.Get<string>( "result" );
+                    var result = parameters.Get<string>("result");
                     return result;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
 
-        public async Task<List<AddressModel>?> getAddressAsync (string token)
+        public async Task<List<AddressModel>?> getAddressAsync(string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -77,7 +77,7 @@ namespace SeaFoodShop.Repository
                 {
                     var addressList = await connection.QueryAsync<AddressModel>(
                         "GetAddresses",
-                        new { idUser = idUser},
+                        new { idUser },
                         commandType: CommandType.StoredProcedure);
 
                     return addressList.ToList();
@@ -89,7 +89,7 @@ namespace SeaFoodShop.Repository
             }
         }
 
-        public async Task<string> deleteAddressAsync (string token, string idAddress)
+        public async Task<string> deleteAddressAsync(string token, string idAddress)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -104,7 +104,7 @@ namespace SeaFoodShop.Repository
                 {
                     var addressList = await connection.QueryAsync<AddressModel>(
                         "DeteleAddress",
-                        new { idUser = idUser , idAddress = idAddress },
+                        new { idUser, idAddress },
                         commandType: CommandType.StoredProcedure);
 
                     return "Xóa địa chỉ thành công";
