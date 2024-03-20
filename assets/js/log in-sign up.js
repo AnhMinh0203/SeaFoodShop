@@ -9,3 +9,8 @@ registerBtn.addEventListener('click', () => {
 loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
+document.getElementById('password').addEventListener('input', function() {
+    var passwordInput = this.value;
+    var maskedPassword = '*'.repeat(passwordInput.length);
+    this.value = maskedPassword;
+});
