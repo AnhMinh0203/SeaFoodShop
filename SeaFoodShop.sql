@@ -38,10 +38,10 @@ create table SeaFoods (
 	IdType int foreign key references Types(Id),
 	IdVoucher int foreign key references Vouchers(Id)
 )
-select * from SeaFoods
+
 create table Images (
 	Id int identity(1,1) primary key,
-	IdFood int foreign key references SeaFoodDetail(Id),
+	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
 	IdComment int foreign key references Comments(Id),
 	IdBlog int foreign key references Blogs(Id),
 	IdDescription int foreign key references Descriptions(Id),
@@ -56,10 +56,12 @@ create table Users (
 	Password varchar(max),
 	FullName nvarchar (30),
 	Gender int null,
+	IdAddress uniqueidentifier foreign key references Address(Id),
 	Role int ,
 	Status int 
 )
 go
+
 create table FavoriteSeaFoods(
 	IdUser uniqueidentifier foreign key references Users(Id),
 	IdFood int foreign key references SeaFoods(Id)
@@ -148,7 +150,7 @@ Mặc dù cùng là loài ốc bulot nhưng tại các vùng biển khác nhau,
 
 Ốc bulot Ireland có thịt dày, không lẫn cát đá, khi ăn cảm nhận được độ mềm mịn cùng hương vị tươi ngon. Chúng có vỏ màu kem nhạt được tô điểm bởi những vệt màu xanh lục, kích thước trung bình từ 6 - 10cm. Những con ốc bulot sinh sống ngoài tự nhiên có thể có tuổi thọ lên đến 10 năm.', '2024-03-15 10:00:00', 'path_to_thumbnail1.jpg', 100, 20);
 
-
+select * from images
 
 select * from blogs
 delete from blogs

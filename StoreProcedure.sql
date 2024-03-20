@@ -1,15 +1,15 @@
 ﻿-- Sign In
-CREATE PROCEDURE SignIn
+alter PROCEDURE SignIn
     @phoneNumber VARCHAR(15)
 AS
 BEGIN
     DECLARE @sql NVARCHAR(MAX);
-    SET @sql = N'SELECT Id, Password, Role from users where PhoneNumber = @phoneNumber';
+    SET @sql = N'SELECT Id, Password, Role, Status from users where PhoneNumber = @phoneNumber';
     EXEC sp_executesql @sql, N'@phoneNumber VARCHAR(15)', @phoneNumber;
 END;
 
 -- Sign Up
-create procedure SignUp 
+alter procedure SignUp 
 	@dob date,
 	@phoneNumber varchar(15),
 	@password varchar(max),
@@ -24,14 +24,14 @@ if exists (select 1 from users where PhoneNumber = @phoneNumber)
 else
 	begin
 		declare @sql nvarchar(max)
-		set @sql = N'insert into users(Id,Dob,PhoneNumber,Password,FullName) values (NewID(),@dob,@phoneNumber,@password,@fullName)';
+		set @sql = N'insert into users(Id,Dob,PhoneNumber,Password,FullName,status) values (NewID(),@dob,@phoneNumber,@password,@fullName,0)';
 		exec sp_executesql @sql, N'@dob date,@phoneNumber varchar(15),@password varchar(max),@fullName nvarchar(30)',@dob,@phoneNumber,@password,@fullName;
 		set @result = 'Sign up successfully';
 	end;
 end;
 
 -- Display Seafoods
-alter PROCEDURE GetSeaFoods
+ALTER PROCEDURE GetSeaFoods
     @PageNumber INT,
     @PageSize INT
 AS
@@ -48,6 +48,7 @@ END;
 
 
 -- Dispay seafood detail
+
 alter procedure GetSeaFoodDetail
 @Id int
 as
@@ -64,7 +65,7 @@ begin
 	sf.ExpirationDate as ExpirationDate,
 	sf.Origin as Origin,
     (SELECT Image FROM Images i WHERE i.IdDescription = d.Id FOR JSON PATH) AS DescriptionImages,
-    (SELECT Image FROM Images i WHERE i.IdFood = sf.Id for json path) AS SeaFoodImages
+    (SELECT Image FROM Images i WHERE i.IdSeaFoodDetail = sf.Id for json path) AS SeaFoodImages
 	FROM 
 		descriptions d
 	INNER JOIN 
@@ -75,7 +76,7 @@ begin
         Types t ON s.IdType = t.Id
 	where d.Id = @Id
 end;
-GetSeaFoodDetail 1
+
 
 -- Search seafood by name
 create procedure SearchSeaFood
@@ -330,6 +331,15 @@ begin
 	update Users set Password = @newPassword where Id = @idUser
 end;
 
+create procedure ChangePasswordAdmin
+	@phoneNumber varchar(10),
+	@newPassword varchar(max)
+as
+begin
+	update Users set Password = @newPassword where PhoneNumber = @phoneNumber
+end;
+
+
 -- Get favorite seafoods
 alter procedure GetFavoriteSeafoods
 	@idUser uniqueidentifier
@@ -393,23 +403,183 @@ begin
 end
 
 -- Read blog
-create procedure getBlogs
+alter PROCEDURE getBlogs
+    @PageNumber INT,
+    @PageSize INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
+
+    SELECT * from Blogs
+    ORDER BY Id
+    OFFSET @Offset ROWS
+    FETCH NEXT @PageSize ROWS ONLY;
+END;
+
+alter procedure getBlogDetail
+	@idBlog int
 as
 begin
-	select * from Blogs
+	select b.* , 
+	(select Image from Images i where b.id = i.idBlog for json path ) as BlogImages 
+	from Blogs b where b.id = @idBlog
 end
 
+-- Lock account
+alter procedure lockAccount
+	@phoneNumber varchar(10),
+	@result nvarchar(100) output
+as
+begin
+	if not exists (select 1 from Users where PhoneNumber = @phoneNumber)
+		begin 
+			set @result =  N'Tài khoản không tồn tại'
+		end
+	else
+		begin
+			update Users set Status = 1 where PhoneNumber = @phoneNumber
+			set @result =  N'Khóa tài khoản thành công'
+		end
+end
 
+-- Unlock account
+alter procedure unLockAccount
+	@phoneNumber varchar(10),
+	@result nvarchar(100) output
+as
+begin
+if not exists (select 1 from Users where PhoneNumber = @phoneNumber)
+	begin 
+		set @result =  N'Tài khoản không tồn tại'
+	end
+else
+	begin
+		update Users set Status = 0 where PhoneNumber = @phoneNumber
+		set @result =  N'Mở khóa tài khoản thành công'
+	end
+end
 
+-- Search account
+alter procedure searchAccount 
+	@phoneNumber varchar(10) null,
+	@status int null
+as
+begin
+	IF @phoneNumber is not null and @status is null
+		select Id,PhoneNumber, FullName,Dob, Gender, Status from users where PhoneNumber like '%' + @phoneNumber + '%'  
+	else if @status = 1
+		if @phoneNumber is not null
+			select Id,PhoneNumber, FullName,Dob, Gender, Status from users where PhoneNumber like '%' + @phoneNumber + '%' and Status = 1
+		else
+			select Id,PhoneNumber, FullName,Dob, Gender, Status from users where Status = 1
+	else
+		select Id,PhoneNumber, FullName,Dob, Gender, Status from users
+end
 
+-- Delete customer
+alter procedure deleteCustomer
+	@phoneNumber varchar(10),
+	@result nvarchar(100) output
+as
+begin
+	update users set Status = -1 where PhoneNumber = @phoneNumber
+	set @result = N'Xóa người dùng thành công'
+end
 
+-- Search customer
+
+create procedure searchCustomer
+	@phoneNumber varchar(10),
+	@status int 
+as
+begin
+	IF @phoneNumber is not null and @status = 0
+		select u.Id,u.PhoneNumber, u.FullName,Dob, u.Gender, a.NameAddress, Status from users u
+		inner join MapUserAndAddress mua on u.IdAddress = mua.IdAddress
+		inner join Address a on mua.IdAddress = a.Id
+		where u.PhoneNumber like '%' + @phoneNumber + '%'  
+	else if @status = 1
+		if @phoneNumber is not null
+			select Id,PhoneNumber, FullName,Dob, Gender, Status from users where PhoneNumber like '%' + @phoneNumber + '%' and Status = 1
+		else
+			select Id,PhoneNumber, FullName,Dob, Gender, Status from users where Status = 1
+	else
+		select u.Id,u.PhoneNumber, u.FullName,u.Dob, u.Gender, a.NameAddress, Status from users u
+		inner join MapUserAndAddress mua on mua.IdAddress = mua.IdAddress
+		inner join Address a on mua.IdAddress = a.Id
+end
+
+-- Add seafood
+alter PROCEDURE addSeaFood
+    @name nvarchar(50),--
+    @price decimal(10,2),--
+    @unit nvarchar(10),--
+    @nameType nvarchar(20),--
+    @status int,--
+    @idVoucher int,--
+    @instruct nvarchar(255),--
+    @expirationDate nvarchar(255),--
+    @origin nvarchar(30),--
+    @primaryImage nvarchar(max), -- 
+    @jsonImagesSeaFood NVARCHAR(MAX),
+	@jsonImagesDescription NVARCHAR(MAX),--
+    @description nvarchar(max), --
+	@result nvarchar(100) output
+AS
+BEGIN
+	-- Declare two json table
+    DECLARE @jsonSeaFoodTable TABLE (
+        [Image] VARCHAR(max)
+    )
+	DECLARE @jsonDescription TABLE (
+        [Image] VARCHAR(max)
+    )
+	
+	DECLARE @idSeaFoodDetail INT;
+	DECLARE @idDescription INT;
+
+    INSERT INTO Descriptions (Description) VALUES (@description);
+	SELECT @idDescription = MAX(Id) FROM Descriptions
+
+	INSERT INTO @jsonDescription ([Image])
+    SELECT [Image]
+    FROM OPENJSON(@jsonImagesDescription) WITH (
+        [Image] NVARCHAR(100) '$.Image')
+
+	-- Insert images into Images table for description
+	INSERT INTO Images ([IdDescription],[Image])
+    SELECT @idDescription, [Image]
+    FROM @jsonDescription
+
+    -- Chèn dữ liệu vào bảng SeaFoodDetail
+    INSERT INTO SeaFoodDetail (IdDescription, Instruct, ExpirationDate, Origin, PrimaryImage)
+    VALUES (@idDescription, @instruct, @expirationDate, @origin, @primaryImage);
+
+	-- Chèn dữ liệu vào bảng @jsonSeaFoodTable
+	INSERT INTO @jsonSeaFoodTable ([Image])
+    SELECT [Image]
+    FROM OPENJSON(@jsonImagesSeaFood) WITH (
+        [Image] NVARCHAR(100) '$.Image')
+
+	SELECT @idSeaFoodDetail = MAX(Id) FROM SeafoodDetail
+
+	-- Insert images into Images table for seafood
+    INSERT INTO Images ([IdSeaFoodDetail],[Image])
+    SELECT @idSeaFoodDetail, [Image]
+    FROM @jsonSeaFoodTable
+    -- Lấy ID của loại từ bảng Types
+    DECLARE @idType int;
+    SELECT @idType = Id FROM Types WHERE NameType = @nameType;
+
+    -- Chèn dữ liệu vào bảng SeaFoods
+    INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, Status, IdVoucher)
+    VALUES (@idSeaFoodDetail, @name, @price, @unit, @idType, @status, @idVoucher);
+	set @result = N'Thêm sản phẩm thành công'
+END;
+
+    
 -- draft
-select * from images
-
-GetProfile  'ED2A419B-2B52-4039-9A80-BCC9C3BC6AAB'
-UpdateProfile 'ED2A419B-2B52-4039-9A80-BCC9C3BC6AAB', 'Lê Anh Minhh', '2024-02-27',0,'0869819316'
-
-
 
 EXEC sp_rename 'DeleteTypeSeaFood', 'DeleteSeaFoodType'
 	SELECT Comment, Images.Image 
@@ -417,37 +587,13 @@ EXEC sp_rename 'DeleteTypeSeaFood', 'DeleteSeaFoodType'
 	INNER JOIN Images ON Comments.Id = Images.IdComment
 	WHERE Comment LIKE '%' + 'C' + '%';
 
-	select * from Address
-	select * from MapUserAndAddress
-select * from Types
-select * from users
-select * from comments
-select * from Images
-select * from SeaFoods
-select * from SeaFoodDetail
-select * from descriptions
-select * from images
-select * from ShoppingCart
-
-
-
-insert into descriptions (Description) values('des')
-insert into images(IdDescription,Image) values(1,'Img Description 2')
 
 update SeaFoodDetail set IdDescription = 1 where Id = 1
 select * from SeaFoodDetail
-
-
-
-
 -- Thực thi thủ tục PushComment
 EXEC PushComment N'Nội dung bình luận', @Images, 10, 5, 1, 1, 'ED2A419B-2B52-4039-9A80-BCC9C3BC6AAB', 4;
 AddTypeSeaFood 'Type5'
 
-select * from users
-select * from images
-select * from comments
-select * from ShoppingCart
 DECLARE @Images ImageTableType;
 INSERT INTO @Images (Image) VALUES ('Image1New.jpg');
 
@@ -466,20 +612,37 @@ SearchShoppingCart 'ED2A419B-2B52-4039-9A80-BCC9C3BC6AAB', '1'
 	from Comments c where  c.Comment  like '%C%'
 )
 
-select * from abc
-
-
-select * from Comments
-
 select c.* , (select i.Image as nameImage from Images i where i.IdComment = c.Id for Json Path ) as Pictures from Comments c where c.Comment like '%a%'
 select * from ShoppingCart
 
-merge product_list as target
-using update_list as source 
-on target.Id = source.id 
-when matched
-then update target table set target.Name = source.name , target.Price = source.price
-when not matched by target 
-then insert into target (target.Name,target.Price) values (source.name,source.price)
-when not matched by source 
-then delete 
+select * from Vouchers
+
+INSERT INTO Vouchers (NameVoucher, StartDate, EndDate, CreateDate)
+VALUES 
+    ('Voucher A', '2024-04-01', '2024-04-30', '2024-03-19')
+
+EXEC addSeaFood 
+    @name = N'Chả cá Cẩm Phả',
+    @price = 80000, -- Thay giá trị tùy theo giá
+    @unit = N'hộp/500g',
+    @nameType = N'Chả',
+    @status = 1, -- Thay giá trị tùy theo trạng thái
+    @idVoucher = 1, -- Thay giá trị tùy theo idVoucher
+    @instruct = N'Rán với lửa vừa và nhỏ , không cần cho quá nhiều dầu ăn',
+    @expirationDate = N'12 tháng kể từ ngày sản xuất',
+    @origin = N'Quảng Ninh',
+    @primaryImage = N'Đường dẫn ảnh chính',
+    @jsonImages = N'[{"Image": "link_anh_1.jpg"}, {"Image": "link_anh_2.jpg"}]', -- Chuỗi JSON chứa danh sách hình ảnh
+    @description = N'Một trong những đặc sản nổi tiếng ở Qn không thể không nhắc đến chả cá Cẩm Phả';
+
+select * from SeaFoods
+select * from SeaFoodDetail
+select * from Images
+select * from Descriptions
+select * from Vouchers
+delete Descriptions where id = 16
+
+
+
+
+
