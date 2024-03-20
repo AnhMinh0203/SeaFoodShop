@@ -35,11 +35,15 @@ body{
 
 .remember-forgot.password .remember {
     display: flex;
-    align-items: center; /* Đảm bảo các phần tử nằm trên cùng một dòng */
+    align-items: center;
+    margin-right: 10px;
 }
 
 .remember-forgot.password .remember input[type="checkbox"] {
     margin-right: 5px; /* Khoảng cách giữa checkbox và văn bản */
+}
+.remember-forgot .remember input{
+    width: 10%;
 }
 .container p{
     font-size: 14px;
@@ -53,7 +57,7 @@ body{
 }
 .container a{
     color: #F98858;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: none;
     margin: 15px 0 10px;   
 }
