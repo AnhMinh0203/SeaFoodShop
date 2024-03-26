@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using SeaFoodShop.DataContext.Data;
+using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Models;
 using SeaFoodShop.Repository.Interface;
 using System;
@@ -12,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Twilio.TwiML.Voice;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SeaFoodShop.Repository.Repositories
 {
@@ -83,16 +87,83 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }
 
-        public async Task<SeaFoodDetailModel?> getSeaFoodDetailAsync(int id)
+        /*public async Task<SeaFoodDetailModel?> getSeaFoodDetailAsync(string id)
+        {
+            try
+            {
+                SeaFoodDetailModel seaFoodDetail = new();
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    using var command = new SqlCommand("GetSeaFoodDetail", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", id);
+                    using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                    while (await reader.ReadAsync())
+                    {
+                        seaFoodDetail.Name = reader.GetString(reader.GetOrdinal("Name"));
+                        seaFoodDetail.Price = reader.GetDecimal(reader.GetOrdinal("Price"));
+                        seaFoodDetail.Unit = reader.GetString(reader.GetOrdinal("Unit"));
+                        seaFoodDetail.Status = reader.GetInt32(reader.GetOrdinal("Status"));
+                        seaFoodDetail.IdVourcher = reader.GetInt32(reader.GetOrdinal("IdVourcher"));
+                        seaFoodDetail.TypeName = reader.GetString(reader.GetOrdinal("TypeName"));
+                        seaFoodDetail.Description = reader.GetString(reader.GetOrdinal("Description"));
+                        seaFoodDetail.Instruct = reader.GetString(reader.GetOrdinal("Instruct"));
+                        seaFoodDetail.ExpirationDate = reader.GetString(reader.GetOrdinal("ExpirationDate"));
+                        seaFoodDetail.Origin = reader.GetString(reader.GetOrdinal("Origin"));
+                        if (!reader.IsDBNull(reader.GetOrdinal("DescriptionImages")))
+                        {
+                            var descImagesJson = reader.GetString(reader.GetOrdinal("DescriptionImages"));
+                            var descImg = JsonConvert.DeserializeObject<List<ImageDescModel>>(descImagesJson);
+                            seaFoodDetail.DescriptionImages = descImg;
+                        }
+
+                        if (!reader.IsDBNull(reader.GetOrdinal("SeaFoodImages")))
+                        {
+                            var seafImagesJson = reader.GetString(reader.GetOrdinal("SeaFoodImages"));
+                            var seafImg = JsonConvert.DeserializeObject<List<ImageSeaFoodModel>>(seafImagesJson);
+                            seaFoodDetail.SeaFoodImages = seafImg;
+                        }
+                    }
+                }
+                return seaFoodDetail;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }*/
+
+        public async Task<SeaFoodDetailModel?> GetSeaFoodDetailAsync(string id)
         {
             try
             {
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    var parameters = new DynamicParameters();
-                    parameters.Add("@id", id);
-                    var result = await connection.QuerySingleOrDefaultAsync<SeaFoodDetailModel>("GetSeaFoodDetail", parameters, commandType: CommandType.StoredProcedure);
+
+                    var parameters = new { Id = id };
+                    var result = await connection.QueryFirstOrDefaultAsync<SeaFoodDetailModel>(
+                        "GetSeaFoodDetail",
+                        parameters,
+                        commandType: CommandType.StoredProcedure
+                    );
+                    if (result != null)
+                    {
+                        if (!string.IsNullOrEmpty(result.DescriptionImagesJson))
+                        {
+                            var descImg = JsonConvert.DeserializeObject<List<ImageDescModel>>(result.DescriptionImagesJson);
+                            result.DescriptionImages = descImg;
+                        }
+
+                        if (!string.IsNullOrEmpty(result.SeaFoodImagesJson))
+                        {
+                            var seafImg = JsonConvert.DeserializeObject<List<ImageSeaFoodModel>>(result.SeaFoodImagesJson);
+                            result.SeaFoodImages = seafImg;
+                        }
+                    }
+
                     return result;
                 }
             }
@@ -101,6 +172,7 @@ namespace SeaFoodShop.Repository.Repositories
                 throw new Exception(ex.Message);
             }
         }
+
 
         public async Task<List<SeaFoodModel>> searchSeaFoodAsync(string nameSeaFood)
         {
