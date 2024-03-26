@@ -588,13 +588,6 @@ ALTER PROCEDURE updateSeaFood
     @result nvarchar(100) output
 AS
 BEGIN
-    -- Declare two json table
-    DECLARE @jsonSeaFoodTable TABLE (
-        [Image] VARCHAR(max)
-    )
-    DECLARE @jsonDescription TABLE (
-        [Image] VARCHAR(max)
-    )
     DECLARE @idSeafoodDetail int
     SELECT @idSeafoodDetail = IdSeaFoodDetail FROM SeaFoods WHERE Id = @idSeaFood
 
@@ -636,43 +629,38 @@ BEGIN
         IdVoucher = ISNULL(@idVoucher, IdVoucher)
     WHERE Id = @idSeaFood
 
-    -- Delete old images for description
-    DELETE FROM Images WHERE IdSeaFoodDetail = @idSeafoodDetail
-
-    -- Insert new images for description
+    -- Cập nhật Images cho mô tả
     IF @jsonImagesDescription IS NOT NULL
     BEGIN
-        INSERT INTO @jsonDescription ([Image])
-        SELECT [Image]
-        FROM OPENJSON(@jsonImagesDescription) WITH (
-            [Image] NVARCHAR(100) '$.Image')
+        DELETE FROM Images WHERE IdSeaFoodDetail = @idSeafoodDetail;
         
-        INSERT INTO Images ([IdSeaFoodDetail],[Image])
+        INSERT INTO Images (IdSeaFoodDetail, [Image])
         SELECT @idSeafoodDetail, [Image]
-        FROM @jsonDescription
+        FROM OPENJSON(@jsonImagesDescription) WITH (
+            [Image] NVARCHAR(255) '$.nameImage'
+        );
     END
 
-    -- Delete old images for seafood
-    DELETE FROM Images WHERE IdSeaFood = @idSeaFood
-
-    -- Insert primaryImage into Images table with Status = 1
+     -- Cập nhật primaryImage
     IF @primaryImage IS NOT NULL
     BEGIN
-        INSERT INTO Images ([IdSeaFood],[Image],[Status])
-        VALUES (@idSeaFood, @primaryImage, 1);
+        UPDATE Images
+        SET 
+            [Image] = @primaryImage,
+            Status = 1
+        WHERE IdSeaFood = @idSeaFood AND [Status] = 1;
     END
 
-    -- Insert images into Images table for seafood
+    -- Cập nhật Images cho SeaFood
     IF @jsonImagesSeaFood IS NOT NULL
     BEGIN
-        INSERT INTO @jsonSeaFoodTable ([Image])
-        SELECT [Image]
-        FROM OPENJSON(@jsonImagesSeaFood) WITH (
-            [Image] NVARCHAR(100) '$.Image')
-        
-        INSERT INTO Images ([IdSeaFood],[Image],[Status])
+        DELETE FROM Images WHERE IdSeaFood = @idSeaFood AND [Status] = 0;
+
+        INSERT INTO Images (IdSeaFood, [Image], [Status])
         SELECT @idSeaFood, [Image], 0
-        FROM @jsonSeaFoodTable
+        FROM OPENJSON(@jsonImagesSeaFood) WITH (
+            [Image] NVARCHAR(255) '$.nameImage'
+        );
     END
 
     SET @result = N'Cập nhật sản phẩm thành công'
