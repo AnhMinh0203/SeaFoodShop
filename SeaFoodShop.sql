@@ -15,7 +15,7 @@ create table SeaFoodDetail(
 	Instruct nvarchar (255) null,
 	ExpirationDate nvarchar (255) null,
 	Origin nvarchar (30) null,
-	PrimaryImage varchar(max) null,
+	Description nvarchar(max),
 	CreateDate date,
 	CreateBy uniqueidentifier,
 	ModifyDate date,
@@ -23,11 +23,6 @@ create table SeaFoodDetail(
 )
 go
 
-create table Descriptions (
-	Id int identity(1,1) primary key,
-	Description nvarchar(max)
-)
-go
 
 create table SeaFoods (
 	Id int identity(1,1) primary key,
@@ -41,10 +36,11 @@ create table SeaFoods (
 
 create table Images (
 	Id int identity(1,1) primary key,
+	IdSeaFood int foreign key references SeaFoods(Id),
 	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
 	IdComment int foreign key references Comments(Id),
 	IdBlog int foreign key references Blogs(Id),
-	IdDescription int foreign key references Descriptions(Id),
+	Status bit,
 	Image nvarchar(max)
 )
 go
@@ -80,7 +76,7 @@ create table Vouchers(
 	ModifyBy uniqueidentifier
 )
 go
-
+select * from Vouchers
 create table Orders(
 	Id int identity(1,1) primary key,
 	PaymentMethod nvarchar(50),

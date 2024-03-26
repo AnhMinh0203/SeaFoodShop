@@ -48,7 +48,8 @@ END;
 
 
 -- Dispay seafood detail
-
+select * from SeaFoodDetail
+GetSeaFoodDetail 40
 alter procedure GetSeaFoodDetail
 @Id int
 as
@@ -59,22 +60,23 @@ begin
     s.Price AS Price,
     s.Unit AS Unit,
 	s.Status as Status,
+	s.IdVoucher as IdVourcher,
     t.NameType AS TypeName,
-    d.Description as Description, 
+    sf.Description as Description, 
     sf.Instruct as Instruct,
 	sf.ExpirationDate as ExpirationDate,
 	sf.Origin as Origin,
-    (SELECT Image FROM Images i WHERE i.IdDescription = d.Id FOR JSON PATH) AS DescriptionImages,
-    (SELECT Image FROM Images i WHERE i.IdSeaFoodDetail = sf.Id for json path) AS SeaFoodImages
+	(select Image from Images where IdSeaFood =@Id and Status = 1 ) as PrimaryImage,
+	-- Status seafood = 0 -> Seafood image , status seafood = 1 -> primary image
+	(SELECT Image as nameImage FROM Images i WHERE i.IdSeaFood = @Id and i.Status = 0 FOR JSON PATH) AS SeaFoodImagesJson,
+	(SELECT Image as nameImage FROM Images i WHERE i.IdSeaFoodDetail = sf.Id for json path) AS DescriptionImagesJson
 	FROM 
-		descriptions d
-	INNER JOIN 
-		SeaFoodDetail sf ON d.Id = sf.IdDescription
+		SeaFoodDetail sf
 	INNER JOIN 
         SeaFoods s ON sf.Id = s.IdSeaFoodDetail
     INNER JOIN 
         Types t ON s.IdType = t.Id
-	where d.Id = @Id
+	where s.Id = @Id
 end;
 
 
@@ -521,64 +523,195 @@ alter PROCEDURE addSeaFood
     @instruct nvarchar(255),--
     @expirationDate nvarchar(255),--
     @origin nvarchar(30),--
+	@description nvarchar(max),
     @primaryImage nvarchar(max), -- 
     @jsonImagesSeaFood NVARCHAR(MAX),
 	@jsonImagesDescription NVARCHAR(MAX),--
-    @description nvarchar(max), --
 	@result nvarchar(100) output
 AS
 BEGIN
-	-- Declare two json table
-    DECLARE @jsonSeaFoodTable TABLE (
-        [Image] VARCHAR(max)
-    )
-	DECLARE @jsonDescription TABLE (
-        [Image] VARCHAR(max)
-    )
-	
 	DECLARE @idSeaFoodDetail INT;
-	DECLARE @idDescription INT;
-
-    INSERT INTO Descriptions (Description) VALUES (@description);
-	SELECT @idDescription = MAX(Id) FROM Descriptions
-
-	INSERT INTO @jsonDescription ([Image])
-    SELECT [Image]
-    FROM OPENJSON(@jsonImagesDescription) WITH (
-        [Image] NVARCHAR(100) '$.Image')
-
-	-- Insert images into Images table for description
-	INSERT INTO Images ([IdDescription],[Image])
-    SELECT @idDescription, [Image]
-    FROM @jsonDescription
+	DECLARE @idSeaFood INT;
 
     -- Chèn dữ liệu vào bảng SeaFoodDetail
-    INSERT INTO SeaFoodDetail (IdDescription, Instruct, ExpirationDate, Origin, PrimaryImage)
-    VALUES (@idDescription, @instruct, @expirationDate, @origin, @primaryImage);
+    INSERT INTO SeaFoodDetail (Instruct, ExpirationDate, Origin,Description)
+    VALUES (@instruct, @expirationDate, @origin, @description);
+	-- Lấy ID của loại từ bảng SeaFoodDetail
+	SELECT @idSeaFoodDetail = MAX(Id) FROM SeaFoodDetail
 
-	-- Chèn dữ liệu vào bảng @jsonSeaFoodTable
-	INSERT INTO @jsonSeaFoodTable ([Image])
-    SELECT [Image]
-    FROM OPENJSON(@jsonImagesSeaFood) WITH (
-        [Image] NVARCHAR(100) '$.Image')
-
-	SELECT @idSeaFoodDetail = MAX(Id) FROM SeafoodDetail
-
-	-- Insert images into Images table for seafood
-    INSERT INTO Images ([IdSeaFoodDetail],[Image])
-    SELECT @idSeaFoodDetail, [Image]
-    FROM @jsonSeaFoodTable
-    -- Lấy ID của loại từ bảng Types
+	 -- Lấy ID của loại từ bảng Types
     DECLARE @idType int;
     SELECT @idType = Id FROM Types WHERE NameType = @nameType;
 
-    -- Chèn dữ liệu vào bảng SeaFoods
-    INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, Status, IdVoucher)
+	-- Chèn dữ liệu vào bảng Seafood
+	INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, Status, IdVoucher)
     VALUES (@idSeaFoodDetail, @name, @price, @unit, @idType, @status, @idVoucher);
+	-- Lấy ID của loại từ bảng Seafood
+	SELECT @idSeaFood = MAX(Id) FROM SeaFoods
+
+	-- Insert images for description
+    INSERT INTO Images (IdSeaFoodDetail, [Image])
+    SELECT @idSeaFoodDetail, [Image]
+    FROM OPENJSON(@jsonImagesDescription) WITH (
+        [Image] NVARCHAR(255) '$.nameImage'
+    );                                       
+
+	 -- Insert primaryImage into Images table with Status = 1
+    INSERT INTO Images ([IdSeaFood],[Image],[Status])
+    VALUES (@idSeaFood, @primaryImage, 1);
+
+   -- Insert images for seafood
+    INSERT INTO Images (IdSeaFood, [Image], [Status])
+    SELECT @idSeaFood, [Image], 0
+    FROM OPENJSON(@jsonImagesSeaFood) WITH (
+        [Image] NVARCHAR(255) '$.nameImage'
+    );
 	set @result = N'Thêm sản phẩm thành công'
 END;
 
-    
+-- Update seafood
+ALTER PROCEDURE updateSeaFood
+    @idSeaFood INT,
+    @name nvarchar(50) = NULL,
+    @price decimal(10,2) = NULL,
+    @unit nvarchar(10) = NULL,
+    @nameType nvarchar(20) = NULL,
+    @status int = NULL,
+    @idVoucher int = NULL,
+    @instruct nvarchar(255) = NULL,
+    @expirationDate nvarchar(255) = NULL,
+    @origin nvarchar(30) = NULL,
+    @description nvarchar(max) = NULL,
+    @primaryImage nvarchar(max) = NULL,
+    @jsonImagesSeaFood NVARCHAR(MAX) = NULL,
+    @jsonImagesDescription NVARCHAR(MAX) = NULL,
+    @result nvarchar(100) output
+AS
+BEGIN
+    -- Declare two json table
+    DECLARE @jsonSeaFoodTable TABLE (
+        [Image] VARCHAR(max)
+    )
+    DECLARE @jsonDescription TABLE (
+        [Image] VARCHAR(max)
+    )
+    DECLARE @idSeafoodDetail int
+    SELECT @idSeafoodDetail = IdSeaFoodDetail FROM SeaFoods WHERE Id = @idSeaFood
+
+    -- Check if IdSeaFood exists
+    IF NOT EXISTS (SELECT 1 FROM SeaFoods WHERE Id = @idSeaFood)
+    BEGIN
+        SET @result = N'IdSeaFood không tồn tại'
+        RETURN
+    END
+
+    -- Update data in SeaFoodDetail table
+    IF @instruct IS NOT NULL
+        OR @expirationDate IS NOT NULL
+        OR @origin IS NOT NULL
+        OR @description IS NOT NULL
+    BEGIN
+        UPDATE SeaFoodDetail
+        SET Instruct = ISNULL(@instruct, Instruct),
+            ExpirationDate = ISNULL(@expirationDate, ExpirationDate),
+            Origin = ISNULL(@origin, Origin),
+            Description = ISNULL(@description, Description)
+        WHERE Id = @idSeafoodDetail
+    END
+
+    -- Update data in Types table
+    DECLARE @idType int;
+    IF @nameType IS NOT NULL
+    BEGIN
+        SELECT @idType = Id FROM Types WHERE NameType = @nameType;
+    END
+
+    -- Update data in SeaFoods table
+    UPDATE SeaFoods
+    SET Name = ISNULL(@name, Name),
+        Price = ISNULL(@price, Price),
+        Unit = ISNULL(@unit, Unit),
+        IdType = ISNULL(@idType, IdType),
+        Status = ISNULL(@status, Status),
+        IdVoucher = ISNULL(@idVoucher, IdVoucher)
+    WHERE Id = @idSeaFood
+
+    -- Delete old images for description
+    DELETE FROM Images WHERE IdSeaFoodDetail = @idSeafoodDetail
+
+    -- Insert new images for description
+    IF @jsonImagesDescription IS NOT NULL
+    BEGIN
+        INSERT INTO @jsonDescription ([Image])
+        SELECT [Image]
+        FROM OPENJSON(@jsonImagesDescription) WITH (
+            [Image] NVARCHAR(100) '$.Image')
+        
+        INSERT INTO Images ([IdSeaFoodDetail],[Image])
+        SELECT @idSeafoodDetail, [Image]
+        FROM @jsonDescription
+    END
+
+    -- Delete old images for seafood
+    DELETE FROM Images WHERE IdSeaFood = @idSeaFood
+
+    -- Insert primaryImage into Images table with Status = 1
+    IF @primaryImage IS NOT NULL
+    BEGIN
+        INSERT INTO Images ([IdSeaFood],[Image],[Status])
+        VALUES (@idSeaFood, @primaryImage, 1);
+    END
+
+    -- Insert images into Images table for seafood
+    IF @jsonImagesSeaFood IS NOT NULL
+    BEGIN
+        INSERT INTO @jsonSeaFoodTable ([Image])
+        SELECT [Image]
+        FROM OPENJSON(@jsonImagesSeaFood) WITH (
+            [Image] NVARCHAR(100) '$.Image')
+        
+        INSERT INTO Images ([IdSeaFood],[Image],[Status])
+        SELECT @idSeaFood, [Image], 0
+        FROM @jsonSeaFoodTable
+    END
+
+    SET @result = N'Cập nhật sản phẩm thành công'
+END;
+
+
+
+
+
+
+
+-- Delete seafood
+ALTER PROCEDURE deleteSeaFood
+    @idSeaFood int,
+    @result nvarchar(100) OUTPUT
+AS
+BEGIN
+	declare @idSeafoodDetail int
+	select @idSeafoodDetail = IdSeaFoodDetail from SeaFoods where Id = @idSeaFood
+    -- Xóa các hình ảnh từ bảng Images
+    DELETE FROM Images WHERE IdSeaFoodDetail = (SELECT IdSeaFoodDetail FROM SeaFoods WHERE Id = @idSeaFood);
+    DELETE FROM Images WHERE IdSeaFood = @idSeaFood;
+
+    -- Xóa dữ liệu từ bảng SeaFoods
+    DELETE FROM SeaFoods WHERE Id = @idSeaFood;
+
+    -- Xóa dữ liệu từ bảng SeaFoodDetail
+	
+    DELETE FROM SeaFoodDetail WHERE Id = @idSeafoodDetail
+	
+    SET @result = N'Xóa sản phẩm thành công';
+END;
+
+
+
+select * from SeaFoodDetail
+delete SeaFoodDetail where Id = 30
+
+
 -- draft
 
 EXEC sp_rename 'DeleteTypeSeaFood', 'DeleteSeaFoodType'
@@ -636,13 +769,79 @@ EXEC addSeaFood
     @description = N'Một trong những đặc sản nổi tiếng ở Qn không thể không nhắc đến chả cá Cẩm Phả';
 
 select * from SeaFoods
-select * from SeaFoodDetail
 select * from Images
-select * from Descriptions
-select * from Vouchers
-delete Descriptions where id = 16
+select * from SeaFoodDetail
+select * from Types
+
+-- Thực thi stored addSeaFood với dữ liệu mẫu mới
+DECLARE @resultMessage nvarchar(100);
+EXEC addSeaFood 
+    @name = N'Chả mực',
+    @price = 200000,
+    @unit = N'1 hộp/500g',
+    @nameType = N'Chả',
+    @status = 1,
+    @idVoucher = 2,
+    @instruct = N'Rán nhỏ lửa, nhiều dầu',
+    @expirationDate = N'12 tháng kể từ ngày sản xuất',
+    @origin = N'Quảng Ninh',
+    @description = N'Chả mực Hạ Long là 1 trong những đặc sản nổi tiếng của QN',
+    @primaryImage = 'Primary-Img-Chamuc',
+    @jsonImagesSeaFood = '[
+        {"Image": "seaf-img-1"},
+        {"Image": "seaf-img-2"}
+    ]',
+    @jsonImagesDescription = '[
+        {"Image": "desc-img-chamuc1"},
+        {"Image": "desc-img-chamuc2"}
+    ]',
+    @result = @resultMessage OUTPUT;
+
+PRINT @resultMessage;
+
+-- Thực thi stored deleteSeaFood
+DECLARE @resultMessage nvarchar(100);
+EXEC deleteSeaFood 
+    @idSeaFood = 39,
+    @result = @resultMessage OUTPUT;
+
+PRINT @resultMessage;
 
 
 
+-- test Update
+DECLARE @result nvarchar(100)
+DECLARE @idSeaFood INT = 40
+DECLARE @name nvarchar(50) = NULL
+DECLARE @price decimal(10,2) = null
+DECLARE @unit nvarchar(10) = NULL
+DECLARE @nameType nvarchar(20) = NULL
+DECLARE @status int = NULL
+DECLARE @idVoucher int = NULL
+DECLARE @instruct nvarchar(255) = NULL
+DECLARE @expirationDate nvarchar(255) = N'10 tháng kể từ ngày sản xuất'
+DECLARE @origin nvarchar(30) = NULL
+DECLARE @description nvarchar(max) = NULL
+DECLARE @primaryImage nvarchar(max) = NULL
+DECLARE @jsonImagesSeaFood NVARCHAR(MAX) = NULL
+DECLARE @jsonImagesDescription NVARCHAR(MAX) = NULL
 
+EXEC updateSeaFood 
+    @idSeaFood,
+    @name,
+    @price,
+    @unit,
+    @nameType,
+    @status,
+    @idVoucher,
+    @instruct,
+    @expirationDate,
+    @origin,
+    @description,
+    @primaryImage,
+    @jsonImagesSeaFood,
+    @jsonImagesDescription,
+    @result OUTPUT
+
+SELECT @result AS 'Result'
 
