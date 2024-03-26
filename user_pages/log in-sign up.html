@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href=".//assets/css/log in-sign up.css">
+    <link rel="stylesheet" href="../assets/css/log in-sign up.css">
     <title>Document</title>
 </head>
 <body>
@@ -12,8 +12,8 @@
         <div class="form-container log-in"> 
             <form>
                 <h1>Đăng nhập</h1>
-                <input type="phonenumbe" placeholder="Số điện thoại">
-                <input type="password" id="password" placeholder="Nhập mật khẩu">
+                <input type="phonenumbe" id="phoneNumberLogin" placeholder="Số điện thoại">
+                <input type="password" id="passwordLogin" placeholder="Nhập mật khẩu">
                 <div class="remember-forgot password">
                     <div class="remember">
                         <input type="checkbox">
@@ -27,15 +27,15 @@
                     <span>Bạn chưa có tài khoản?</span>
                     <a href="#">Tạo tài khoản.</a>
                 </div>                
-                <button>Đăng Nhập</button>
+                <button onclick="login()">Đăng Nhập</button>
             </form>
         </div>
         <div class="form-container sign-up"> 
             <form>
                 <h1>Đăng ký</h1>
                 <input type="Phonenumbe" placeholder="Số điện thoại">
-                <input type="Password" id="password" placeholder="Nhập mật khẩu">
-                <input type="Enter password" id="password" placeholder="Nhập lại mật khẩu">
+                <input type="Password" id="passwordSignUp" placeholder="Nhập mật khẩu">
+                <input type="Enter password" id="passwordSignUpRepeat" placeholder="Nhập lại mật khẩu">
                 <button>Đăng ký</button>
             </form>
         </div>
@@ -55,6 +55,7 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/log in-sign up.js"></script>
+    <script src="../assets/js/log in-sign up.js"></script>
+    <script src="../assets/js/call_api.js"></script>
 </body>
 </html>
