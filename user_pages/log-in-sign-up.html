@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/login-sign up.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="row">
+            <!-- BEM -> Block element modify -->
+            <div class="col col-md-8">
+                <div class="form-container log-in"> 
+                    <div class="form-login-singIn">
+                        <h1>Đăng nhập</h1>
+                        <input type="phonenumbe" id="phoneNumberLogin" placeholder="Số điện thoại">
+                        <input type="password" id="passwordLogin" placeholder="Nhập mật khẩu">
+                        <div class="remember-forgot password">
+                            <div class="remember">
+                                <input type="checkbox">
+                                <span>Ghi nhớ mật khẩu</span>
+                            </div>
+                            <div class="forgot">    
+                                <a href="forgotpassword.html">Quên mật khẩu?</a>
+                            </div>
+                        </div>
+                        <div class="create Account">
+                            <span>Bạn chưa có tài khoản?</span>
+                            <a href="#" id="register">Tạo tài khoản.</a>
+                        </div>                
+                        <button onclick="login()">Đăng Nhập</button>
+                    </div>
+                </div>
+                <div class="form-container sign-up"> 
+                    <div class="form-login-singIn">
+                        <h1>Đăng ký</h1>
+                        <input type="Phonenumbe" placeholder="Số điện thoại">
+                        <input type="Password" id="passwordSignUp" placeholder="Nhập mật khẩu">
+                        <input type="Enter password" id="passwordSignUpRepeat" placeholder="Nhập lại mật khẩu">
+                        <button>Đăng ký</button>
+                    </div>
+                </div>
+                <div class="toggle-container">
+                    <div class="toggle">
+                        <div class="toggle-panel toggle-left">
+                            <h1>Xin chào, Bạn!</h1>
+                            <span>Bạn đã có tài khoản</span>
+                            <button class="hidden" id="login">Đăng nhập</button>
+                        </div>
+                        <div class="toggle-panel toggle-right">
+                            <h1>Xin chào!</h1>
+                            <span>Đăng nhập tài khoản của bạn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <script src="../assets/js/login-signup.js"></script>
+    <script src="../assets/js/call_api.js"></script>
+</body>
+</html>

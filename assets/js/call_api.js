@@ -1,19 +1,26 @@
-function login(){
-    const url = 'https://localhost:7018/api/Account/SignIn';
+async function login() {
+  const url = 'https://localhost:7018/api/Account/SignIn';
 
-    var phoneNumber = document.getElementById('phoneNumberLogin').value;
-    var password = document.getElementById('passwordLogin').value;
-    
-    const loginData = {
-        phoneNumber: phoneNumber,
-        password: password
-    };
+  const phoneNumber = $('#phoneNumberLogin').val();
+  const password = $('#passwordLogin').val();
 
-    fetch(uri)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);  // In ra nội dung của data
-        return data;
-    })
-    .catch(error => console.error('Unable to get items.', error));
+  const loginData = {
+      phoneNumber: phoneNumber,
+      password: password
+  };
+
+  try {
+      const response = await $.ajax({
+          url: url,
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(loginData)
+      });
+      if (response && response.token) {
+          window.location.href = 'home.html';
+        console.log(response)
+      }
+  } catch (error) {
+      console.error('Unable to get items.', error);
+  }
 }

@@ -78,7 +78,7 @@ body{
     background-color: transparent;
     border-color:#fff ;
 }
-.container form{
+/* .container form{
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -86,8 +86,16 @@ body{
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
+} */
+.container .form-login-singIn{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%; 
 }
-
 .container input{
     background-color: #eee;
     border: none;
