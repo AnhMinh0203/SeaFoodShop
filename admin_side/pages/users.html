@@ -1,0 +1,64 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+</head>
+  <body>
+    <!-- Title -->
+    <h1>Users</h1>
+    <!-- Table -->
+    <div class="d-flex flex-column alight-content-between">
+        <div class="table table-responsive">
+            <table class="table">
+                <thead class="table table-warning ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Full name</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Date of birth</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination_user d-flex justify-content-end">
+            <nav>
+                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success" onclick="pagenationUserClick()">
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  </body>
+</html>

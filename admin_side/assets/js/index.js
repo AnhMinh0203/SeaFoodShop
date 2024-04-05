@@ -1,0 +1,236 @@
+
+// Xử lý load page với axios
+document.addEventListener("DOMContentLoaded", () => {
+    // Khai báo các biến
+    const sidebar = document.querySelector(".sidebar");
+    const closeBtn = document.querySelector("#close-btn"); 
+    const searchBtn = document.querySelector(".bx-search");
+    const homeSection = document.querySelector(".home-section");
+    const links = document.querySelectorAll(".sidebar a");
+
+    // Load page mặc định
+    loadPageContent("./dashboard.html", homeSection);
+
+    // Thêm sự kiện click cho từng link trong sidebar
+    links.forEach(link => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const href = link.getAttribute("href");
+
+            loadPageContent(href,homeSection);
+        });
+    });
+
+    // Thêm sự kiện click cho nút đóng/mở sidebar
+    if (closeBtn) {
+        closeBtn.addEventListener("click", toggleSidebar);
+    }
+    
+    if (searchBtn) {
+        searchBtn.addEventListener("click", toggleSidebar);
+    }
+
+    function toggleSidebar() {
+        sidebar.classList.toggle("open");
+        menuBtnChange();
+        moveHomeSection();
+    }
+
+    function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else {
+            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    }
+
+    function moveHomeSection() {
+        if (sidebar.classList.contains("open")) {
+            homeSection.style.marginLeft = "0";
+        } 
+    }
+
+    // Load page
+    function loadPageContent(url, container) {
+        axios.get(url)
+            .then(response => {
+                container.innerHTML = response.data;
+                if (href.includes("users.html")) {
+                    handleUsersPage();
+                }
+                moveHomeSection();
+            })
+            .catch(error => console.error("Error:", error));
+    }
+});
+
+// Xử lý load page với ajax
+// document.addEventListener("DOMContentLoaded", () => {
+//     const sidebar = document.querySelector(".sidebar");
+//     const closeBtn = document.querySelector("#close-btn");
+//     const searchBtn = document.querySelector(".bx-search");
+//     const homeSection = document.querySelector(".home-section");
+//     const links = document.querySelectorAll(".sidebar a");
+
+//     links.forEach(link => {
+//         link.addEventListener("click", (e) => {
+//             e.preventDefault();
+//             const href = link.getAttribute("href");
+
+//             fetchPage(href);
+//         });
+//     });
+
+//     if (closeBtn) {
+//         closeBtn.addEventListener("click", toggleSidebar);
+//     }
+    
+//     if (searchBtn) {
+//         searchBtn.addEventListener("click", toggleSidebar);
+//     }
+
+//     function toggleSidebar() {
+//         sidebar.classList.toggle("open");
+//         menuBtnChange();
+//         moveHomeSection();
+//     }
+
+//     function menuBtnChange() {
+//         if (sidebar.classList.contains("open")) {
+//             closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+//         } else {
+//             closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+//         }
+//     }
+
+//     function moveHomeSection() {
+//         if (sidebar.classList.contains("open")) {
+//             homeSection.style.marginLeft = "0";
+//         } else {
+//             homeSection.style.marginLeft = ""; // Reset margin để tránh lỗi khi sidebar đóng
+//         }
+//     }
+
+//     async function fetchPage(url) {
+//         try {
+//             const response = await fetch(url);
+//             const data = await response.text();
+//             homeSection.innerHTML = data;
+//             moveHomeSection();
+//         } catch (error) {
+//             console.error("Error:", error);
+//         }
+//     }
+// });
+
+// Xử lý load page với js thuần
+// document.addEventListener("DOMContentLoaded", () => {
+//     // Khai báo các biến
+//     const sidebar = document.querySelector(".sidebar");
+//     const closeBtn = document.querySelector("#close-btn"); // Đổi "#btn" thành "#close-btn"
+//     const searchBtn = document.querySelector(".bx-search");
+//     const homeSection = document.querySelector(".home-section");
+//     const links = document.querySelectorAll(".sidebar a");
+
+//     // Thêm sự kiện click cho từng link trong sidebar
+//     links.forEach(link => {
+//         link.addEventListener("click", (e) => {
+//             e.preventDefault();
+//             const href = link.getAttribute("href");
+
+//             fetch(href)
+//                 .then(response => response.text())
+//                 .then(data => {
+//                     homeSection.innerHTML = data;
+//                     moveHomeSection();
+//                 })
+//                 .catch(error => console.error("Error:", error));
+//         });
+//     });
+
+//     // Thêm sự kiện click cho nút đóng/mở sidebar
+//     if (closeBtn) {
+//         closeBtn.addEventListener("click", toggleSidebar);
+//     }
+    
+//     if (searchBtn) { // Kiểm tra xem searchBtn có tồn tại không
+//         searchBtn.addEventListener("click", toggleSidebar);
+//     }
+
+//     function toggleSidebar() {
+//         sidebar.classList.toggle("open");
+//         menuBtnChange();
+//         moveHomeSection();
+//     }
+
+//     function menuBtnChange() {
+//         if (sidebar.classList.contains("open")) {
+//             closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+//         } else {
+//             closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+//         }
+//     }
+//     function moveHomeSection() {
+//         if (sidebar.classList.contains("open")) {
+//             homeSection.style.marginLeft = "0"; // Độ rộng tương ứng với độ rộng của sidebar
+//         } 
+//         // else {
+//         //     homeSection.style.marginLeft = "250px";
+//         // }
+//     }
+// });
+
+
+// ---------------------
+// Đặt biến
+const sideMenu = document.querySelector('aside');
+const menuBtn = document.getElementById('menu-btn');
+const closeBtn = document.getElementById('close-btn');
+const darkMode = document.querySelector('.dark-mode');
+
+// Hiển  thị menu mobile
+menuBtn.addEventListener('click', () => {
+    sideMenu.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    sideMenu.style.display = 'none';
+});
+
+// Xử lý dark mode
+darkMode.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode-variables');
+    darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
+    darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
+})
+
+// Xử lý click slidebar
+document.addEventListener("DOMContentLoaded", function() {
+
+    const sidebarLinks = document.querySelectorAll(".sidebar a");
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            sidebarLinks.forEach(link => {
+                link.classList.remove("active");
+            });
+            this.classList.add("active");
+        });
+    });
+});
+
+// Xử lý click phân trang user
+function pagenationUserClick(){
+    const paginationItems = document.querySelectorAll(".pagination_user .page-item");
+
+    paginationItems.forEach(item => {
+        item.addEventListener("click", function(event) {
+            event.preventDefault();
+            paginationItems.forEach(item => {
+                item.classList.remove("active");
+            });
+            this.classList.add("active");
+        });
+    });
+}
+
