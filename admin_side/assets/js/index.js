@@ -1,4 +1,6 @@
 
+
+
 // Xử lý load page với axios
 document.addEventListener("DOMContentLoaded", () => {
     // Khai báo các biến
@@ -7,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBtn = document.querySelector(".bx-search");
     const homeSection = document.querySelector(".home-section");
     const links = document.querySelectorAll(".sidebar a");
+    
 
     // Load page mặc định
     loadPageContent("./dashboard.html", homeSection);
@@ -51,13 +54,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Load page
-    function loadPageContent(url, container) {
-        axios.get(url)
+    function loadPageContent(href, container) {
+        if(href.includes("log-in-sign-up.html")){
+            window.location.href = '../../user_side/pages/log-in-sign-up.html';
+            return ;
+        }
+        axios.get(href)
             .then(response => {
                 container.innerHTML = response.data;
                 if (href.includes("users.html")) {
                     handleUsersPage();
                 }
+                else if(href.includes("dashboard.html")){
+                    handleAdminPage();
+                }
+                
                 moveHomeSection();
             })
             .catch(error => console.error("Error:", error));
