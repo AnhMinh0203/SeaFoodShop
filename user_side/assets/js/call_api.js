@@ -19,8 +19,9 @@ async function login() {
         });
         // User
         if (response && response.token && response.status == 0) {
+            alert("oce")
             localStorage.setItem('token',response.token);
-            window.location.href = 'home.html';
+            window.location.href = '../pages/home.html';
         }
         // Admin
         else if (response && response.token && response.status == 1) {
@@ -38,13 +39,10 @@ async function SignUp() {
     const fullName = document.querySelector('input[type="FullName"]').value;
     const dob = document.querySelector('input[type="date"]').value;
     const gender = document.querySelector('input[name="gender"]:checked').value;
-    const phoneNumber = document.querySelector('input[type="Phonenumbe"]').value;
+    const phoneNumber = document.querySelector('input[type="phonenumber"]').value;
     const password = document.querySelector('#passwordSignUp').value;
     const repeatPassword = document.querySelector('#passwordSignUpRepeat').value;
-     
-    alert(fullName);
-    alert(dob);
-    alert(gender);
+
     
     // Kiểm tra mật khẩu nhập lại có khớp không
     if (password !== repeatPassword) {

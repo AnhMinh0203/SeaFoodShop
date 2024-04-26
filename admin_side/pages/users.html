@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
   <body>
     <!-- Title -->
@@ -31,31 +31,41 @@
             </table>
         </div>
         <!-- Pagination -->
-        <div class="pagination_user d-flex justify-content-end">
+        <div class="pagination_user d-flex justify-content-end" >
             <nav>
-                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success" onclick="pagenationUserClick()">
+                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success" id="pagination_user--nav">
+                    <!-- <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa-solid fa-angles-left"></i>
+                        </a>
+                    </li>
                     <li class="page-item">
                         <a class="page-link" href="#">
                             <i class="fa fa-angle-left"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">1</a>
+                        <a class="page-link" onclick="handleUsersPage(1,2)" href="#">1</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">2</a>
+                        <a class="page-link"  onclick="handleUsersPage(2,2)" href="#">2</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">3</a>
+                        <a class="page-link" onclick="handleUsersPage(3,2)" href="#">3</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">4</a>
+                        <a class="page-link" onclick="handleUsersPage(4,2)"  href="#">4</a>
                     </li>
                     <li class="page-item">
                         <a class="page-link" href="#">
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    </li> -->
                 </ul>
             </nav>
         </div>

@@ -1,17 +1,18 @@
 
-
-
+// Khai báo các biến
+const sidebar = document.querySelector(".sidebar");
+const closeBtn = document.querySelector("#close-btn"); 
+const searchBtn = document.querySelector(".bx-search");
+const homeSection = document.querySelector(".home-section");
+const links = document.querySelectorAll(".sidebar a");
+const sideMenu = document.querySelector('aside');
+const menuBtn = document.getElementById('menu-btn');
+const darkMode = document.querySelector('.dark-mode');
+var pageIndex = 1
+var pageSize = 1
 // Xử lý load page với axios
 document.addEventListener("DOMContentLoaded", () => {
-    // Khai báo các biến
-    const sidebar = document.querySelector(".sidebar");
-    const closeBtn = document.querySelector("#close-btn"); 
-    const searchBtn = document.querySelector(".bx-search");
-    const homeSection = document.querySelector(".home-section");
-    const links = document.querySelectorAll(".sidebar a");
-    
-
-    // Load page mặc định
+     // Load page mặc định
     loadPageContent("./dashboard.html", homeSection);
 
     // Thêm sự kiện click cho từng link trong sidebar
@@ -63,12 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => {
                 container.innerHTML = response.data;
                 if (href.includes("users.html")) {
-                    handleUsersPage();
+                    handleUsersPage(pageIndex,pageSize);
                 }
                 else if(href.includes("dashboard.html")){
                     handleAdminPage();
-                }
-                
+                } 
                 moveHomeSection();
             })
             .catch(error => console.error("Error:", error));
@@ -193,11 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ---------------------
-// Đặt biến
-const sideMenu = document.querySelector('aside');
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
-const darkMode = document.querySelector('.dark-mode');
+
 
 // Hiển  thị menu mobile
 menuBtn.addEventListener('click', () => {
@@ -230,18 +226,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// Xử lý click phân trang user
-function pagenationUserClick(){
-    const paginationItems = document.querySelectorAll(".pagination_user .page-item");
-
-    paginationItems.forEach(item => {
-        item.addEventListener("click", function(event) {
-            event.preventDefault();
-            paginationItems.forEach(item => {
-                item.classList.remove("active");
-            });
-            this.classList.add("active");
-        });
-    });
-}
 
