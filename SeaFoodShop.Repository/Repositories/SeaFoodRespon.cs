@@ -135,7 +135,7 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }*/
 
-        public async Task<SeaFoodDetailModel?> GetSeaFoodDetailAsync(string id)
+        public async Task<SeaFoodDetailModel?> GetSeaFoodDetailAsync(string idSeafood)
         {
             try
             {
@@ -143,12 +143,11 @@ namespace SeaFoodShop.Repository.Repositories
                 {
                     await connection.OpenAsync();
 
-                    var parameters = new { Id = id };
+                    var parameters = new { Id = idSeafood };
                     var result = await connection.QueryFirstOrDefaultAsync<SeaFoodDetailModel>(
                         "GetSeaFoodDetail",
                         parameters,
-                        commandType: CommandType.StoredProcedure
-                    );
+                        commandType: CommandType.StoredProcedure);
                     if (result != null)
                     {
                         if (!string.IsNullOrEmpty(result.DescriptionImagesJson))

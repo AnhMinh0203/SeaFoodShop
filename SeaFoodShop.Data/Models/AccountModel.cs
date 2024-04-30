@@ -18,9 +18,7 @@ namespace SeaFoodShop.DataContext.Models
 
     public class SignUpModel : AccountModel
     {
-
         public string Password { get; set; }
-        public string RepeatPassword { get; set; }
     }
 
     public class SignInModel
@@ -32,5 +30,6 @@ namespace SeaFoodShop.DataContext.Models
     {
         public string Message { get; set; }
         public string? Token { get; set; }
+        public int? Status {  get; set; }
     }
 }

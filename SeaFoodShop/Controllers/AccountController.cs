@@ -22,7 +22,7 @@ namespace SeaFoodShop.API.Controllers
         public async Task<CustomMessage> SignIn(SignInModel signInModel)
         {
             var result = await _accountRespon.SignInAsync(signInModel);
-            return new CustomMessage { Message = result.Message, Token = result.Token };
+            return new CustomMessage { Message = result.Message, Token = result.Token, Status = result.Status };
         }
 
         [HttpPost("SignUp")]
@@ -40,7 +40,7 @@ namespace SeaFoodShop.API.Controllers
         [HttpPut("ChangePassword")]
         public async Task<string> changePassword(string token, ChangePasswordModel password)
         {
-            return await _accountRespon.changePasswordAsync(token, password);
+            return await _accountRespon.ChangePasswordAsync(token, password);
         }
     }
 }

@@ -21,9 +21,14 @@ namespace SeaFoodShop.API.Controllers
             return await _mCustomerRes.deleteCustomerAsync(token, phoneNumber);
         }
         [HttpGet("SearchCustomers")]
-        public async Task<List<CustomerInforModel>?> SearchCustomer (string token,string phoneNumber, string status)
+        public async Task<ListCustomerInforModel?> SearchCustomer (string token,string textInput, int pageIndex, int pageSize)
         {
-            return await _mCustomerRes.searchCustomerAsync(token, phoneNumber, status); 
+            return await _mCustomerRes.searchCustomerAsync(token, textInput, pageIndex, pageSize); 
+        }
+        [HttpGet("GetAllCustomers")]
+        public async Task<ListCustomerInforModel> GetAllCustomers(string token, string status,int gender ,int pageIndex, int pageSize)
+        {
+            return await _mCustomerRes.getAllCustomersAsync(token, status, gender,pageIndex, pageSize);
         }
     }
 }

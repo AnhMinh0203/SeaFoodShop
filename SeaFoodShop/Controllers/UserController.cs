@@ -21,9 +21,9 @@ namespace SeaFoodShop.API.Controllers
             return await _userRespon.updateUserProfileAsync(token, userProfileModel);
         }
         [HttpGet("GetProfile")]
-        public async Task<UserProfileModel?> getUserProfile(string token)
+        public async Task<CustomerInforModel?> getUserProfile(string token, string phoneNumber)
         {
-            var result = await _userRespon.getUserProfile(token);
+            var result = await _userRespon.getUserProfile(token,phoneNumber);
             if(result == null) return null;
             return result;
         }

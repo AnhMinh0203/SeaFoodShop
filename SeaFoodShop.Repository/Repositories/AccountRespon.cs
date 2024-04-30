@@ -47,7 +47,8 @@ namespace SeaFoodShop.Repository.Repositories
                                     return new CustomMessage
                                     {
                                         Message = "Tài khoản đã bị khóa. Vui lòng liên hệ Admin",
-                                        Token = null
+                                        Token = null,
+                                        Status = null
                                     };
                                 }
                                 string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
@@ -58,17 +59,20 @@ namespace SeaFoodShop.Repository.Repositories
                                     var idUser = reader.GetGuid(reader.GetOrdinal("Id"));
                                     var tokenRespon = new TokenRespon(_config);
                                     var token = tokenRespon.GenerateJwtToken(model, idUser);
+                                    int role = reader.GetInt32(reader.GetOrdinal("Status"));
                                     return new CustomMessage
                                     {
                                         Message = "Login Successfully",
-                                        Token = token
+                                        Token = token,
+                                        Status = role
                                     };
                                 }
                             }
                             return new CustomMessage
                             {
                                 Message = "Phone number or password is not correct",
-                                Token = null
+                                Token = null,
+                                Status = null
                             };
                         }
                     }
@@ -79,7 +83,8 @@ namespace SeaFoodShop.Repository.Repositories
                 return new CustomMessage
                 {
                     Message = $"SQL Error: {ex.Message}",
-                    Token = null
+                    Token = null,
+                    Status = null
                 };
             }
         }
@@ -100,6 +105,7 @@ namespace SeaFoodShop.Repository.Repositories
                         command.Parameters.AddWithValue("@password", hash);
                         command.Parameters.AddWithValue("@phoneNumber", model.PhoneNumber);
                         command.Parameters.AddWithValue("@dob", model.Dob);
+                        command.Parameters.AddWithValue("@gender", model.Gender);
 
                         // Add an output parameter to get the result from the stored procedure
                         var resultParam = new SqlParameter("@result", SqlDbType.NVarChar, 100);
@@ -189,7 +195,7 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }*/
         // Cách 2
-        public async Task<string> changePasswordAsync(string token, ChangePasswordModel password)
+        public async Task<string> ChangePasswordAsync(string token, ChangePasswordModel password)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);

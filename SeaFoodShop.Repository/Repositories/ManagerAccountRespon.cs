@@ -8,9 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.Jwt.AccessToken;
 using Twilio.TwiML.Voice;
+using Twilio.Types;
 
 namespace SeaFoodShop.Repository.Repositories
 {
@@ -71,6 +74,36 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }
 
+        public async Task<UserProfileModel> GetAdminInforAsync(string token)
+        {
+            TokenRespon tokenObject = new TokenRespon(_config);
+            var idUser = tokenObject.ValidateJwtToken(token);
+            var tokenValidate = tokenObject.ValidateJwtToken(token);
+            if (tokenValidate == null) return null;
+            try
+            {
+                using (var connection = (SqlConnection)_context.CreateConnection())
+                {
+                    await connection.OpenAsync();
+                    var result = await connection.QueryFirstOrDefaultAsync<UserProfileModel>(
+                    "getAdminInfor",
+                        commandType: CommandType.StoredProcedure
+                    );
+
+                    if (result == null)
+                    {
+                        throw new Exception("Admin information not found.");
+                    }
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
         public async Task<List<AccountModel>?> SearchAccountAsync(string token, string phoneNumber, string status)
         {
             TokenRespon tokenObject = new TokenRespon(_config);

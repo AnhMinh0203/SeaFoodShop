@@ -26,10 +26,10 @@ namespace SeaFoodShop.Repository.Repositories
             _config = config;
         }
 
-        public async Task<UserProfileModel?> getUserProfile(string token)
+        public async Task<CustomerInforModel?> getUserProfile(string token,string phoneNumber)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
-            var idUser = tokenObject.ValidateJwtToken(token);
+/*            var idUser = tokenObject.ValidateJwtToken(token);*/
             var tokenValidate = tokenObject.ValidateJwtToken(token);
             if (tokenValidate == null)
             {
@@ -41,8 +41,8 @@ namespace SeaFoodShop.Repository.Repositories
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
-                    parameters.Add("@idUser", idUser);
-                    var userProfile = await connection.QueryFirstOrDefaultAsync<UserProfileModel>(
+                    parameters.Add("@phoneNumber", phoneNumber);
+                    var userProfile = await connection.QueryFirstOrDefaultAsync<CustomerInforModel>(
                         "GetProfile",
                         parameters,
                         commandType: CommandType.StoredProcedure

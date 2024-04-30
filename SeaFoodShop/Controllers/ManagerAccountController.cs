@@ -30,6 +30,11 @@ namespace SeaFoodShop.API.Controllers
         {
             return await _managerAccountRespon.SearchAccountAsync(token, phoneNumber, status);
         }
+        [HttpGet("GetAdminInfor")]
+        public async Task<UserProfileModel> getAdminInfor(string token)
+        {
+            return await _managerAccountRespon.GetAdminInforAsync(token);
+        }
 
         [HttpPut("ChangePasswordAdmin")]
         public async Task<string> changePasswordAdmin(string token, ChangePasswordAdminModel password)

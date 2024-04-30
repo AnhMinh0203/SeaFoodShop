@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeaFoodShop.Repository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92dc0b7b1a25ecc5acea9acd823353fa6156e68a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2654b8728bde9cef42835a6bb7bffb9b2c6411bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeaFoodShop.Repository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeaFoodShop.Repository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
