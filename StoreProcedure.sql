@@ -1,19 +1,22 @@
 ﻿-- Sign In
 alter PROCEDURE SignIn
     @phoneNumber VARCHAR(15)
+
 AS
 BEGIN
     DECLARE @sql NVARCHAR(MAX);
-    SET @sql = N'SELECT Id, Password, Role, Status from users where PhoneNumber = @phoneNumber';
+    SET @sql = N'SELECT Id, Password, Status from users where PhoneNumber = @phoneNumber';
     EXEC sp_executesql @sql, N'@phoneNumber VARCHAR(15)', @phoneNumber;
 END;
-
+SignIn '0869819316'
+select * from users
 -- Sign Up
 alter procedure SignUp 
-	@dob date,
-	@phoneNumber varchar(15),
-	@password varchar(max),
+	@dob date, 
+	@phoneNumber varchar(15), 
+	@password varchar(max), 
 	@fullName nvarchar(30),
+	@gender int,
 	@result nvarchar(100) output
 as
 begin
@@ -24,14 +27,14 @@ if exists (select 1 from users where PhoneNumber = @phoneNumber)
 else
 	begin
 		declare @sql nvarchar(max)
-		set @sql = N'insert into users(Id,Dob,PhoneNumber,Password,FullName,status) values (NewID(),@dob,@phoneNumber,@password,@fullName,0)';
-		exec sp_executesql @sql, N'@dob date,@phoneNumber varchar(15),@password varchar(max),@fullName nvarchar(30)',@dob,@phoneNumber,@password,@fullName;
+		set @sql = N'insert into users(Id,Dob,PhoneNumber,Password,FullName,Gender,status) values (NewID(),@dob,@phoneNumber,@password,@fullName,@gender,0)';
+		exec sp_executesql @sql, N'@dob date,@phoneNumber varchar(15),@password varchar(max),@fullName nvarchar(30),@gender int',@dob,@phoneNumber,@password,@fullName,@gender;
 		set @result = 'Sign up successfully';
 	end;
 end;
-
+select * from users
 -- Display Seafoods
-ALTER PROCEDURE GetSeaFoods
+create PROCEDURE GetSeaFoods
     @PageNumber INT,
     @PageSize INT
 AS
@@ -39,7 +42,7 @@ BEGIN
     SET NOCOUNT ON;
     DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
 
-    SELECT Id, Name, Price, Unit, Status
+    SELECT Id, Name, Price, Unit
     FROM SeaFoods
     ORDER BY Id
     OFFSET @Offset ROWS
@@ -48,9 +51,8 @@ END;
 
 
 -- Dispay seafood detail
-select * from SeaFoodDetail
-GetSeaFoodDetail 40
-alter procedure GetSeaFoodDetail
+
+create procedure GetSeaFoodDetail
 @Id int
 as
 begin
@@ -59,7 +61,7 @@ begin
 	s.Name AS Name,
     s.Price AS Price,
     s.Unit AS Unit,
-	s.Status as Status,
+	--s.Status as Status,
 	s.IdVoucher as IdVourcher,
     t.NameType AS TypeName,
     sf.Description as Description, 
@@ -101,7 +103,7 @@ CREATE TYPE ImageTableType AS TABLE (
     Image nvarchar(max)
 );
 
-alter procedure PostComment
+create procedure PostComment
 	@CommentText nvarchar(max),
 	@Images ImageTableType readonly,
 	@Like int ,
@@ -125,7 +127,7 @@ begin
 end;
 
 -- Update comment
-alter PROCEDURE UpdateComment
+create PROCEDURE UpdateComment
     @CommentId int,
     @CommentText nvarchar(max),
     @Images ImageTableType readonly,
@@ -147,7 +149,7 @@ END;
 
 
 -- Delete comment
-alter procedure DeleteComment
+create procedure DeleteComment
 	@Id int
 as
 begin
@@ -177,8 +179,8 @@ begin
     INNER JOIN
         Images I ON C.Id = I.IdComment
     WHERE
-        C.Id = @CommentId;
-	order by Id
+        C.Id = I.IdComment
+	order by C.Id
 	OFFSET @Offset rows
 	FETCH next @PageSize rows only;
 end;
@@ -186,7 +188,7 @@ end;
 -- Search comments
 
 -- C1
---alter procedure SearchComments
+--create procedure SearchComments
 --	@CommentText nvarchar(max)
 --as
 --begin
@@ -197,7 +199,7 @@ end;
 --end;
 
 --C2
-alter procedure SearchComments
+create procedure SearchComments
 	@CommentText nvarchar(max) 
 as
 begin
@@ -207,7 +209,7 @@ begin
 end
 
 -- Update seafood quantity in shopping cart
-alter procedure UpdateShoppingCart
+create procedure UpdateShoppingCart
 	@IdSeafood int,
 	@IdUser uniqueidentifier,
 	@Quantity int
@@ -217,7 +219,7 @@ begin
 end;
 
 -- Add seafood to shopping cart
-alter PROCEDURE AddToShoppingCart
+create PROCEDURE AddToShoppingCart
     @IdSeafood INT,
     @IdUser UNIQUEIDENTIFIER,
     @Quantity INT
@@ -242,7 +244,7 @@ begin
 end;
 
 -- Search seafood in shopping cart
-alter procedure SearchShoppingCart
+create procedure SearchShoppingCart
 	@IdUser uniqueidentifier,
 	@NameSeaFood nvarchar(50)
 as
@@ -254,7 +256,7 @@ begin
 end;
 
 -- Add type
-alter procedure AddSeaFoodType
+create procedure AddSeaFoodType
 	@nameType nvarchar(20),
 	@result nvarchar(100) output
 as
@@ -271,7 +273,7 @@ begin
 end;
 
 -- Delete type
-alter procedure DeleteSeaFoodType
+create procedure DeleteSeaFoodType
 	@nameType nvarchar(20),
 	@result nvarchar(100) output
 as
@@ -288,14 +290,14 @@ begin
 end;
 
 -- Get all types
-alter procedure GetSeaFoodType
+create procedure GetSeaFoodType
 as
 begin
 	select * from types 
 end;
 
 -- Update profile
-alter procedure UpdateProfile
+create procedure UpdateProfile
 	@idUser uniqueidentifier,
 	@fullName nvarchar(30),
 	@dob date,
@@ -310,11 +312,12 @@ end;
 
 
 -- Get user profile
+GetProfile '8888888888'
 alter procedure GetProfile
-	@idUser uniqueidentifier
+	@phoneNumber nvarchar(10)
 as
 begin
-	select Id,FullName, Dob, PhoneNumber, Gender from users where Id = @idUser
+	select * from users where PhoneNumber = @phoneNumber
 end
 
 -- Change password
@@ -325,7 +328,7 @@ begin
 	select password from Users where Id = @idUser
 end
 
-alter procedure ChangePassword
+create procedure ChangePassword
 	@idUser uniqueidentifier,
 	@newPassword varchar(max)
 as
@@ -343,17 +346,17 @@ end;
 
 
 -- Get favorite seafoods
-alter procedure GetFavoriteSeafoods
+create procedure GetFavoriteSeafoods
 	@idUser uniqueidentifier
 as
 begin
-	select sf.Id, sf.Name, sf.Price, sf.Unit,sf.Status, sf.IdVoucher from SeaFoods sf 
+	select sf.Id, sf.Name, sf.Price, sf.Unit, sf.IdVoucher from SeaFoods sf 
 	inner join FavoriteSeaFoods fs on sf.Id = fs.IdFood 
 	where fs.IdUser = @idUser
 end
 
 -- Add favorite seafoods
-alter PROCEDURE AddFavoriteSeafood
+create PROCEDURE AddFavoriteSeafood
     @IdSeafood INT,
     @IdUser UNIQUEIDENTIFIER
 AS
@@ -371,7 +374,7 @@ begin
 end;
 
 --Add Address
-alter procedure AddAddress
+create procedure AddAddress
 	@idUser uniqueidentifier,
 	@idAddress uniqueidentifier,
 	@nameAddress nvarchar(max),
@@ -386,7 +389,7 @@ begin
 end
 
 -- Get Address
-alter procedure GetAddresses
+create procedure GetAddresses
 	@idUser uniqueidentifier
 as
 begin
@@ -405,7 +408,7 @@ begin
 end
 
 -- Read blog
-alter PROCEDURE getBlogs
+create PROCEDURE getBlogs
     @PageNumber INT,
     @PageSize INT
 AS
@@ -419,7 +422,7 @@ BEGIN
     FETCH NEXT @PageSize ROWS ONLY;
 END;
 
-alter procedure getBlogDetail
+create procedure getBlogDetail
 	@idBlog int
 as
 begin
@@ -440,13 +443,13 @@ begin
 		end
 	else
 		begin
-			update Users set Status = 1 where PhoneNumber = @phoneNumber
+			update Users set Status = -1 where PhoneNumber = @phoneNumber
 			set @result =  N'Khóa tài khoản thành công'
 		end
 end
 
 -- Unlock account
-alter procedure unLockAccount
+create procedure unLockAccount
 	@phoneNumber varchar(10),
 	@result nvarchar(100) output
 as
@@ -463,7 +466,7 @@ else
 end
 
 -- Search account
-alter procedure searchAccount 
+create procedure searchAccount 
 	@phoneNumber varchar(10) null,
 	@status int null
 as
@@ -485,35 +488,137 @@ alter procedure deleteCustomer
 	@result nvarchar(100) output
 as
 begin
-	update users set Status = -1 where PhoneNumber = @phoneNumber
+	update users set Status = -2 where PhoneNumber = @phoneNumber
 	set @result = N'Xóa người dùng thành công'
 end
-
+declare @result nvarchar(100) 
+exec deleteCustomer @phoneNumber ='6666666666', @result = @result OUTPUT
+SELECT @result AS Result
 -- Search customer
-
-create procedure searchCustomer
-	@phoneNumber varchar(10),
-	@status int 
-as
-begin
-	IF @phoneNumber is not null and @status = 0
-		select u.Id,u.PhoneNumber, u.FullName,Dob, u.Gender, a.NameAddress, Status from users u
-		inner join MapUserAndAddress mua on u.IdAddress = mua.IdAddress
-		inner join Address a on mua.IdAddress = a.Id
-		where u.PhoneNumber like '%' + @phoneNumber + '%'  
-	else if @status = 1
-		if @phoneNumber is not null
-			select Id,PhoneNumber, FullName,Dob, Gender, Status from users where PhoneNumber like '%' + @phoneNumber + '%' and Status = 1
-		else
-			select Id,PhoneNumber, FullName,Dob, Gender, Status from users where Status = 1
-	else
-		select u.Id,u.PhoneNumber, u.FullName,u.Dob, u.Gender, a.NameAddress, Status from users u
-		inner join MapUserAndAddress mua on mua.IdAddress = mua.IdAddress
-		inner join Address a on mua.IdAddress = a.Id
+create proc getAdminInfor 
+as begin
+	select * from users where Status = 1
 end
 
--- Add seafood
-alter PROCEDURE addSeaFood
+alter procedure searchCustomer
+	@text varchar(30),
+	@PageIndex INT,
+	@PageSize INT,
+	@TotalRecord INT OUTPUT
+as
+begin
+	DECLARE @CurrentRow AS INT = (@PageIndex - 1) * @PageSize
+	DECLARE @NextRow AS INT = @PageIndex * @PageSize
+	
+	;with result as (
+		select u.*, row_number() over (order by Id) as RowNum from users u
+		WHERE (u.PhoneNumber LIKE '%' + @text + '%' OR u.FullName LIKE '%' + @text + '%') and u.Status in (0,-1) AND u.Status != 1
+	)
+	select * from result where result.RowNum > @CurrentRow AND result.RowNum <= @NextRow
+
+	SELECT @TotalRecord = COUNT(*)
+    FROM Users u
+    WHERE (u.PhoneNumber LIKE '%' + @text + '%' OR u.FullName LIKE '%' + @text + '%') and u.Status in (0,-1) AND u.Status != 1
+end
+select * from users
+-- getAllCustomersAsync ----------------------
+getTotalCustomersNumber 2,1
+alter proc getTotalCustomersNumber 
+	@Status INT,
+	@Gender int
+as 
+begin
+	IF @Status = 2 and @gender = 2 
+		BEGIN
+			select count(*) from Users where Status in (0,-1) and Gender In (0,1)
+		END
+	ELSE IF @Status = 2 AND @Gender <> 2 
+		BEGIN
+			SELECT COUNT(*) FROM Users WHERE Status in (0,-1) AND Gender = @Gender
+		END
+	ELSE IF @Status <> 2 AND @Gender = 2
+		BEGIN
+			SELECT COUNT(*) FROM Users WHERE Status = @Status AND Gender In (0,1)
+		END
+	else 
+		BEGIN
+			select count(*) from Users where Status = @Status and Gender = @gender
+		end
+end
+select * from users u where u.Status IN (-1, 0) and u.Gender in (1, 0)
+go
+
+ALTER PROCEDURE getAllCustomers 
+	-- Status = 0 -> Account bình thường
+	-- Status = 1 -> Account của Admin
+	-- Status = -1 -> Account bị khóa
+	-- Status = 2 -> Cả Account bình thường và bị khóa
+	@Status INT,
+	@gender int,
+	@PageIndex INT,
+	@PageSize INT
+AS
+BEGIN
+	DECLARE @CurrentRow AS INT = (@PageIndex - 1) * @PageSize
+	DECLARE @NextRow AS INT = @PageIndex * @PageSize
+
+	DECLARE @result TABLE (
+		Id UNIQUEIDENTIFIER PRIMARY KEY,
+		Dob DATE,
+		PhoneNumber VARCHAR(15),
+		Password VARCHAR(MAX),
+		FullName NVARCHAR(30),
+		Gender INT NULL,
+		IdAddress UNIQUEIDENTIFIER,
+		Status INT,
+		Avatar VARCHAR(MAX)
+	)
+	
+	IF @Status = 2 and @gender = 2
+	BEGIN
+		INSERT INTO @result 
+		SELECT u.* 
+		FROM Users u 
+		WHERE u.Status IN (-1, 0) and u.Gender In (0,1)
+	END
+	else if @Status = 2 AND @Gender <> 2 
+	begin
+		INSERT INTO @result 
+		SELECT u.* 
+		FROM Users u 
+		WHERE u.Status IN (-1, 0) and u.Gender = @gender
+	end
+	else if @Status  <> 2  AND @Gender = 2 
+	begin
+		INSERT INTO @result 
+		SELECT u.* 
+		FROM Users u 
+		WHERE u.Status = @Status and u.Gender in (0,1)
+	end
+	ELSE
+	BEGIN
+		INSERT INTO @result 
+		SELECT u.* 
+		FROM Users u 
+		WHERE u.Status = @Status and u.Gender = @gender
+	END
+
+	SELECT *
+	FROM (
+		SELECT *,
+			ROW_NUMBER() OVER (ORDER BY Id) AS RowNum
+		FROM @result
+	) AS Temp
+	WHERE Temp.RowNum > @CurrentRow AND Temp.RowNum <= @NextRow
+END
+
+
+
+
+
+
+-- Add seafood --------------------------------------
+create PROCEDURE addSeaFood
     @name nvarchar(50),--
     @price decimal(10,2),--
     @unit nvarchar(10),--
@@ -570,7 +675,7 @@ BEGIN
 END;
 
 -- Update seafood
-ALTER PROCEDURE updateSeaFood
+create PROCEDURE updateSeaFood
     @idSeaFood INT,
     @name nvarchar(50) = NULL,
     @price decimal(10,2) = NULL,
@@ -625,7 +730,7 @@ BEGIN
         Price = ISNULL(@price, Price),
         Unit = ISNULL(@unit, Unit),
         IdType = ISNULL(@idType, IdType),
-        Status = ISNULL(@status, Status),
+        --Status = ISNULL(@status, Status),
         IdVoucher = ISNULL(@idVoucher, IdVoucher)
     WHERE Id = @idSeaFood
 
@@ -667,13 +772,8 @@ BEGIN
 END;
 
 
-
-
-
-
-
 -- Delete seafood
-ALTER PROCEDURE deleteSeaFood
+create PROCEDURE deleteSeaFood
     @idSeaFood int,
     @result nvarchar(100) OUTPUT
 AS
@@ -693,12 +793,6 @@ BEGIN
 	
     SET @result = N'Xóa sản phẩm thành công';
 END;
-
-
-
-select * from SeaFoodDetail
-delete SeaFoodDetail where Id = 30
-
 
 -- draft
 

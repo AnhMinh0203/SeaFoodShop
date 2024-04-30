@@ -10,7 +10,6 @@ go
 
 create table SeaFoodDetail(
 	Id int identity(1,1) primary key,
-	IdDescription int foreign key references Descriptions(Id),
 	Quantity int,
 	Instruct nvarchar (255) null,
 	ExpirationDate nvarchar (255) null,
@@ -23,48 +22,6 @@ create table SeaFoodDetail(
 )
 go
 
-
-create table SeaFoods (
-	Id int identity(1,1) primary key,
-	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
-	Name nvarchar (50),
-	Price decimal (10,2),
-	Unit nvarchar(10),
-	IdType int foreign key references Types(Id),
-	IdVoucher int foreign key references Vouchers(Id)
-)
-
-create table Images (
-	Id int identity(1,1) primary key,
-	IdSeaFood int foreign key references SeaFoods(Id),
-	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
-	IdComment int foreign key references Comments(Id),
-	IdBlog int foreign key references Blogs(Id),
-	Status bit,
-	Image nvarchar(max)
-)
-go
-
-create table Users (
-	Id uniqueidentifier primary key,
-	Dob date,
-	PhoneNumber varchar (15),
-	Password varchar(max),
-	FullName nvarchar (30),
-	Gender int null,
-	IdAddress uniqueidentifier foreign key references Address(Id),
-	Role int ,
-	Status int 
-)
-go
-
-create table FavoriteSeaFoods(
-	IdUser uniqueidentifier foreign key references Users(Id),
-	IdFood int foreign key references SeaFoods(Id)
-)
-go
-
-
 create table Vouchers(
 	Id int identity(1,1) primary key,
 	NameVoucher nvarchar(50),
@@ -76,33 +33,15 @@ create table Vouchers(
 	ModifyBy uniqueidentifier
 )
 go
-select * from Vouchers
-create table Orders(
-	Id int identity(1,1) primary key,
-	PaymentMethod nvarchar(50),
-	IdVoucher int foreign key references Vouchers(Id),
-	IdFood int foreign key references SeaFoods(Id),
-	IdUser uniqueidentifier foreign key references Users(Id)
-)
-go
 
-create table Comments (
+create table SeaFoods (
 	Id int identity(1,1) primary key,
-	Comment nvarchar(max),
-	LikeCount int,
-	Dislike int,
-	Status varchar(10),
-	Stars int,
-	IdFood int foreign key references SeaFoods(Id),
-	IdUser uniqueidentifier foreign key references Users(Id),
-	IdBlog int foreign key references Blogs(Id)
-)
-go;
-
-create table ShoppingCart(
-	IdFood int foreign key references SeaFoods(Id),
-	IdUser uniqueidentifier foreign key references Users(Id),
-	Quantity int
+	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
+	Name nvarchar (50),
+	Price decimal (10,2),
+	Unit nvarchar(10),
+	IdType int foreign key references Types(Id),
+	IdVoucher int foreign key references Vouchers(Id)
 )
 go
 
@@ -114,6 +53,18 @@ create table Address(
 )
 go
 
+create table Users (
+	Id uniqueidentifier primary key,
+	Dob date,
+	PhoneNumber varchar (15),
+	Password varchar(max),
+	FullName nvarchar (30),
+	Gender int null,
+	IdAddress uniqueidentifier foreign key references Address(Id),
+	Avatar varchar(max) ,
+	Status int 
+)
+go
 
 create table MapUserAndAddress(
 	IdUser uniqueidentifier foreign key references Users(Id),
@@ -134,6 +85,59 @@ CREATE TABLE Blogs (
 );
 
 go
+
+create table Comments (
+	Id int identity(1,1) primary key,
+	Comment nvarchar(max),
+	LikeCount int,
+	Dislike int,
+	Status varchar(10),
+	Stars int,
+	IdFood int foreign key references SeaFoods(Id),
+	IdUser uniqueidentifier foreign key references Users(Id),
+	IdBlog int foreign key references Blogs(Id)
+)
+go
+
+create table Images (
+	Id int identity(1,1) primary key,
+	IdSeaFood int foreign key references SeaFoods(Id),
+	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
+	IdComment int foreign key references Comments(Id),
+	IdBlog int foreign key references Blogs(Id),
+	Status bit,
+	Image nvarchar(max)
+)
+go
+
+
+
+create table FavoriteSeaFoods(
+	IdUser uniqueidentifier foreign key references Users(Id),
+	IdFood int foreign key references SeaFoods(Id)
+)
+go
+
+create table Orders(
+	Id int identity(1,1) primary key,
+	PaymentMethod nvarchar(50),
+	IdVoucher int foreign key references Vouchers(Id),
+	IdFood int foreign key references SeaFoods(Id),
+	IdUser uniqueidentifier foreign key references Users(Id)
+)
+go
+
+
+create table ShoppingCart(
+	IdFood int foreign key references SeaFoods(Id),
+	IdUser uniqueidentifier foreign key references Users(Id),
+	Quantity int
+)
+go
+
+
+
+
 
 
 INSERT INTO Blogs (IdUser, Title, Content, PublishedDate, Thumbnail, Views, Likes)
