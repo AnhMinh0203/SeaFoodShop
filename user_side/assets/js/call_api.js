@@ -69,9 +69,7 @@ async function SignUp() {
 
         const result = await response.json();
         console.log(result); // In kết quả trả về từ API vào console
-        // Xử lý kết quả ở đây, có thể là hiển thị thông báo thành công, lỗi, vv.
     } catch (error) {
         console.error('Error:', error);
-        // Xử lý lỗi ở đây, có thể là hiển thị thông báo lỗi cho người dùng
     }
 }

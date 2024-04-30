@@ -9,7 +9,7 @@ const sideMenu = document.querySelector('aside');
 const menuBtn = document.getElementById('menu-btn');
 const darkMode = document.querySelector('.dark-mode');
 var pageIndex = 1
-var pageSize = 1
+var pageSize = 5
 // Xử lý load page với axios
 document.addEventListener("DOMContentLoaded", () => {
      // Load page mặc định
@@ -226,4 +226,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+// 

@@ -7,13 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/user.css">
 </head>
   <body>
     <!-- Title -->
     <h1>Users</h1>
-    <!-- Table -->
-    <div class="d-flex flex-column alight-content-between">
-        <div class="table table-responsive">
+    
+    <div class="container_user d-flex flex-column alight-content-between">
+        <!-- Search -->
+        <div class="search_user d-flex d-md-flex d-sm-flex align-items-center my-2 ">
+            <div class="search_user--input  flex-grow-1 flex-sm-grow-1 flex-md-grow-0-5">
+                <input type="search" id="form1" placeholder="Tìm kiếm"/>
+            </div>
+            <div class="search_user--icon" onclick="searchUser(1,pageSizeDefault)">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <!-- Filter -->
+        <div class="filter_user d-flex">
+            <select class="form-select my-2" onchange="getUserByGender(this.value)">
+                <option selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="all">All</option>
+            </select>
+            <select class="form-select my-2 mx-2 " onchange="getUserByStatus(this.value)">
+                <option selected>Select account</option>
+                <option value="lock" >Lock</option>
+                <option value="unlock">Unlock</option>
+                <option value="delete">Delete</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+
+
+        <!-- Total -->
+        <div class="total_customers d-flex justify-content-end">
+            <span style="font-weight: 800 ; padding: 0 10px;">Total: </span> <span style="color:var(--color-primary);font-weight: 800  " id="total_customers"></span>
+        </div>
+        <!-- Table -->
+        <div class="table table-responsive mt-2">
             <table class="table">
                 <thead class="table table-warning ">
                     <tr>
@@ -22,53 +55,28 @@
                         <th scope="col">Phone number</th>
                         <th scope="col">Date of birth</th>
                         <th scope="col">Gender</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody id="userTableBody">
                     <!-- Data will be inserted here -->
                 </tbody>
-            </table>
+            </table>  
+        </div>
+        <!-- User profile -->
+        <div class="user_profile" id="user_profile">
+            
         </div>
         <!-- Pagination -->
-        <div class="pagination_user d-flex justify-content-end" >
+        <div class="pagination_user d-md-flex justify-content-md-end d-sm-flex justify-content-sm-center" >
             <nav>
-                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success" id="pagination_user--nav">
-                    <!-- <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angles-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" onclick="handleUsersPage(1,2)" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link"  onclick="handleUsersPage(2,2)" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" onclick="handleUsersPage(3,2)" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" onclick="handleUsersPage(4,2)"  href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angles-right"></i>
-                        </a>
-                    </li> -->
+                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success " id="pagination_user--nav">
                 </ul>
             </nav>
         </div>
     </div>
   </body>
+
+
 </html>
