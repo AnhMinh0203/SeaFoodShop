@@ -66,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (href.includes("users.html")) {
                     handleUsersPage(pageIndex,pageSize);
                 }
+                else if(href.includes("products.html")){
+                    handleProductsPage(pageIndex,pageSize)
+                }
                 else if(href.includes("dashboard.html")){
                     handleAdminPage();
                 } 

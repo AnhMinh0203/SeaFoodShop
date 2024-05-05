@@ -431,6 +431,7 @@ main .recent-orders a{
     align-items: center;
     gap: 2rem;
     text-align: right;
+    justify-content: right;
 }
 
 .nav .profile .profile-photo{

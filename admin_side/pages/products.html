@@ -1,11 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
-<body>
-    <h1>Products</h1>
-</body>
+  <body>
+    <!-- Title -->
+    <h1>Product</h1>
+    
+    <div class="container_product d-flex flex-column alight-content-between">
+        <!-- Search -->
+        <div class="search_product d-flex d-md-flex d-sm-flex align-items-center my-2 ">
+            <div class="search_product--input  flex-grow-1 flex-sm-grow-1 flex-md-grow-0-5">
+                <input type="search" id="form_search" placeholder="Tìm kiếm"/>
+            </div>
+            <div class="search_product--icon" onclick="searchProduct(1,pageSizeDefault)">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <!-- Filter -->
+        <div class="filter_product d-flex">
+            <select class="form-select my-2" id="filter_product" onchange="getProductByType(1,pageSizeDefault)">
+               
+            </select>
+        </div>
+
+
+        <!-- Total -->
+        <div class="total_products d-flex justify-content-end">
+            <span style="font-weight: 800 ; padding: 0 10px;">Total: </span> <span style="color:var(--color-primary);font-weight: 800  " id="total_products"></span>
+        </div>
+        <!-- Table -->
+        <div class="table table-responsive mt-2">
+            <table class="table">
+                <thead class="table table-warning ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Voucher</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>  
+        </div>
+        <!-- product profile -->
+        <div class="product_profile" id="product_profile">
+            
+        </div>
+        <!-- Pagination -->
+        <div class="pagination_product d-md-flex justify-content-md-end d-sm-flex justify-content-sm-center" >
+            <nav>
+                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success " id="pagination_product--nav">
+                </ul>
+            </nav>
+        </div>
+    </div>
+  </body>
 </html>

@@ -1,10 +1,10 @@
 // Khai báo
 const token = localStorage.getItem('token');
-localStorage.setItem("currentPage",1)
-localStorage.setItem("lastPage",'False')
+localStorage.setItem("currentUserPage",1)
+localStorage.setItem("lastUserPage",'False')
 localStorage.setItem("user_status",'2')
 localStorage.setItem("user_gender",'2')
-localStorage.setItem("searchStatus", "False");
+localStorage.setItem("searchUserStatus", "False");
 
 const status_admin = '1';
 let pageSizeDefault = 5
@@ -52,7 +52,7 @@ function renderUserPage(data) {
     const tableBody = document.getElementById('userTableBody');
     const paginationLoad = document.getElementById('pagination_user--nav');
     const totalCustomerText = document.getElementById('total_customers');
-    var currentPage = parseInt(localStorage.getItem("currentPage")) || 1;
+    var currentUserPage = parseInt(localStorage.getItem("currentUserPage")) || 1;
 
     tableBody.innerHTML = '';  
     paginationLoad.innerHTML = '';
@@ -80,9 +80,9 @@ function renderUserPage(data) {
                         )
                     }
                 </td>
-                <td class="popup-trigger" onclick="togglePopup(event)">
+                <td class="popup_trigger--user" onclick="togglePopup(event)">
                     <span class="material-icons-sharp">more_horiz</span>
-                    <div class="popup-content d-flex d-none flex-column">
+                    <div class="popup_content--user d-flex d-none flex-column">
                         <a href="#" class="popup-option" onclick="detailUser(event,${user.phoneNumber})">Detail</a>
                         ${user.status === -2 ? '': `<a href="#" class="popup-option" onclick="deleteUser(event,${user.phoneNumber})">Delete</a>`}
                     </div>
@@ -91,99 +91,101 @@ function renderUserPage(data) {
         tableBody.innerHTML += row;
     });
     totalCustomerText.innerHTML = data.totalRecord ;
-    renderPagination(currentPage, totalPage, paginationLoad);
+    renderUserPagination(currentUserPage, totalPage, paginationLoad);
 }
 
 // Pagination user
-function renderPagination(currentPage, totalPage, paginationLoad){
-    var lastPage = localStorage.getItem("lastPage") === "True";
-    var updateColorPage = localStorage.getItem("updateColor");
-    var residual = lastPage ? (totalPage % 4 > 0 ? totalPage % 4 - 1 : totalPage % 4 + 3) : 0;
+function renderUserPagination(currentUserPage, totalPage, paginationLoad){
+    var lastUserPage = localStorage.getItem("lastUserPage") === "True";
+    var updateColorPage = localStorage.getItem("updateUserColor");
+    var residual = lastUserPage ? (totalPage % 4 > 0 ? totalPage % 4 - 1 : totalPage % 4 + 3) : 0;
     var htmlContent = '';
-    let onClickFunction = localStorage.getItem("searchStatus") == "True" ? "searchUser" : "handleUsersPage";
+    let onClickFunction = localStorage.getItem("searchUserStatus") == "True" ? "searchUser" : "handleUsersPage";
 
-    htmlContent += `<li class="page-item">
-                        <a class="page-link" href="#" onclick="firstPage(${1})">
+    htmlContent += `<li class="page_item--user">
+                        <a class="page-link" href="#" onclick="firsUsertPage(${1})">
                             <i class="fa-solid fa-angles-left"></i>
                         </a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" onclick="periousPage(${lastPage ? currentPage - 4 - residual : currentPage - 4})">
+                    <li class="page_item--user">
+                        <a class="page-link" href="#" onclick="periousUserPage(${lastUserPage ? currentUserPage - 4 - residual : currentUserPage - 4})">
                             <i class="fa fa-angle-left"></i>
                         </a>
                     </li>`;
 
-    for (let page = lastPage ? totalPage - residual : currentPage; page <= totalPage && page < currentPage + 4; page++) {
+    for (let page = lastUserPage ? totalPage - residual : currentUserPage; page <= totalPage && page < currentUserPage + 4; page++) {
        
-        htmlContent += `<li class="page-item ${page == updateColorPage ? 'active' : ''}">
+        htmlContent += `<li class="page_item--user ${page == updateColorPage ? 'active' : ''}">
                             <a class="page-link" onclick="${onClickFunction}(${page},${pageSizeDefault})" href="#" value="${page}">${page}</a>
                         </li>`;
     }
 
-    htmlContent += `<li class="page-item">
-                        <a class="page-link" href="#" onclick="nextPage(${currentPage + 4},${totalPage})">
+    htmlContent += `<li class="page_item--user">
+                        <a class="page-link" href="#" onclick="nextUserPage(${currentUserPage + 4},${totalPage})">
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" onclick="lastPage(${totalPage})">
+                    <li class="page_item--user">
+                        <a class="page-link" href="#" onclick="lastUserPage(${totalPage})">
                             <i class="fa-solid fa-angles-right"></i>
                         </a>
                     </li>`;
 
     paginationLoad.innerHTML += htmlContent;
-    localStorage.setItem("lastPage", "False");
-    localStorage.setItem("currentPage", lastPage ? currentPage - residual : currentPage);
+    localStorage.setItem("lastUserPage", "False");
+    localStorage.setItem("currentUserPage", lastUserPage ? currentUserPage - residual : currentUserPage);
 }
 
 function handleUsersPage(pageIndex, pageSize) {
-    localStorage.setItem("updateColor", pageIndex);
-    localStorage.setItem("searchStatus", "False");
+    localStorage.setItem("updateUserColor", pageIndex);
+    localStorage.setItem("searchUserStatus", "False");
 
     const status_user = localStorage.getItem("user_status");
     const status_gender = localStorage.getItem("user_gender");
     fetchUserData(token, status_user,status_gender, pageIndex, pageSize)
         .then(response => {
             renderUserPage(response.data);
+            
+            console.log(response.data)
         })
         .catch(error => console.error("Error:", error));
 }
 
-function nextPage(nextPage,totalPage) {
-    if(nextPage > totalPage){
+function nextUserPage(nextUserPage,totalPage) {
+    if(nextUserPage > totalPage){
         return;
     }
     else{
-        localStorage.setItem("currentPage",nextPage)
-        if(localStorage.getItem("searchStatus") == "False"){
-            handleUsersPage(nextPage,pageSizeDefault)
+        localStorage.setItem("currentUserPage",nextUserPage)
+        if(localStorage.getItem("searchUserStatus") == "False"){
+            handleUsersPage(nextUserPage,pageSizeDefault)
         }
         else{
-            searchUser(nextPage,pageSizeDefault)
+            searchUser(nextUserPage,pageSizeDefault)
         }
     }
 }
 
-function periousPage(periousPage){
-    if(periousPage < 1){
+function periousUserPage(periousUserPage){
+    if(periousUserPage < 1){
         return;
     }
     else{
-        localStorage.setItem("currentPage",periousPage)
-        if(localStorage.getItem("searchStatus") == "False"){
-            handleUsersPage(periousPage,pageSizeDefault)
+        localStorage.setItem("currentUserPage",periousUserPage)
+        if(localStorage.getItem("searchUserStatus") == "False"){
+            handleUsersPage(periousUserPage,pageSizeDefault)
         }
         else{
-            searchUser(periousPage,pageSizeDefault)
+            searchUser(periousUserPage,pageSizeDefault)
         }
     }
 }
 
-function lastPage(page){
-    localStorage.setItem("lastPage","True")
-    localStorage.setItem("currentPage",page)
+function lastUserPage(page){
+    localStorage.setItem("lastUserPage","True")
+    localStorage.setItem("currentUserPage",page)
 
-    if(localStorage.getItem("searchStatus") == "False"){
+    if(localStorage.getItem("searchUserStatus") == "False"){
         handleUsersPage(page,pageSizeDefault) 
     }
     else{
@@ -191,9 +193,9 @@ function lastPage(page){
     }
 }
 
-function firstPage(page){
-    localStorage.setItem("currentPage",page)
-    if(localStorage.getItem("searchStatus") == "False"){
+function firsUsertPage(page){
+    localStorage.setItem("currentUserPage",page)
+    if(localStorage.getItem("searchUserStatus") == "False"){
         handleUsersPage(page,pageSizeDefault)
     }
     else{
@@ -234,11 +236,11 @@ function getUserByGender(gender){
 
 // Search user
 function searchUser(pageIndex, pageSize) {
-    localStorage.setItem("updateColor", pageIndex);
-    localStorage.setItem("searchStatus", "True");
+    localStorage.setItem("updateUserColor", pageIndex);
+    localStorage.setItem("searchUserStatus", "True");
     var inputText = document.getElementById("form1").value;
     if (inputText == ""){
-        handleUsersPage(pageIndex,pageSize)
+        handleUsersPage(1,pageSizeDefault)
     }
     else{
         fetchUserSearchData(token, inputText, pageIndex, pageSize)
@@ -251,9 +253,9 @@ function searchUser(pageIndex, pageSize) {
 
 // Xử lý hiển thị popup
 document.addEventListener('click', function(event) {
-    const popups = document.querySelectorAll('.popup-content');
+    const popups = document.querySelectorAll('.popup_content--user');
     const clickedPopup = event.target.nextElementSibling;
-    if (!clickedPopup || !clickedPopup.classList.contains('popup-content')) {
+    if (!clickedPopup || !clickedPopup.classList.contains('popup_content--user')) {
         popups.forEach(popup => {
             popup.classList.add('d-none');
         });
@@ -261,7 +263,7 @@ document.addEventListener('click', function(event) {
 });
 
 function hideAllPopups(event) {
-    const popups = document.querySelectorAll('.popup-content');
+    const popups = document.querySelectorAll('.popup_content--user');
     const clickedPopup = event.target.nextElementSibling;
     popups.forEach(popup => {
         if (popup !== clickedPopup) {
@@ -415,7 +417,7 @@ function savePassword(phoneNumber){
 }
 
 
-// ------ Dashboard
+// --------------- Dashboard
 // Load dashboard data
 function fetchAdminData(token) {
     return axios.get(`https://localhost:7018/api/ManagerAccount/GetAdminInfor?token=${token}`)
@@ -423,7 +425,7 @@ function fetchAdminData(token) {
 
 function populateAdmin(data) {
     const tableBody = document.querySelector('.right-section .nav .profile');
-    tableBody.innerHTML = '';  // Clear table body
+    tableBody.innerHTML = '';  
 
     tableBody.innerHTML +=  `
         <div class="profile">
@@ -445,3 +447,218 @@ function handleAdminPage(){
         .catch(error => console.error("Error:", error));
 }
 
+// -------------------- Seafoods
+// Khai báo
+localStorage.setItem("currentProductPage",1)
+localStorage.setItem("lastProductPage",'False')
+localStorage.setItem("searchProductStatus", "False");
+localStorage.setItem("searchProductByType", "");
+
+async function fetchProductSeachData(nameProduct,pageIndex, pageSize){
+    return await axios.post(`https://localhost:7018/api/SeaFood/SearchSeafood?nameSeaFood=${nameProduct}&pageIndex=${pageIndex}&pageSize=${pageSize}`);
+}
+
+async function fetchProductData( pageIndex, pageSize) {
+    return await axios.get(`https://localhost:7018/api/SeaFood?pageNumber=${pageIndex}&pageSize=${pageSize}`);
+}
+
+async function fetchFiterSeaFoodData(token) {
+    return await axios.get(`https://localhost:7018/api/Type/GetTypes?token=${token}`);
+}
+
+async function fetchSearchProductByTypeData (nameType, pageIndex, pageSize){
+    return await axios.post(`https://localhost:7018/api/SeaFood/SearchSeafoodByType?nameSeaFood=${nameType}&pageIndex=${pageIndex}&pageSize=${pageSize}`)
+}
+
+function renderFiterProductPage(data){
+    const filterProduct = document.getElementById('filter_product');
+    filterProduct.innerHTML = ' <option selected>Select type</option>';
+    console.log(data)
+    data.forEach((type) => {
+        const select = `<option value="${type.nameType}">${type.nameType}</option>`
+        filterProduct.innerHTML += select;
+    })
+}
+
+function renderProductPage(data) {
+    const totalPage =  Math.ceil( parseInt(data.totalRecord) / pageSizeDefault);
+    const tableBody = document.getElementById('productTableBody');
+    const paginationLoad = document.getElementById('pagination_product--nav');
+    const totalCustomerText = document.getElementById('total_products');
+    var currentProductPage = parseInt(localStorage.getItem("currentProductPage")) || 1;
+
+    tableBody.innerHTML = '';  
+    paginationLoad.innerHTML = '';
+
+    if (!data || data.listSeaFood.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="7" class="text-center text-danger">Không có dữ liệu</td></tr>';
+        totalCustomerText.innerHTML = '0';
+        return;
+    }
+
+    data.listSeaFood.forEach((product) => {
+        const row = `
+            <tr>
+                <th scope="row">${product.rowNum}</th>
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.unit}</td>
+                <td>${product.nameType}</td>
+                <td>${product.idVoucher == null ? '' : product.idVoucher}</td>
+                <td class="popup_trigger--product" onclick="togglePopup(event)">
+                    <span class="material-icons-sharp">more_horiz</span>
+                    <div class="popup_content--product d-flex d-none flex-column">
+                        <a href="#" class="popup-option" onclick="detailProduct(event,${product.id})">Detail</a>
+                        <a href="#" class="popup-option" onclick="deleteProduct(event,${product.id})">Delete</a>
+                    </div>
+                </td>
+            </tr>`;
+        tableBody.innerHTML += row;
+    });
+    totalCustomerText.innerHTML = data.totalRecord ;
+    renderProductPagination(currentProductPage, totalPage, paginationLoad);
+}
+
+// Pagination Product
+function renderProductPagination(currentProductPage, totalPage, paginationLoad){
+    var lastProductPage = localStorage.getItem("lastProductPage") === "True";
+    var updateColorPage = localStorage.getItem("updateProductColor");
+    var residual = lastProductPage ? (totalPage % 4 > 0 ? totalPage % 4 - 1 : totalPage % 4 + 3) : 0;
+    var htmlContent = '';
+    let onClickFunction = localStorage.getItem("searchProductStatus") == "True" ? "searchProduct" : (localStorage.getItem("searchProductByType") !== "" ? "getProductByType": "handleProductsPage") ;
+
+    htmlContent += `<li class="page_item--Product">
+                        <a class="page-link" href="#" onclick="firstProductPage(${1})">
+                            <i class="fa-solid fa-angles-left"></i>
+                        </a>
+                    </li>
+                    <li class="page_item--Product">
+                        <a class="page-link" href="#" onclick="periousProductPage(${lastProductPage ? currentProductPage - 4 - residual : currentProductPage - 4})">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    </li>`;
+
+    for (let page = lastProductPage ? totalPage - residual : currentProductPage; page <= totalPage && page < currentProductPage + 4; page++) {
+       
+        htmlContent += `<li class="page_item--Product ${page == updateColorPage ? 'active' : ''}">
+                            <a class="page-link" onclick="${onClickFunction}(${page},${pageSizeDefault})" href="#" value="${page}">${page}</a>
+                        </li>`;
+    }
+
+    htmlContent += `<li class="page_item--product">
+                        <a class="page-link" href="#" onclick="nextProductPage(${currentProductPage + 4},${totalPage})">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                    <li class="page_item--product">
+                        <a class="page-link" href="#" onclick="lastProductPage(${totalPage})">
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    </li>`;
+
+    paginationLoad.innerHTML += htmlContent;
+    localStorage.setItem("lastProductPage", "False");
+    localStorage.setItem("currentProductPage", lastProductPage ? currentProductPage - residual : currentProductPage);
+}
+
+function handleProductsPage(pageIndex, pageSize) {
+    localStorage.setItem("updateProductColor", pageIndex);
+    localStorage.setItem("searchProductStatus", "False");
+
+    fetchFiterSeaFoodData(token)
+        .then(res =>{
+            renderFiterProductPage(res.data)
+        })
+        .catch(error => console.error("Error:", error));
+        
+    fetchProductData(pageIndex, pageSize)
+        .then(response => {
+            renderProductPage(response.data);
+        })
+        .catch(error => console.error("Error:", error));
+}
+
+function nextProductPage(page,totalPage) {
+    if(page > totalPage){
+        return;
+    }
+    else{
+        localStorage.setItem("currentProductPage",page)
+        if(localStorage.getItem("searchProductStatus") == "False"){
+            handleProductsPage(page,pageSizeDefault)
+        }
+        else{
+            searchProduct(page,pageSizeDefault)
+        }
+    }
+}
+
+function periousProductPage(page){
+    if(page < 1){
+        return;
+    }
+    else{
+        localStorage.setItem("currentProductPage",page)
+        if(localStorage.getItem("searchProductStatus") == "False"){
+            handleProductsPage(page,pageSizeDefault)
+        }
+        else{
+            searchProduct(page,pageSizeDefault)
+        }
+    }
+}
+
+function lastProductPage(page){
+    localStorage.setItem("lastProductPage","True")
+    localStorage.setItem("currentProductPage",page)
+
+    if(localStorage.getItem("searchProductStatus") == "False"){
+        handleProductsPage(page,pageSizeDefault) 
+    }
+    else{
+        searchProduct(page,pageSizeDefault)
+    }
+}
+
+function firstProductPage(page){
+    localStorage.setItem("currentProductPage",page)
+    if(localStorage.getItem("searchProductStatus") == "False"){
+        handleProductsPage(page,pageSizeDefault)
+    }
+    else{
+        searchProduct(page,pageSizeDefault)
+    }
+}
+
+// Search production
+function searchProduct(pageIndex, pageSize) {
+    localStorage.setItem("updateProductColor", pageIndex);
+    localStorage.setItem("searchProductStatus", "True");
+    localStorage.setItem("searchProductByType","")
+
+    var nameProduct = document.getElementById("form_search").value;
+    if (nameProduct == ""){
+        handleProductsPage(1,pageSizeDefault)
+    }
+    else{
+        fetchProductSeachData(nameProduct,pageIndex,pageSize)
+        .then(response => {
+            renderProductPage(response.data);
+        })
+        .catch(error => console.error("Error:", error));
+    }
+}
+
+// Get product by type
+function getProductByType(pageIndex, pageSize){
+    var selectElement = document.getElementById("filter_product");
+    var nameType = selectElement.value;
+    localStorage.setItem("searchProductByType",nameType)
+    localStorage.setItem("updateProductColor", pageIndex);
+    fetchSearchProductByTypeData(nameType,pageIndex,pageSize)
+    .then(response => {
+        console.log(response)
+        renderProductPage(response.data);
+    })
+    .catch(error => console.error("Error:", error));
+}

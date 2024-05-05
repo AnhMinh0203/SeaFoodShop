@@ -1,0 +1,132 @@
+/* ------------- User and Product -------------*/
+.search_product--input input,
+.search_user--input input{
+    display: block;
+    width: 100%;
+    padding: .580rem .75rem;
+    padding-left: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.search_product--input input:focus,
+.search_user--input input:focus{
+    box-shadow: 0 0 0 .25rem rgba(249, 136, 88, .25);
+    border-color: var(--color-primary);
+}
+.search_product--icon,
+.search_user--icon {
+    padding: 10px 25px;
+    background-color: var(--color-primary);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: 1px solid transparent; /* Sử dụng outline thay vì border */
+    transition: background-color 0.3s ease;
+}
+.search_product--icon i,
+.search_user--icon i {
+    color: var(--color-white);
+}
+.search_product--icon:hover i,
+.search_user--icon:hover i{
+    color: var(--color-primary);
+}
+.search_product--icon:hover,
+.search_user--icon:hover {
+    background-color: var(--color-white);
+    outline-color: var(--color-primary); /* Thay đổi màu của outline khi hover */
+}
+.form-select{
+    width: 14%;
+}
+
+.form-select:focus{
+    box-shadow: 0 0 0 .25rem rgba(249, 136, 88, .25);
+    border-color: var(--color-primary);
+}
+
+/* Pagination */
+.page_item--product,
+.page_item--user {
+    z-index: 1;
+}
+.page_item--product,
+.page_item--user a{
+    color: var(--color-primary);
+
+}
+
+/* Popup */
+.popup_content--product,
+.popup_content--user{
+    width: 80px;
+    position: absolute;
+    z-index: 2;
+    background-color: var(--color-white);
+    box-shadow:  0 0 0 .25rem rgba(249, 136, 88, .25);
+    border: 1px solid var(--color-dark-variant);
+    border-radius: 5px;
+}
+
+.popup_content--product a,
+.popup_content--user a{
+    text-decoration: none;
+    text-align: center;
+    padding: 6px 0;
+}
+
+.popup_content--product a:hover,
+.popup_content--user a:hover{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: background-color 0.3s ease;
+}
+.popup_trigger--product:hover span,
+.popup_trigger--user:hover span{
+    color: var(--color-primary);
+    transition: background-color 0.3s ease;
+}
+
+/* Detail profile */
+.user_profile .close_profile--icon i{
+    font-size: 1.8rem;
+}
+.user_profile--detail{
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+.overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 3;
+}
+#restoreUserIcon:hover,
+#closeIcon:hover{
+    color: var(--color-danger);
+    transition: background-color 0.3s ease;
+}
+/* Media */
+@media (min-width: 768px) {
+    .flex-md-grow-0-5 {
+        flex: 0.5 !important; 
+    }
+}
+
+/* --------------------------*/
