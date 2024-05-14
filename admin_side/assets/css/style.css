@@ -726,4 +726,5 @@ main .recent-orders a{
 /* User admin page */
 .active>.page-link{
     background-color: var(--color-primary);
+    z-index: 1;
 }

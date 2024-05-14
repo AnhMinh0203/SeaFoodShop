@@ -63,11 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
         axios.get(href)
             .then(response => {
                 container.innerHTML = response.data;
+                
                 if (href.includes("users.html")) {
                     handleUsersPage(pageIndex,pageSize);
                 }
                 else if(href.includes("products.html")){
+                    loadParagraphEdit() // Load trình edit văn bản
                     handleProductsPage(pageIndex,pageSize)
+                    
                 }
                 else if(href.includes("dashboard.html")){
                     handleAdminPage();
@@ -229,4 +232,36 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// 
+// Xử lý click chọn ảnh cho sản phẩm khi tạo sản phẩm mới
+function handleImageUpload(event,idName) {
+    var selectedImage = document.getElementById(idName);
+    var file = event.target.files[0];
+    var reader = new FileReader();
+
+    // Đọc file ảnh và hiển thị nó
+    reader.onload = function (e) {
+        selectedImage.src = e.target.result;
+        selectedImage.classList.add('border-color-primary');
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+        selectedImage.dataset.filename = file.name;
+    }
+}
+
+
+// Hiển thị form thêm sản phẩm
+function toggleAddProductForm(){
+    var form = document.querySelector(".add_product--form");
+    var overlay = document.querySelector(".overlay");
+    // Kiểm tra nếu form đang hiển thị, thì ẩn nó đi; ngược lại, hiển thị nó lên
+    if (form.classList.contains("d-none")) {
+        overlay.classList.remove("d-none")
+        form.classList.remove("d-none");
+        
+    } else {
+        overlay.classList.add("d-none")
+        form.classList.add("d-none");
+    }
+}

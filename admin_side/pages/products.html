@@ -1,37 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tiny.cloud/1/6tck4k511shbgx37z9rjyaeqjqt8ho2j5xekfgyzfzhofayv/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css">
+
 </head>
-  <body>
+
+<body>
     <!-- Title -->
     <h1>Product</h1>
-    
+
     <div class="container_product d-flex flex-column alight-content-between">
         <!-- Search -->
         <div class="search_product d-flex d-md-flex d-sm-flex align-items-center my-2 ">
             <div class="search_product--input  flex-grow-1 flex-sm-grow-1 flex-md-grow-0-5">
-                <input type="search" id="form_search" placeholder="Tìm kiếm"/>
+                <input type="search" id="form_search" placeholder="Tìm kiếm" />
             </div>
             <div class="search_product--icon" onclick="searchProduct(1,pageSizeDefault)">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         <!-- Filter -->
-        <div class="filter_product d-flex">
-            <select class="form-select my-2" id="filter_product" onchange="getProductByType(1,pageSizeDefault)">
-               
-            </select>
+        <div class="product_group my-2 d-flex justify-content-between align-items-center">
+            <div class="filter_product">
+                <select class="form-select my-2" id="filter_product"
+                    onchange="getProductByType(1,pageSizeDefault)"></select>
+
+            </div>
+            <div class="add_product" onclick="toggleAddProductForm()">
+                <i class="fa-solid fa-square-plus"></i>
+            </div>
         </div>
 
 
         <!-- Total -->
         <div class="total_products d-flex justify-content-end">
-            <span style="font-weight: 800 ; padding: 0 10px;">Total: </span> <span style="color:var(--color-primary);font-weight: 800  " id="total_products"></span>
+            <span style="font-weight: 800 ; padding: 0 10px;">Total: </span> <span
+                style="color:var(--color-primary);font-weight: 800  " id="total_products"></span>
         </div>
         <!-- Table -->
         <div class="table table-responsive mt-2">
@@ -50,19 +63,171 @@
                 <tbody id="productTableBody">
                     <!-- Data will be inserted here -->
                 </tbody>
-            </table>  
+            </table>
         </div>
-        <!-- product profile -->
-        <div class="product_profile" id="product_profile">
+        <!-- product detail -->
+        <div class="add_product--form position-absolute d-none">
+           
+            <section class="p-4">
+                <div class="close_add_product--icon d-flex justify-content-end mb-3" onclick="toggleAddProductForm()">
+                    <i class="fa-solid fa-square-xmark" id="closeIcon" onclick=""></i>
+                </div>
+                <div class="container">
+                    <div class="row gx-5">
+                        <aside class="col-lg-6 add_product--height mt-3">
+                            <!-- Ảnh chính -->
+                            <div class="border rounded-4 mb-3 d-flex flex-column justify-content-center primary_image">
+                                <div class="d-flex  justify-content-center mb-3 p-3">
+                                   
+                                    <input type="file" id="imageInput" style="display: none;" accept="image/*" onchange="handleImageUpload(event,'selectedImage')"/>
+                                    <label for="imageInput">
+                                        <i id="plusIcon" class="fas fa-plus-circle"></i>
+                                    </label>
+                                </div>
+                                <img id="selectedImage" style="max-width: 100%;margin: auto;"
+                                    class="rounded-4 fit" src="" />
+                            </div>
+                            <!-- Ảnh phụ -->
+                            <div class="d-flex justify-content-center mb-3">
+                                <div class="first_item product_image p-2 border rounded-4">
+                                    <div class="d-flex justify-content-center">
+                                        
+                                        <input type="file" id="imageInputFirstChild" class="d-none border" accept="image/*" onchange="handleImageUpload(event, 'selectedImageFirstChild')"/>
+                                        <label for="imageInputFirstChild">
+                                            <i id="plusIconFirstChild" class="fas fa-plus-circle"></i>
+                                        </label>
+                                    </div>
+                                    <img id="selectedImageFirstChild" width="40" height="auto" class="rounded-2 fit  " src="" />                            
+                                </div>
+                                <div class="second_item product_image p-2 border rounded-4">
+                                    <div class="d-flex justify-content-center">
+                                        
+                                        <input type="file" id="imageInputSecondChild" style="display: none;" accept="image/*" onchange="handleImageUpload(event, 'selectedImageSecondChild')"/>
+                                        <label for="imageInputSecondChild">
+                                            <i id="plusIconFirstChild" class="fas fa-plus-circle"></i>
+                                        </label>
+                                    </div>
+                                    <img id="selectedImageSecondChild" width="40" height="auto" class="rounded-2 fit " src="" />                            
+                                </div>
+                                <div class="third_item product_image p-2 border rounded-4">
+                                    <div class="d-flex justify-content-center">
+                                        
+                                        <input type="file" id="imageInputThirdChild" style="display: none;" accept="image/*" onchange="handleImageUpload(event, 'selectedImageThirdChild')"/>
+                                        <label for="imageInputThirdChild">
+                                            <i id="plusIconFirstChild" class="fas fa-plus-circle"></i>
+                                        </label>
+                                    </div>
+                                    <img id="selectedImageThirdChild" width="40" height="auto" class="rounded-2 fit " src="" />                            
+                                </div>
+                                <div class="fourth_item product_image p-2 border rounded-4">
+                                    <div class="d-flex justify-content-center">
+                                        
+                                        <input type="file" id="imageInputFourthChild" style="display: none;" accept="image/*" onchange="handleImageUpload(event, 'selectedImageFourthChild')"/>
+                                        <label for="imageInputFourthChild">
+                                            <i id="plusIconFirstChild" class="fas fa-plus-circle"></i>
+                                        </label>
+                                    </div>
+                                    <img id="selectedImageFourthChild" width="40" height="auto" class="rounded-2 fit " src="" />                            
+                                </div>
+                                <div class="five_item product_image p-2 border rounded-4">
+                                    <div class="d-flex justify-content-center">
+                                        
+                                        <input type="file" id="imageInputFiveChild" style="display: none;" accept="image/*" onchange="handleImageUpload(event, 'selectedImageFiveChild')"/>
+                                        <label for="imageInputFiveChild">
+                                            <i id="plusIconFirstChild" class="fas fa-plus-circle"></i>
+                                        </label>
+                                    </div>
+                                    <img id="selectedImageFiveChild" width="40" height="auto" class="rounded-2 fit " src="" />                            
+                                </div>
+                                
+                            </div>
+        
+                        </aside>
+                        <main class="col-lg-6 product_infor--detail add_product--height">
+                            <div class="ps-lg-3">
+                                <h4 class="title flex-column text-dark product_detail--name">
+                                    <label for="" class="my-2">Tên sản phẩm</label><br>
+                                    <input class="p-2 border" id="product_detail--name" type="text">
+                                </h4>
+                                <div class="d-flex flex-column my-3 product_detail--instruct">
+                                    <label for="">Quy cách</label>
+                                    <div class="instruction_text">
+                                        <textarea name="" id="product_detail--instruct" class="p-2 border"></textarea>
+                                    </div>
+                                </div>
+                                <div class="d-flex my-3 ">
+                                    <div class="d-flex flex-column product_detail--unit">
+                                        <label for="">Size</label>
+                                        <input class="p-2 border" id="product_detail--unit" type="text">
+                                    </div>
+                                    <div class="d-flex flex-column product_detail--amount ms-2">
+                                        <label for="">Số lượng</label>
+                                        <input class="p-2 border" id="product_detail--amount" type="text">
+                                    </div>
+                                </div>
+                                <div class="d-flex my-3">
+                                    <div class="d-flex flex-column product_detail--origin">
+                                        <label for="">Xuất xứ</label>
+                                        <input class="p-2 border" id="product_detail--origin" type="text">
+                                    </div>
+                                    <div class="d-flex flex-column ms-2 product_detail--preserve">
+                                        <label for="">Bảo quản</label>
+                                        <input class="p-2 border" id="product_detail--preserve" type="text">
+                                    </div>
+                                </div>
+        
+                                <div class="my-3 d-flex">
+                                    <div class="d-flex flex-column product_detail--price">
+                                        <label for="">Giá</label>
+                                        <input class="p-2 border" id="product_detail--price" type="text">
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="product_detail--select d-flex">
+                                    <select class="form-select product_detail--type my-2 py-2" id="selectType">
+                                        <option selected>Select type</option>
+                                        <option value="Chả">Chả</option>
+                                        <option value="Mực">Mực</option>
+                                        <option value="Cá">Cá</option>
+                                    </select> 
+                                    <select class="form-select product_detail--voucher my-2 py-2" id="selectVoucher">
+                                        <option selected>Select voucher</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row gx-5">
+                        <div class="col-lg-6">
+                            <h2>Mô tả sản phẩm</h2>
+                        </div>
+                        <textarea id="textPalce"></textarea>
+                    </div>
+                </div>
+                <div class="add_product--button my-3 d-flex justify-content-end">
+                    <button type="button" class="btn btn-light border border-secondery mx-2" onclick="toggleAddProductForm()">Cancle</button>
+                    <button type="button" class="btn btn-success" onclick="addProduct()">Save</button>
+                </div>
+            </section>
             
         </div>
         <!-- Pagination -->
-        <div class="pagination_product d-md-flex justify-content-md-end d-sm-flex justify-content-sm-center" >
+        <div class="pagination_product d-md-flex justify-content-md-end d-sm-flex justify-content-sm-center">
             <nav>
-                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success " id="pagination_product--nav">
+                <ul class="pagination d-flex justify-content-center pagination-rounded-flat pagination-success "
+                    id="pagination_product--nav">
                 </ul>
             </nav>
         </div>
     </div>
-  </body>
+    <div class="overlay d-none"></div>
+    <script src="../assets/js/paragraphProcess.js"></script>
+
+</body>
+
 </html>

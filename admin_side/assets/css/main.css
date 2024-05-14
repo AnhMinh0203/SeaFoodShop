@@ -1,3 +1,7 @@
+
+.border-color-primary{
+    border: 1px solid var(--color-primary);
+}
 /* ------------- User and Product -------------*/
 .search_product--input input,
 .search_user--input input{
@@ -122,6 +126,82 @@
     color: var(--color-danger);
     transition: background-color 0.3s ease;
 }
+
+/* Detail product */
+.product_group .filter_product{
+    width: 10%;
+}
+.product_group .form-select{
+    width: 100%;
+}
+.add_product--form i,
+.add_product i{
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    transition: background-color 0.3s ease;
+}
+.add_product--form i:hover,
+.add_product:hover i{
+    opacity: .6;
+}
+
+.add_product--height{
+    height: 80vh;
+}
+.product_image {
+    flex: 0.8;
+    margin: 0 4px;
+}
+.primary_image img{
+    max-width: 100%;
+    max-height: 300px; /* Giới hạn chiều cao tối đa của ảnh */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo khi giới hạn kích thước */
+}
+.product_image img {
+    max-width: 100%; /* Giới hạn chiều rộng tối đa của ảnh */
+    max-height: 80px; /* Giới hạn chiều cao tối đa của ảnh */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo khi giới hạn kích thước */
+}
+.product_detail--name input,
+.product_detail--instruct textarea{
+    width: 100%;
+    border-radius: 3px;
+}
+.product_detail--unit ,
+.product_detail--origin,
+.product_detail--preserve,
+.product_detail--price,
+.product_detail--unit,
+.product_detail--amount{
+    flex: 1;
+}
+.product_infor--detail input{
+    border-radius: 3px;
+}
+.product_infor--detail textarea:focus,
+.product_infor--detail input:focus{
+    border-color: var(--color-primary) !important;
+}
+.product_detail--type select
+ {
+    flex: 0.2;
+}
+.product_detail--amount input{
+    width: 100%;
+}
+.add_product--form section{
+    background-color: var(--color-white);
+    border-radius: 5px;
+}
+
+.add_product--form {
+    width: 100%;
+    max-height: 80vh; /* Thiết lập chiều cao tối đa cho khối */
+    overflow-y: auto; /* Tạo thanh cuộn dọc nếu cần */
+    z-index: 4;
+    top: 0;
+}
+
 /* Media */
 @media (min-width: 768px) {
     .flex-md-grow-0-5 {
