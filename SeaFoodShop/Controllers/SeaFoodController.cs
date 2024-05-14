@@ -16,7 +16,7 @@ namespace SeaFoodShop.API.Controllers
             _seaFoodRespon = seaFoodRes;
         }
         [HttpGet]
-        public async Task<List<SeaFoodModel>> getSeaFoods(int pageNumber, int pageSize)
+        public async Task<ListSeaFoodModel?> getSeaFoods(int pageNumber, int pageSize)
         {
             return await _seaFoodRespon.getSeaFoodsAsync(pageNumber, pageSize);
         }
@@ -30,15 +30,15 @@ namespace SeaFoodShop.API.Controllers
         }
 
         [HttpPost("SearchSeafood")]
-        public async Task<List<SeaFoodModel>> searchSeaFood (string nameSeaFood)
+        public async Task<ListSeaFoodModel> searchSeaFood (string nameSeaFood,int pageIndex, int pageSize)
         {
-            return await _seaFoodRespon.searchSeaFoodAsync(nameSeaFood);
+            return await _seaFoodRespon.searchSeaFoodAsync(nameSeaFood, pageIndex, pageSize);
         }
 
-        [HttpPost("TypeName")]
-        public async Task<List<SeaFoodModel>> searchSeaFoodByType(string nameSeaFood)
+        [HttpPost("SearchSeafoodByType")]
+        public async Task<ListSeaFoodModel> searchSeaFoodByType(string nameSeaFood, int pageIndex, int pageSize)
         {
-            return await _seaFoodRespon.searchSeaFoodByTypeAsync(nameSeaFood);
+            return await _seaFoodRespon.searchSeaFoodByTypeAsync(nameSeaFood, pageIndex,pageSize);
         }
 
         [HttpGet("GetFavoriteSeafoods")]

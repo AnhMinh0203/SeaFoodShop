@@ -65,7 +65,7 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }
          */
-        public async Task<List<SeaFoodModel>> getSeaFoodsAsync(int pageNumber, int pageSize)
+        public async Task<ListSeaFoodModel?> getSeaFoodsAsync(int pageNumber, int pageSize)
         {
             try
             {
@@ -78,7 +78,16 @@ namespace SeaFoodShop.Repository.Repositories
                         new { PageNumber = pageNumber, PageSize = pageSize },
                         commandType: CommandType.StoredProcedure);
 
-                    return seaFoodList.ToList();
+                    int totalRecord = await connection.QueryFirstOrDefaultAsync<int>(
+                       "getTotalProductsNumber",
+                       commandType: CommandType.StoredProcedure
+                   );
+
+                    return new ListSeaFoodModel
+                    {
+                        ListSeaFood = seaFoodList.ToList(),
+                        TotalRecord = totalRecord
+                    };
                 }
             }
             catch (Exception ex)
@@ -150,11 +159,6 @@ namespace SeaFoodShop.Repository.Repositories
                         commandType: CommandType.StoredProcedure);
                     if (result != null)
                     {
-                        if (!string.IsNullOrEmpty(result.DescriptionImagesJson))
-                        {
-                            var descImg = JsonConvert.DeserializeObject<List<ImageDescModel>>(result.DescriptionImagesJson);
-                            result.DescriptionImages = descImg;
-                        }
 
                         if (!string.IsNullOrEmpty(result.SeaFoodImagesJson))
                         {
@@ -173,34 +177,30 @@ namespace SeaFoodShop.Repository.Repositories
         }
 
 
-        public async Task<List<SeaFoodModel>> searchSeaFoodAsync(string nameSeaFood)
+        public async Task<ListSeaFoodModel> searchSeaFoodAsync(string nameSeaFood, int pageIndex, int pageSize)
         {
             try
             {
-                List<SeaFoodModel> seaFoodList = new List<SeaFoodModel>();
-
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
                     await connection.OpenAsync();
-                    using (var command = new SqlCommand("SearchSeaFood", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@nameSeaFood", nameSeaFood);
-                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
-                        {
-                            while (reader.Read())
-                            {
-                                SeaFoodModel seaFood = new SeaFoodModel();
-                                seaFood.Id = reader.GetInt32(0);
-                                seaFood.Name = reader.GetString(2);
-                                seaFood.Price = reader.GetDecimal(3);
-                                seaFood.Unit = reader.GetString(4);
-                                seaFoodList.Add(seaFood);
-                            }
-                        }
-                    }
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@NameSeaFood", nameSeaFood);
+                    parameters.Add("@pageIndex", pageIndex);
+                    parameters.Add("@pageSize", pageSize);
+                    parameters.Add("@TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    var seaFoodList = await connection.QueryAsync<SeaFoodModel>(
+                        "SearchSeaFood",
+                        parameters,
+                        commandType: CommandType.StoredProcedure
+                    );
+
+                    return new ListSeaFoodModel {
+                        ListSeaFood = seaFoodList.ToList(),
+                        TotalRecord = parameters.Get<int>("@TotalRecord")
+                    };
                 }
-                return seaFoodList;
             }
             catch (Exception ex)
             {
@@ -209,7 +209,7 @@ namespace SeaFoodShop.Repository.Repositories
 
         }
 
-        public async Task<List<SeaFoodModel>> searchSeaFoodByTypeAsync(string nameType)
+        public async Task<ListSeaFoodModel> searchSeaFoodByTypeAsync(string nameType,int pageIndex, int pageSize)
         {
             try
             {
@@ -218,12 +218,20 @@ namespace SeaFoodShop.Repository.Repositories
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
                     parameters.Add("@NameType", nameType);
-                    var result = await connection.QueryAsync<SeaFoodModel>(
-                        "SearchSeaFoodByType",
-                        parameters,
-                        commandType: CommandType.StoredProcedure
-                    );
-                    return result.ToList();
+                    parameters.Add("@pageIndex", pageIndex);
+                    parameters.Add("@pageSize", pageSize);
+                    parameters.Add("@TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    var seaFoodList = await connection.QueryAsync<SeaFoodModel>(
+                       "SearchSeaFoodByType",
+                       parameters,
+                       commandType: CommandType.StoredProcedure
+                   );
+                    return new ListSeaFoodModel
+                    {
+                        ListSeaFood = seaFoodList.ToList(),
+                        TotalRecord = parameters.Get<int>("@TotalRecord")
+                    };
                 }
             }
             catch (Exception ex)

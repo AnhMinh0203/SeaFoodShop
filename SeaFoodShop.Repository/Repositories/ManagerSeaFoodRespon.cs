@@ -37,29 +37,25 @@ namespace SeaFoodShop.Repository.Repositories
             {
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
-                    if (seaFoodDetail.DescriptionImages != null && seaFoodDetail.DescriptionImages.Count > 0)
-                    {
-                        seaFoodDetail.DescriptionImagesJson = JsonConvert.SerializeObject(seaFoodDetail.DescriptionImages);
-                    }
                     if (seaFoodDetail.SeaFoodImages != null && seaFoodDetail.SeaFoodImages.Count > 0)
                     {
                         seaFoodDetail.SeaFoodImagesJson = JsonConvert.SerializeObject(seaFoodDetail.SeaFoodImages);
                     }
-
                     var parameters = new DynamicParameters();
                     parameters.Add("@name", seaFoodDetail.Name);
                     parameters.Add("@price", seaFoodDetail.Price);
-                    parameters.Add("@unit", seaFoodDetail.Unit); 
-                    parameters.Add("@nameType", seaFoodDetail.TypeName);
-                    parameters.Add("@status", seaFoodDetail.Status);
+                    parameters.Add("@unit", seaFoodDetail.Unit);
+                    parameters.Add("@nameType", seaFoodDetail.NameType);
                     parameters.Add("@idVoucher", seaFoodDetail.IdVourcher);
                     parameters.Add("@instruct", seaFoodDetail.Instruct);
                     parameters.Add("@expirationDate", seaFoodDetail.ExpirationDate);
                     parameters.Add("@origin", seaFoodDetail.Origin);
+                    parameters.Add("@quantity", seaFoodDetail.Quantity);
                     parameters.Add("@primaryImage", seaFoodDetail.PrimaryImage);
                     parameters.Add("@jsonImagesSeaFood", seaFoodDetail.SeaFoodImagesJson);
-                    parameters.Add("@jsonImagesDescription", seaFoodDetail.DescriptionImagesJson);
                     parameters.Add("@description", seaFoodDetail.Description);
+                    parameters.Add("@createBy", idUser);
+                    parameters.Add("@modifyBy", idUser);
                     parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
 
                     await connection.ExecuteAsync(
@@ -90,10 +86,6 @@ namespace SeaFoodShop.Repository.Repositories
             {
                 using (var connection = (SqlConnection)_context.CreateConnection())
                 {
-                    if (seaFoodDetail.DescriptionImages != null && seaFoodDetail.DescriptionImages.Count > 0)
-                    {
-                        seaFoodDetail.DescriptionImagesJson = JsonConvert.SerializeObject(seaFoodDetail.DescriptionImages);
-                    }
                     if (seaFoodDetail.SeaFoodImages != null && seaFoodDetail.SeaFoodImages.Count > 0)
                     {
                         seaFoodDetail.SeaFoodImagesJson = JsonConvert.SerializeObject(seaFoodDetail.SeaFoodImages);
@@ -104,15 +96,13 @@ namespace SeaFoodShop.Repository.Repositories
                     parameters.Add("@name", seaFoodDetail.Name);
                     parameters.Add("@price", seaFoodDetail.Price);
                     parameters.Add("@unit", seaFoodDetail.Unit);
-                    parameters.Add("@nameType", seaFoodDetail.TypeName);
-                    parameters.Add("@status", seaFoodDetail.Status);
+                    parameters.Add("@nameType", seaFoodDetail.NameType);
                     parameters.Add("@idVoucher", seaFoodDetail.IdVourcher);
                     parameters.Add("@instruct", seaFoodDetail.Instruct);
                     parameters.Add("@expirationDate", seaFoodDetail.ExpirationDate);
                     parameters.Add("@origin", seaFoodDetail.Origin);
                     parameters.Add("@primaryImage", seaFoodDetail.PrimaryImage);
                     parameters.Add("@jsonImagesSeaFood", seaFoodDetail.SeaFoodImagesJson);
-                    parameters.Add("@jsonImagesDescription", seaFoodDetail.DescriptionImagesJson);
                     parameters.Add("@description", seaFoodDetail.Description);
                     parameters.Add("@result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
 
