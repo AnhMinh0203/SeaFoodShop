@@ -24,7 +24,7 @@ namespace SeaFoodShop.Repository.Repositories
             _context = context;
             _config = config;
         }
-        public async Task<string> addSeaFoodAsync (SeaFoodDetailModel seaFoodDetail,string token)
+        public async Task<string> AddSeaFoodAsync (SeaFoodDetailModel seaFoodDetail,string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -73,7 +73,7 @@ namespace SeaFoodShop.Repository.Repositories
             }
         } 
 
-        public async Task<string> updateSeaFoodAsync (SeaFoodDetailModel seaFoodDetail, string token)
+        public async Task<string> UpdateSeaFoodAsync (SeaFoodDetailModel seaFoodDetail,int idSeafood, string token)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);
@@ -92,11 +92,12 @@ namespace SeaFoodShop.Repository.Repositories
                     }
 
                     var parameters = new DynamicParameters();
-                    parameters.Add("@idSeaFood", seaFoodDetail.Id);
+                    parameters.Add("@idSeaFood", idSeafood);
                     parameters.Add("@name", seaFoodDetail.Name);
                     parameters.Add("@price", seaFoodDetail.Price);
                     parameters.Add("@unit", seaFoodDetail.Unit);
                     parameters.Add("@nameType", seaFoodDetail.NameType);
+                    parameters.Add("@Quantity", seaFoodDetail.Quantity);
                     parameters.Add("@idVoucher", seaFoodDetail.IdVourcher);
                     parameters.Add("@instruct", seaFoodDetail.Instruct);
                     parameters.Add("@expirationDate", seaFoodDetail.ExpirationDate);
@@ -120,7 +121,7 @@ namespace SeaFoodShop.Repository.Repositories
                 return ("Error : " + ex.Message);
             }
         }
-        public async Task<string> deleteSeaFoodAsync (string token, string seaFoodId)
+        public async Task<string> DeleteSeaFoodAsync(string token, string seaFoodId)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
             var idUser = tokenObject.ValidateJwtToken(token);

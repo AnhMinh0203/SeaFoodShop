@@ -15,10 +15,10 @@ namespace SeaFoodShop.API.Controllers
             _mSeafoodRes = mSeafoodRes;
         }
         [HttpPost("AddSeaFood")]
-        public async Task<string> AddSeaFood(SeaFoodDetailModel seafoodDeail, string token) => await _mSeafoodRes.addSeaFoodAsync(seafoodDeail, token);
+        public async Task<string> AddSeaFood(SeaFoodDetailModel seafoodDeail, string token) => await _mSeafoodRes.AddSeaFoodAsync(seafoodDeail, token);
         [HttpPut("UpdateSeaFood")]
-        public async Task<string> UpdateSeaFood(SeaFoodDetailModel seafoodDeail, string token) => await _mSeafoodRes.updateSeaFoodAsync(seafoodDeail, token);
+        public async Task<string> UpdateSeaFood(SeaFoodDetailModel seafoodDeail, int idSeaFood, string token) => await _mSeafoodRes.UpdateSeaFoodAsync(seafoodDeail, idSeaFood, token);
         [HttpDelete("DeleteSeaFood")]
-        public async Task<string> DeleteSeaFood(string token, string seafoodId) => await _mSeafoodRes.deleteSeaFoodAsync(token, seafoodId);
+        public async Task<string> DeleteSeaFood(string token, string seafoodId) => await _mSeafoodRes.DeleteSeaFoodAsync(token, seafoodId);
     }
 }

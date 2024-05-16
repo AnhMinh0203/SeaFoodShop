@@ -22,11 +22,9 @@ namespace SeaFoodShop.API.Controllers
         }
 
         [HttpGet("SeaFoodDetail")]
-        public async Task<MethodResult> getSeaFoodDetail(string id)
+        public async Task<SeaFoodDetailModel?> getSeaFoodDetail(string id)
         {
-            var result =  await _seaFoodRespon.GetSeaFoodDetailAsync(id);
-            if (result == null) return MethodResult.Result(null, "Sản phẩm không tồn tại");
-            return MethodResult.Result(result,null);
+            return  await _seaFoodRespon.GetSeaFoodDetailAsync(id);
         }
 
         [HttpPost("SearchSeafood")]
