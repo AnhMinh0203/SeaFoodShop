@@ -1,3 +1,4 @@
+
 // Khai báo
 const token = localStorage.getItem('token');
 localStorage.setItem("currentUserPage", 1)
@@ -478,12 +479,12 @@ async function fetchSearchProductByTypeData(nameType, pageIndex, pageSize) {
 }
 
 async function fetchAddProduct(token) {
-    var name = document.getElementById("product_detail--name").value 
+    var name = document.getElementById("product_detail--name").value
     var instruct = document.getElementById("product_detail--instruct").value
     var unit = document.getElementById("product_detail--unit").value
     var origin = document.getElementById("product_detail--origin").value
     var expirationDate = document.getElementById("product_detail--preserve").value
-    var price = document.getElementById("product_detail--price").value 
+    var price = document.getElementById("product_detail--price").value
     var quantity = document.getElementById("product_detail--amount").value
     var selectVoucher = document.getElementById("selectVoucher");
     var voucherId = selectVoucher.value;
@@ -494,14 +495,14 @@ async function fetchAddProduct(token) {
     var primaryImage = document.getElementById("selectedImage").dataset.filename; // Lấy tên ảnh chính từ dataset
     var seafoodImages = [];
     var imageInputs = ['selectedImageFirstChild', 'selectedImageSecondChild', 'selectedImageThirdChild', 'selectedImageFourthChild', 'selectedImageFiveChild'];
-    
+
     imageInputs.forEach(id => {
         var imageName = document.getElementById(id).dataset.filename; // Lấy tên ảnh từ dataset
         if (imageName) {
             seafoodImages.push({ nameImage: imageName });
         }
     });
-    
+
     const requestBody = {
         name: name,
         instruct: instruct,
@@ -516,8 +517,57 @@ async function fetchAddProduct(token) {
         primaryImage: primaryImage,
         seafoodImages: seafoodImages
     };
-    console.log(requestBody)
     return await axios.post(`https://localhost:7018/api/ManagerSeaFood/AddSeaFood?token=${token}`, requestBody);
+}
+
+async function fetchProductDetail(id) {
+    return await axios.get(`https://localhost:7018/api/SeaFood/SeaFoodDetail?id=${id}`);
+}
+
+async function fetchUpdateProduct(id){
+    var description = tinymce.activeEditor.getContent("textPalce");
+    var name = document.getElementById("product_detail--name").value
+    var instruct = document.getElementById("product_detail--instruct").value
+    var unit = document.getElementById("product_detail--unit").value
+    var origin = document.getElementById("product_detail--origin").value
+    var expirationDate = document.getElementById("product_detail--preserve").value
+    var price = document.getElementById("product_detail--price").value
+    var quantity = document.getElementById("product_detail--amount").value
+    var selectVoucher = document.getElementById("selectVoucher");
+    var voucherId = selectVoucher.value;
+    var selectType = document.getElementById("selectType");
+    var nameType = selectType.value;
+
+    var primaryImage = document.getElementById("selectedImage").dataset.filename; // Lấy tên ảnh chính từ dataset
+    var seafoodImages = [];
+    var imageInputs = ['selectedImageFirstChild', 'selectedImageSecondChild', 'selectedImageThirdChild', 'selectedImageFourthChild', 'selectedImageFiveChild'];
+
+    imageInputs.forEach(id => {
+        var imageName = document.getElementById(id).dataset.filename; // Lấy tên ảnh từ dataset
+        if (imageName) {
+            seafoodImages.push({ nameImage: imageName });
+        }
+    });
+
+    const requestBody = {
+        name: name,
+        instruct: instruct,
+        unit: unit,
+        origin: origin,
+        expirationDate: expirationDate,
+        price: price,
+        voucher: voucherId,
+        nameType: nameType,
+        description: description,
+        quantity:  parseInt(quantity),
+        primaryImage: primaryImage,
+        seafoodImages: seafoodImages
+    };
+    return await axios.put(`https://localhost:7018/api/ManagerSeaFood/UpdateSeaFood?idSeaFood=${id}&token=${token}`,requestBody)
+}
+
+async function fetchDeleteProduct(token,id){
+    return await axios.delete(`https://localhost:7018/api/ManagerSeaFood/DeleteSeaFood?token=${token}&seafoodId=${id}`)
 }
 
 function renderFiterProductPage(data) {
@@ -547,11 +597,12 @@ function renderProductPage(data) {
     }
 
     data.listSeaFood.forEach((product) => {
+        const formattedPrice = parseFloat(product.price).toLocaleString('vi-VN');
         const row = `
             <tr>
                 <th scope="row">${product.rowNum}</th>
                 <td>${product.name}</td>
-                <td>${product.price}</td>
+                <td>${formattedPrice}</td>
                 <td>${product.unit}</td>
                 <td>${product.nameType}</td>
                 <td>${product.idVoucher == null ? '' : product.idVoucher}</td>
@@ -567,7 +618,22 @@ function renderProductPage(data) {
     });
     totalCustomerText.innerHTML = data.totalRecord;
     renderProductPagination(currentProductPage, totalPage, paginationLoad);
-    
+
+}
+
+function renderProductDetail(productData) {
+    console.log(`${productData.description.toString()}`)
+    tinymce.get('textPalce').setContent(productData.description);
+    document.getElementById('product_detail--name').value = productData.name;
+    document.getElementById('product_detail--instruct').value = productData.instruct;
+    document.getElementById('product_detail--unit').value = productData.unit;
+    document.getElementById('product_detail--amount').value = productData.quantity;
+    document.getElementById('product_detail--origin').value = productData.origin;
+    document.getElementById('product_detail--preserve').value = productData.expirationDate;
+    document.getElementById('product_detail--price').value = productData.price;
+    document.getElementById('selectType').value = productData.nameType;
+    document.getElementById('selectVoucher').value = productData.idVourcher;
+    toggleUpdateProductForm(productData.id);
 }
 
 // Pagination Product
@@ -714,7 +780,6 @@ function getProductByType(pageIndex, pageSize) {
         localStorage.setItem("searchProductByType", nameType)
         fetchSearchProductByTypeData(nameType, pageIndex, pageSize)
             .then(response => {
-                console.log(response)
                 renderProductPage(response.data);
             })
             .catch(error => console.error("Error:", error));
@@ -723,20 +788,44 @@ function getProductByType(pageIndex, pageSize) {
 
 // Xử lý action trong popup
 function detailProduct(event, idProduct) {
-    alert("Detail product has id: " + idProduct)
+    fetchProductDetail(idProduct)
+        .then(response => {
+            renderProductDetail(response.data);
+        })
+        .catch(erro => console.error("Error:", erro));
     event.stopPropagation();
 }
 
 function deleteProduct(event, idProduct) {
-    alert("Delete product has id: " + idProduct)
+    if(confirm("Do you want to delete this product ?")){
+        fetchDeleteProduct(token,idProduct)
+        .then(response=>{
+            alert(response.data);
+            handleProductsPage(pageIndex, pageSize);
+        })
+        .catch(error=>{
+            console.error('Error: ',error);
+            alert("An error occurred while deleting the product.");
+        })
+    }
+    
     event.stopPropagation();
 }
 
 // Add product
-function addProduct(){
-    // alert("oce")
-    
+function addProduct() {
     fetchAddProduct(token);
+    alert("Add successfully !")
+    handleProductsPage(pageIndex,pageSize)
 }
 
 
+function updateProduct(idProduct){
+    fetchUpdateProduct(idProduct);
+    alert("Update successfully !")
+    handleProductsPage(pageIndex,pageSize)
+}
+
+// -------------------- Chart
+
+// -------------------- Blog

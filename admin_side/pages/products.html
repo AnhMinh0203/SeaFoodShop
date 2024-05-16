@@ -191,7 +191,7 @@
                                         <option value="Mực">Mực</option>
                                         <option value="Cá">Cá</option>
                                     </select> 
-                                    <select class="form-select product_detail--voucher my-2 py-2" id="selectVoucher">
+                                    <select class="form-select product_detail--voucher my-2 ms-2 py-2" id="selectVoucher">
                                         <option selected>Select voucher</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -211,10 +211,10 @@
                 </div>
                 <div class="add_product--button my-3 d-flex justify-content-end">
                     <button type="button" class="btn btn-light border border-secondery mx-2" onclick="toggleAddProductForm()">Cancle</button>
-                    <button type="button" class="btn btn-success" onclick="addProduct()">Save</button>
+                    <button type="button" class="btn btn-success" id="addProductBtn" onclick="addProduct()">Add</button>
+                    <button type="button" class="btn btn-success" id="updateProductBtn" onclick="updateProduct()">Update</button>
                 </div>
-            </section>
-            
+            </section>    
         </div>
         <!-- Pagination -->
         <div class="pagination_product d-md-flex justify-content-md-end d-sm-flex justify-content-sm-center">

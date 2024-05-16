@@ -7,5 +7,26 @@
 </head>
 <body>
     <h1>Blog</h1>
+    <div class="container_blog">
+        <!-- Search -->
+        <div class="search_blog d-flex d-md-flex d-sm-flex align-items-center my-2 ">
+            <div class="search_blog--input flex-grow-1 flex-sm-grow-1 flex-md-grow-0-5">
+                <input type="search" id="form_search" placeholder="Tìm kiếm" />
+            </div>
+            <div class="search_blog--icon" onclick="searchblog(1,pageSizeDefault)">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+        <!-- Blog item -->
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-4 border">item 1</div>
+            <div class="col-6 col-sm-6 col-md-4 border">item 2</div>
+            <div class="col-6 col-sm-6 col-md-4 border">item 3</div>
+            <div class="col-6 col-sm-6 col-md-4 border">item 4</div>
+            <div class="col-6 col-sm-6 col-md-4 border">item 5</div>
+            <div class="col-6 col-sm-6 col-md-4 border">item 6</div>
+        </div>
+    </div>
 </body>
 </html>

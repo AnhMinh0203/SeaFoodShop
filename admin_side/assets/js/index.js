@@ -1,7 +1,7 @@
 
 // Khai báo các biến
 const sidebar = document.querySelector(".sidebar");
-const closeBtn = document.querySelector("#close-btn"); 
+const closeBtn = document.querySelector("#close-btn");
 const searchBtn = document.querySelector(".bx-search");
 const homeSection = document.querySelector(".home-section");
 const links = document.querySelectorAll(".sidebar a");
@@ -12,7 +12,7 @@ var pageIndex = 1
 var pageSize = 5
 // Xử lý load page với axios
 document.addEventListener("DOMContentLoaded", () => {
-     // Load page mặc định
+    // Load page mặc định
     loadPageContent("./dashboard.html", homeSection);
 
     // Thêm sự kiện click cho từng link trong sidebar
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const href = link.getAttribute("href");
 
-            loadPageContent(href,homeSection);
+            loadPageContent(href, homeSection);
         });
     });
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closeBtn) {
         closeBtn.addEventListener("click", toggleSidebar);
     }
-    
+
     if (searchBtn) {
         searchBtn.addEventListener("click", toggleSidebar);
     }
@@ -51,30 +51,33 @@ document.addEventListener("DOMContentLoaded", () => {
     function moveHomeSection() {
         if (sidebar.classList.contains("open")) {
             homeSection.style.marginLeft = "0";
-        } 
+        }
     }
 
     // Load page
     function loadPageContent(href, container) {
-        if(href.includes("log-in-sign-up.html")){
+        if (href.includes("log-in-sign-up.html")) {
             window.location.href = '../../user_side/pages/log-in-sign-up.html';
-            return ;
+            return;
         }
         axios.get(href)
             .then(response => {
                 container.innerHTML = response.data;
-                
+
                 if (href.includes("users.html")) {
-                    handleUsersPage(pageIndex,pageSize);
+                    handleUsersPage(pageIndex, pageSize);
                 }
-                else if(href.includes("products.html")){
+                else if (href.includes("products.html")) {
                     loadParagraphEdit() // Load trình edit văn bản
-                    handleProductsPage(pageIndex,pageSize)
-                    
+                    handleProductsPage(pageIndex, pageSize)
+
                 }
-                else if(href.includes("dashboard.html")){
+                else if (href.includes("dashboard.html")) {
                     handleAdminPage();
-                } 
+                }
+                else if(href.includes("analysis.html")){
+                    initChart();
+                }
                 moveHomeSection();
             })
             .catch(error => console.error("Error:", error));
@@ -101,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //     if (closeBtn) {
 //         closeBtn.addEventListener("click", toggleSidebar);
 //     }
-    
+
 //     if (searchBtn) {
 //         searchBtn.addEventListener("click", toggleSidebar);
 //     }
@@ -169,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //     if (closeBtn) {
 //         closeBtn.addEventListener("click", toggleSidebar);
 //     }
-    
+
 //     if (searchBtn) { // Kiểm tra xem searchBtn có tồn tại không
 //         searchBtn.addEventListener("click", toggleSidebar);
 //     }
@@ -218,12 +221,12 @@ darkMode.addEventListener('click', () => {
 })
 
 // Xử lý click slidebar
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const sidebarLinks = document.querySelectorAll(".sidebar a");
 
     sidebarLinks.forEach(link => {
-        link.addEventListener("click", function(event) {
+        link.addEventListener("click", function (event) {
             sidebarLinks.forEach(link => {
                 link.classList.remove("active");
             });
@@ -233,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Xử lý click chọn ảnh cho sản phẩm khi tạo sản phẩm mới
-function handleImageUpload(event,idName) {
+function handleImageUpload(event, idName) {
     var selectedImage = document.getElementById(idName);
     var file = event.target.files[0];
     var reader = new FileReader();
@@ -252,16 +255,66 @@ function handleImageUpload(event,idName) {
 
 
 // Hiển thị form thêm sản phẩm
-function toggleAddProductForm(){
+function toggleAddProductForm() {
     var form = document.querySelector(".add_product--form");
     var overlay = document.querySelector(".overlay");
-    // Kiểm tra nếu form đang hiển thị, thì ẩn nó đi; ngược lại, hiển thị nó lên
+    var addBtn = document.querySelector("#addProductBtn");
+    var updateBtn = document.querySelector("#updateProductBtn");
+    if (addBtn.classList.contains("d-none")) {
+        addBtn.classList.remove('d-none');
+    }
+    updateBtn.classList.add('d-none');
+    addBtn.setAttribute('onclick', 'addProduct()');
     if (form.classList.contains("d-none")) {
         overlay.classList.remove("d-none")
         form.classList.remove("d-none");
-        
     } else {
         overlay.classList.add("d-none")
         form.classList.add("d-none");
     }
+}
+
+function toggleUpdateProductForm(idProduct) {
+    var form = document.querySelector(".add_product--form");
+    var overlay = document.querySelector(".overlay");
+    var addBtn = document.querySelector("#addProductBtn");
+    var updateBtn = document.querySelector("#updateProductBtn");
+    if (updateBtn.classList.contains("d-none")) {
+        updateBtn.classList.remove('d-none');
+    }
+    addBtn.classList.add('d-none');
+    updateBtn.setAttribute('onclick', `updateProduct(${idProduct})`);
+
+    // Kiểm tra nếu form đang hiển thị, thì ẩn nó đi; ngược lại, hiển thị nó lên
+    if (form.classList.contains("d-none")) {
+        overlay.classList.remove("d-none")
+        form.classList.remove("d-none");
+    } else {
+        overlay.classList.add("d-none")
+        form.classList.add("d-none");
+    }
+}
+
+// Xử lý chart
+function initChart() {
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }

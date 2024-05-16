@@ -182,9 +182,9 @@
 .product_infor--detail input:focus{
     border-color: var(--color-primary) !important;
 }
-.product_detail--type select
+.product_detail--select select
  {
-    flex: 0.2;
+    flex: 1;
 }
 .product_detail--amount input{
     width: 100%;

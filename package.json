@@ -10,9 +10,8 @@
     "parcel": "^2.6.2"
   },
   "dependencies": {
+    "@cubejs-client/core": "^0.31.0",
     "axios": "^1.6.8",
-    "chart.js": "^4.4.2",
-    "@cubejs-client/core": "^0.31.0"
+    "chart.js": "^4.4.2"
   }
-  
 }
