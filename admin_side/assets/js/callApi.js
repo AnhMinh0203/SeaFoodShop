@@ -492,12 +492,12 @@ async function fetchAddProduct(token) {
     var nameType = selectType.value;
     var description = tinymce.activeEditor.getContent("textPalce");
 
-    var primaryImage = document.getElementById("selectedImage").dataset.filename; // Lấy tên ảnh chính từ dataset
+    var primaryImage = document.getElementById("selectedImage").dataset.filepath; // Lấy tên ảnh chính từ dataset
     var seafoodImages = [];
     var imageInputs = ['selectedImageFirstChild', 'selectedImageSecondChild', 'selectedImageThirdChild', 'selectedImageFourthChild', 'selectedImageFiveChild'];
 
     imageInputs.forEach(id => {
-        var imageName = document.getElementById(id).dataset.filename; // Lấy tên ảnh từ dataset
+        var imageName = document.getElementById(id).dataset.filepath; // Lấy tên ảnh từ dataset
         if (imageName) {
             seafoodImages.push({ nameImage: imageName });
         }
@@ -633,6 +633,20 @@ function renderProductDetail(productData) {
     document.getElementById('product_detail--price').value = productData.price;
     document.getElementById('selectType').value = productData.nameType;
     document.getElementById('selectVoucher').value = productData.idVourcher;
+
+    document.getElementById('selectedImage').src = `../assets/images/product/${productData.primaryImage}`;
+    var imageInputs = ['selectedImageFirstChild', 'selectedImageSecondChild', 'selectedImageThirdChild', 'selectedImageFourthChild', 'selectedImageFiveChild'];
+
+    if (productData.seaFoodImages) {
+        productData.seaFoodImages.forEach((image, index) => {
+            if (index < imageInputs.length) {
+                document.getElementById(imageInputs[index]).src = `../assets/images/product/${image.nameImage}`;
+            }
+        });
+    }
+    // imageInputs.forEach(id => {
+    //     document.getElementById(id).src  = `../assets/images/product/${productData.seaFoodImages.nameImage}`;
+    // });
     toggleUpdateProductForm(productData.id);
 }
 
@@ -791,6 +805,7 @@ function detailProduct(event, idProduct) {
     fetchProductDetail(idProduct)
         .then(response => {
             renderProductDetail(response.data);
+            console.log(response.data)
         })
         .catch(erro => console.error("Error:", erro));
     event.stopPropagation();
@@ -829,3 +844,28 @@ function updateProduct(idProduct){
 // -------------------- Chart
 
 // -------------------- Blog
+async function fetchAddBlog(token) {
+    var title = document.getElementById("blog_detail--name").value
+    var description = tinymce.activeEditor.getContent("textPalce");
+    var primaryImage = document.getElementById("selectedBlogImage").dataset.filename; // Lấy tên ảnh chính từ dataset
+    var seafoodImages = [];
+    var imageInputs = ['selectedImageFirstChild', 'selectedImageSecondChild', 'selectedImageThirdChild', 'selectedImageFourthChild', 'selectedImageFiveChild'];
+
+    imageInputs.forEach(id => {
+        var imageName = document.getElementById(id).dataset.filename; // Lấy tên ảnh từ dataset
+        if (imageName) {
+            seafoodImages.push({ nameImage: imageName });
+        }
+    });
+
+    const requestBody = {
+        title:title,
+        description: description,
+        primaryImage: primaryImage,
+    };
+    return await axios.post(`https://localhost:7018/api/ManagerSeaFood/AddSeaFood?token=${token}`, requestBody);
+}
+
+function addBlog(){
+    alert("Ađ blog successfully")
+}

@@ -78,6 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 else if(href.includes("analysis.html")){
                     initChart();
                 }
+                else if(href.includes("blog.html")){
+                    loadParagraphEdit() // Load trình edit văn bản
+                }
                 moveHomeSection();
             })
             .catch(error => console.error("Error:", error));
@@ -295,6 +298,49 @@ function toggleUpdateProductForm(idProduct) {
     }
 }
 
+// Hiển thị form tạo blog
+// Hiển thị form thêm sản phẩm
+function toggleAddBlogForm() {
+    var form = document.querySelector(".add_blog--form");
+    var overlay = document.querySelector(".overlay");
+    var addBtn = document.querySelector("#addBlogBtn");
+    var updateBtn = document.querySelector("#updateBlogBtn");
+    if (addBtn.classList.contains("d-none")) {
+        addBtn.classList.remove('d-none');
+    }
+    updateBtn.classList.add('d-none');
+    addBtn.setAttribute('onclick', 'addBlog()');
+    if (form.classList.contains("d-none")) {
+        overlay.classList.remove("d-none")
+        form.classList.remove("d-none");
+    } else {
+        overlay.classList.add("d-none")
+        form.classList.add("d-none");
+    }
+}
+
+function toggleUpdateBlogForm(idBlog) {
+    var form = document.querySelector(".add_blog--form");
+    var overlay = document.querySelector(".overlay");
+    var addBtn = document.querySelector("#addBlogBtn");
+    var updateBtn = document.querySelector("#updateBlogBtn");
+    if (updateBtn.classList.contains("d-none")) {
+        updateBtn.classList.remove('d-none');
+    }
+    addBtn.classList.add('d-none');
+    updateBtn.setAttribute('onclick', `updateBlog(${idBlog})`);
+
+    // Kiểm tra nếu form đang hiển thị, thì ẩn nó đi; ngược lại, hiển thị nó lên
+    if (form.classList.contains("d-none")) {
+        overlay.classList.remove("d-none")
+        form.classList.remove("d-none");
+    } else {
+        overlay.classList.add("d-none")
+        form.classList.add("d-none");
+    }
+}
+
+
 // Xử lý chart
 function initChart() {
     const ctx = document.getElementById('myChart');
@@ -318,3 +364,4 @@ function initChart() {
         }
     });
 }
+

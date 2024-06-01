@@ -2,7 +2,8 @@
 .border-color-primary{
     border: 1px solid var(--color-primary);
 }
-/* ------------- User and Product -------------*/
+/* ------------- User and Product and Blog -------------*/
+.search_blog--input input,
 .search_product--input input,
 .search_user--input input{
     display: block;
@@ -23,11 +24,13 @@
     border-bottom-left-radius: 10px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+.search_blog--input input:focus,
 .search_product--input input:focus,
 .search_user--input input:focus{
     box-shadow: 0 0 0 .25rem rgba(249, 136, 88, .25);
     border-color: var(--color-primary);
 }
+.search_blog--icon,
 .search_product--icon,
 .search_user--icon {
     padding: 10px 25px;
@@ -37,14 +40,17 @@
     outline: 1px solid transparent; /* Sử dụng outline thay vì border */
     transition: background-color 0.3s ease;
 }
+.search_blog--icon i,
 .search_product--icon i,
 .search_user--icon i {
     color: var(--color-white);
 }
+.search_blog--icon:hover i,
 .search_product--icon:hover i,
 .search_user--icon:hover i{
     color: var(--color-primary);
 }
+.search_blog--icon:hover,
 .search_product--icon:hover,
 .search_user--icon:hover {
     background-color: var(--color-white);
@@ -128,18 +134,25 @@
 }
 
 /* Detail product */
+.blog_group .filter_blog,
 .product_group .filter_product{
     width: 10%;
 }
+.blog_group .form-select,
 .product_group .form-select{
     width: 100%;
 }
+
+.add_blog--form i,
+.add_blog i,
 .add_product--form i,
 .add_product i{
     font-size: 1.8rem;
     color: var(--color-primary);
     transition: background-color 0.3s ease;
 }
+.add_blog--form i:hover,
+.add_blog:hover i,
 .add_product--form i:hover,
 .add_product:hover i{
     opacity: .6;
@@ -189,11 +202,13 @@
 .product_detail--amount input{
     width: 100%;
 }
+.add_blog--form section,
 .add_product--form section{
     background-color: var(--color-white);
     border-radius: 5px;
 }
 
+.add_blog--form,
 .add_product--form {
     width: 100%;
     max-height: 80vh; /* Thiết lập chiều cao tối đa cho khối */
@@ -202,6 +217,48 @@
     top: 0;
 }
 
+/* Blog */
+.blog_item{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.blog_item--image{
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    overflow: hidden;
+}
+.blog_item--image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog_item--title{
+    font-size: 1.1rem;
+    /* font-weight: 600; */
+}
+
+.zoom-image {
+    overflow: hidden;
+    display: inline-block;
+}
+.zoom-image img {
+    transition: transform 0.5s ease;
+}
+.zoom-image:hover img {
+    transform: scale(1.1);
+}
+.add_blog--img{
+    width: 40%;
+    /* overflow: hidden; */
+}
+.add_blog--title{
+    flex: 1;
+}
 /* Media */
 @media (min-width: 768px) {
     .flex-md-grow-0-5 {
