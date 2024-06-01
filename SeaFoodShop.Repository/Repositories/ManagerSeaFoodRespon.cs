@@ -121,6 +121,7 @@ namespace SeaFoodShop.Repository.Repositories
                 return ("Error : " + ex.Message);
             }
         }
+
         public async Task<string> DeleteSeaFoodAsync(string token, string seaFoodId)
         {
             TokenRespon tokenObject = new TokenRespon(_config);
