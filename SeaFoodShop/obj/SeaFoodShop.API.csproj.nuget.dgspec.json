@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj": {}
+    "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
+    "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
+        "projectUniqueName": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
         "projectName": "SeaFoodShop.DataContext",
-        "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
-        "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\obj\\",
+        "projectPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -88,43 +94,29 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj": {
+    "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj",
         "projectName": "SeaFoodShop.Repository",
-        "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj",
-        "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\obj\\",
+        "projectPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -133,14 +125,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
-                "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj"
+              "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
+                "projectPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj"
               }
             }
           }
@@ -149,6 +142,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -162,6 +160,14 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.28, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.68.0.3428, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -199,43 +205,29 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj": {
+    "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
+        "projectUniqueName": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
         "projectName": "SeaFoodShop.API",
-        "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
-        "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop\\obj\\",
+        "projectPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop\\SeaFoodShop.API.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -244,17 +236,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
-                "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj"
+              "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj": {
+                "projectPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Data\\SeaFoodShop.DataContext.csproj"
               },
-              "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj": {
-                "projectPath": "D:\\Workspace\\C#\\SeaFood Shop\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj"
+              "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj": {
+                "projectPath": "C:\\Users\\nguye\\OneDrive\\Máy tính\\MinhLe\\BE\\BE\\SeaFoodShop\\SeaFoodShop.Repository\\SeaFoodShop.Repository.csproj"
               }
             }
           }
@@ -263,6 +256,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -276,6 +274,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.28, )"
+            },
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.68.0.3428, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -317,24 +319,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -343,7 +327,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Models;
 using SeaFoodShop.Repository.Repositories;
 
@@ -20,5 +21,8 @@ namespace SeaFoodShop.API.Controllers
         public async Task<string> UpdateSeaFood(SeaFoodDetailModel seafoodDeail, int idSeaFood, string token) => await _mSeafoodRes.UpdateSeaFoodAsync(seafoodDeail, idSeaFood, token);
         [HttpDelete("DeleteSeaFood")]
         public async Task<string> DeleteSeaFood(string token, string seafoodId) => await _mSeafoodRes.DeleteSeaFoodAsync(token, seafoodId);
+
+        [HttpPost("UploadImgProduct")]
+        public async Task<UploadImageDriveModel> UploadImgProduct(IFormFile file) => await _mSeafoodRes.UploadImgProduct(file);
     }
 }

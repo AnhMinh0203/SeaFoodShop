@@ -49,3 +49,16 @@ D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\Se
 D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\refint\SeaFoodShop.DataContext.dll
 D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.pdb
 D:\Workspace\C#\SeaFood Shop\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\ref\SeaFoodShop.DataContext.dll
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\bin\Debug\net7.0\SeaFoodShop.DataContext.deps.json
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\bin\Debug\net7.0\SeaFoodShop.DataContext.dll
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\bin\Debug\net7.0\SeaFoodShop.DataContext.pdb
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.csproj.AssemblyReference.cache
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.AssemblyInfoInputs.cache
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.AssemblyInfo.cs
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.csproj.CoreCompileInputs.cache
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.sourcelink.json
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.dll
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\refint\SeaFoodShop.DataContext.dll
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\SeaFoodShop.DataContext.pdb
+C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop.Data\obj\Debug\net7.0\ref\SeaFoodShop.DataContext.dll
