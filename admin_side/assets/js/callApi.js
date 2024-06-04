@@ -867,5 +867,5 @@ async function fetchAddBlog(token) {
 }
 
 function addBlog(){
-    alert("Ađ blog successfully")
+    alert("Add blog successfully")
 }
