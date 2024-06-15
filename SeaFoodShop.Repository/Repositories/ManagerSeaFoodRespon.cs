@@ -202,10 +202,7 @@ namespace SeaFoodShop.Repository.Repositories
             using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
             {
                 googleCredential = GoogleCredential.FromStream(stream)
-                .CreateScoped(new[]
-                {
-            DriveService.ScopeConstants.DriveFile
-                });
+                .CreateScoped(new[]{DriveService.ScopeConstants.DriveFile});
                 var service = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = googleCredential,
