@@ -1,4 +1,5 @@
-﻿-- Sign In
+﻿select * from users
+-- Sign In
 alter PROCEDURE SignIn
     @phoneNumber VARCHAR(15)
 
@@ -8,8 +9,7 @@ BEGIN
     SET @sql = N'SELECT Id, Password, Status from users where PhoneNumber = @phoneNumber';
     EXEC sp_executesql @sql, N'@phoneNumber VARCHAR(15)', @phoneNumber;
 END;
-SignIn '0869819316'
-select * from users
+select * from SeaFoodDetail
 -- Sign Up
 alter procedure SignUp 
 	@dob date, 
@@ -32,27 +32,34 @@ else
 		set @result = 'Sign up successfully';
 	end;
 end;
-select * from users
+select * from images
+select * from seafoods
 -- Display Seafoods
-create PROCEDURE GetSeaFoods
+alter PROCEDURE GetSeaFoods
     @PageNumber INT,
     @PageSize INT
 AS
 BEGIN
     SET NOCOUNT ON;
     DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
-
-    SELECT Id, Name, Price, Unit
-    FROM SeaFoods
-    ORDER BY Id
+	
+    SELECT s.Id, Name, Price, Unit,NameType, Row_Number() over (order by s.id) as RowNum
+    FROM SeaFoods s
+	inner join Types t on s.IdType = t.Id
+    ORDER BY s.Id
     OFFSET @Offset ROWS
     FETCH NEXT @PageSize ROWS ONLY;
 END;
+GetSeaFoods 1, 4
+create proc getTotalProductsNumber 
+as begin
+	select count(*) from SeaFoods
+end
 
-
+GetSeaFoods 1, 5
 -- Dispay seafood detail
-
-create procedure GetSeaFoodDetail
+GetSeaFoodDetail 16
+alter procedure GetSeaFoodDetail
 @Id int
 as
 begin
@@ -63,15 +70,15 @@ begin
     s.Unit AS Unit,
 	--s.Status as Status,
 	s.IdVoucher as IdVourcher,
-    t.NameType AS TypeName,
+    t.NameType AS NameType,
     sf.Description as Description, 
     sf.Instruct as Instruct,
 	sf.ExpirationDate as ExpirationDate,
 	sf.Origin as Origin,
+	sf.Quantity as Quantity,
 	(select Image from Images where IdSeaFood =@Id and Status = 1 ) as PrimaryImage,
 	-- Status seafood = 0 -> Seafood image , status seafood = 1 -> primary image
-	(SELECT Image as nameImage FROM Images i WHERE i.IdSeaFood = @Id and i.Status = 0 FOR JSON PATH) AS SeaFoodImagesJson,
-	(SELECT Image as nameImage FROM Images i WHERE i.IdSeaFoodDetail = sf.Id for json path) AS DescriptionImagesJson
+	(SELECT Image as nameImage FROM Images i WHERE i.IdSeaFood = @Id and i.Status = 0 FOR JSON PATH) AS SeaFoodImagesJson
 	FROM 
 		SeaFoodDetail sf
 	INNER JOIN 
@@ -83,19 +90,56 @@ end;
 
 
 -- Search seafood by name
-create procedure SearchSeaFood
-@NameSeaFood nvarchar(50)
-as
-begin
-	select * from SeaFoods where Name like '%' + @NameSeaFood + '%'
-end;
+select * from SeaFoods
+ALTER PROCEDURE SearchSeaFood
+    @NameSeaFood NVARCHAR(50),
+    @PageIndex INT,
+    @PageSize INT,
+    @TotalRecord INT OUTPUT
+AS
+BEGIN
+    DECLARE @CurrentRow INT = (@PageIndex - 1) * @PageSize
+    DECLARE @NextRow INT = @PageIndex * @PageSize
+
+    ;WITH result AS
+    (
+        SELECT 
+            s.*, NameType,
+            ROW_NUMBER() OVER (ORDER BY s.id) AS rowNum 
+        FROM 
+            SeaFoods s 
+		inner join Types on s.IdType = Types.Id
+        WHERE 
+            s.Name LIKE N'%' + @NameSeaFood + '%'
+    )
+    SELECT * FROM result r WHERE r.rowNum > @CurrentRow AND r.rowNum <= @NextRow
+
+    SELECT @TotalRecord = COUNT(*) FROM SeaFoods s WHERE s.Name LIKE N'%' + @NameSeaFood + '%'
+END;
 
 -- Search by type
-create procedure SearchSeaFoodByType
-@NameType nvarchar(50)
+select * from SeaFoods
+alter procedure SearchSeaFoodByType
+	@NameType nvarchar(50),
+	@PageIndex INT,
+	@PageSize INT,
+	@TotalRecord INT OUTPUT
 as
 begin 
-	select SeaFoods.*, Types.NameType from SeaFoods Join Types on SeaFoods.IdType = Types.Id where Types.NameType = @NameType
+	declare @CurrentRow INT = (@PageIndex - 1)*@PageSize;
+	declare @NextRow INT = @PageIndex * @PageSize
+
+	;with result as (
+		SELECT 
+            s.*, NameType,
+            ROW_NUMBER() OVER (ORDER BY s.id) AS rowNum 
+        FROM 
+            SeaFoods s 
+		inner join Types t on s.IdType = t.Id
+		where t.NameType = @NameType
+	)
+	 SELECT * FROM result r WHERE r.rowNum > @CurrentRow AND r.rowNum <= @NextRow
+	 SELECT @TotalRecord = COUNT(*) FROM SeaFoods s inner join Types t on s.IdType = t.Id where t.NameType = @NameType
 end;
 
 -- Push comment
@@ -408,6 +452,25 @@ begin
 end
 
 -- Read blog
+alter proc addBlog 
+	@IdUser uniqueidentifier ,
+    @Title NVARCHAR(255),
+    @Content NVARCHAR(MAX),
+    @Thumbnail NVARCHAR(MAX),
+	@result nvarchar(100) output
+as
+begin
+	declare @PublishedDate DATETIME
+	SET @PublishedDate = GETDATE();
+
+	insert into Blogs (IdUser, Title,Content,PublishedDate,Thumbnail ) 
+	values (@IdUser, @Title,@Content,@PublishedDate,@Thumbnail )
+	set @result = N'Thêm blog thành công'
+end
+
+select * from Blogs
+select * from users where status = 1
+
 create PROCEDURE getBlogs
     @PageNumber INT,
     @PageSize INT
@@ -618,64 +681,67 @@ END
 
 
 -- Add seafood --------------------------------------
-create PROCEDURE addSeaFood
+alter PROCEDURE addSeaFood
     @name nvarchar(50),--
-    @price decimal(10,2),--
+    @price decimal(10,2),
     @unit nvarchar(10),--
     @nameType nvarchar(20),--
-    @status int,--
     @idVoucher int,--
     @instruct nvarchar(255),--
     @expirationDate nvarchar(255),--
+	@quantity int,
     @origin nvarchar(30),--
 	@description nvarchar(max),
     @primaryImage nvarchar(max), -- 
-    @jsonImagesSeaFood NVARCHAR(MAX),
-	@jsonImagesDescription NVARCHAR(MAX),--
+    @jsonImagesSeaFood NVARCHAR(MAX),	
+	@createBy uniqueidentifier,
+	@modifyBy uniqueidentifier,
 	@result nvarchar(100) output
 AS
 BEGIN
-	DECLARE @idSeaFoodDetail INT;
-	DECLARE @idSeaFood INT;
+	SET NOCOUNT ON;
+	BEGIN TRY
+		DECLARE @idSeaFoodDetail INT;
+		DECLARE @idSeaFood INT;
+		DECLARE @createDate DATETIME;
+		DECLARE	@modifyDate DATETIME;
 
-    -- Chèn dữ liệu vào bảng SeaFoodDetail
-    INSERT INTO SeaFoodDetail (Instruct, ExpirationDate, Origin,Description)
-    VALUES (@instruct, @expirationDate, @origin, @description);
-	-- Lấy ID của loại từ bảng SeaFoodDetail
-	SELECT @idSeaFoodDetail = MAX(Id) FROM SeaFoodDetail
+		SET @createDate = GETDATE();
+		SET @modifyDate = GETDATE();
+		-- Chèn dữ liệu vào bảng SeaFoodDetail
+		INSERT INTO SeaFoodDetail (Quantity,Instruct, ExpirationDate, Origin,Description,CreateDate,CreateBy,ModifyDate,ModifyBy)
+		VALUES (@quantity,@instruct, @expirationDate, @origin, @description,@createDate,@createBy,@modifyDate,@modifyBy);
+		-- Lấy ID của loại từ bảng SeaFoodDetail
+		SELECT @idSeaFoodDetail = MAX(Id) FROM SeaFoodDetail
 
-	 -- Lấy ID của loại từ bảng Types
-    DECLARE @idType int;
-    SELECT @idType = Id FROM Types WHERE NameType = @nameType;
+		 -- Lấy ID của loại từ bảng Types
+		DECLARE @idType int;
+		SELECT @idType = Id FROM Types WHERE NameType = @nameType;
 
-	-- Chèn dữ liệu vào bảng Seafood
-	INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, Status, IdVoucher)
-    VALUES (@idSeaFoodDetail, @name, @price, @unit, @idType, @status, @idVoucher);
-	-- Lấy ID của loại từ bảng Seafood
-	SELECT @idSeaFood = MAX(Id) FROM SeaFoods
+		-- Chèn dữ liệu vào bảng Seafood
+		INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType,  IdVoucher)
+		VALUES (@idSeaFoodDetail, @name, @price, @unit, @idType, @idVoucher);
+		-- Lấy ID của loại từ bảng Seafood
+		SELECT @idSeaFood = MAX(Id) FROM SeaFoods
+		 -- Insert primaryImage into Images table with Status = 1
+		INSERT INTO Images ([IdSeaFood],[Image],[Status])
+		VALUES (@idSeaFood, @primaryImage, 1);
 
-	-- Insert images for description
-    INSERT INTO Images (IdSeaFoodDetail, [Image])
-    SELECT @idSeaFoodDetail, [Image]
-    FROM OPENJSON(@jsonImagesDescription) WITH (
-        [Image] NVARCHAR(255) '$.nameImage'
-    );                                       
-
-	 -- Insert primaryImage into Images table with Status = 1
-    INSERT INTO Images ([IdSeaFood],[Image],[Status])
-    VALUES (@idSeaFood, @primaryImage, 1);
-
-   -- Insert images for seafood
-    INSERT INTO Images (IdSeaFood, [Image], [Status])
-    SELECT @idSeaFood, [Image], 0
-    FROM OPENJSON(@jsonImagesSeaFood) WITH (
-        [Image] NVARCHAR(255) '$.nameImage'
-    );
-	set @result = N'Thêm sản phẩm thành công'
+	   -- Insert images for seafood
+		INSERT INTO Images (IdSeaFood, [Image], [Status])
+		SELECT @idSeaFood, [Image], 0
+		FROM OPENJSON(@jsonImagesSeaFood) WITH (
+			[Image] NVARCHAR(255) '$.nameImage'
+		);
+		set @result = N'Thêm sản phẩm thành công'
+	END TRY
+    BEGIN CATCH
+        SET @result = N'Lỗi: ' + ERROR_MESSAGE();
+    END CATCH
 END;
-
+select * from vouchers
 -- Update seafood
-create PROCEDURE updateSeaFood
+alter PROC updateSeaFood
     @idSeaFood INT,
     @name nvarchar(50) = NULL,
     @price decimal(10,2) = NULL,
@@ -685,11 +751,11 @@ create PROCEDURE updateSeaFood
     @idVoucher int = NULL,
     @instruct nvarchar(255) = NULL,
     @expirationDate nvarchar(255) = NULL,
+	@quantity int = NULL,
     @origin nvarchar(30) = NULL,
     @description nvarchar(max) = NULL,
     @primaryImage nvarchar(max) = NULL,
     @jsonImagesSeaFood NVARCHAR(MAX) = NULL,
-    @jsonImagesDescription NVARCHAR(MAX) = NULL,
     @result nvarchar(100) output
 AS
 BEGIN
@@ -708,11 +774,13 @@ BEGIN
         OR @expirationDate IS NOT NULL
         OR @origin IS NOT NULL
         OR @description IS NOT NULL
+		OR @quantity IS NOT NULL
     BEGIN
         UPDATE SeaFoodDetail
         SET Instruct = ISNULL(@instruct, Instruct),
             ExpirationDate = ISNULL(@expirationDate, ExpirationDate),
             Origin = ISNULL(@origin, Origin),
+			Quantity = ISNULL(@quantity, Quantity),
             Description = ISNULL(@description, Description)
         WHERE Id = @idSeafoodDetail
     END
@@ -733,18 +801,6 @@ BEGIN
         --Status = ISNULL(@status, Status),
         IdVoucher = ISNULL(@idVoucher, IdVoucher)
     WHERE Id = @idSeaFood
-
-    -- Cập nhật Images cho mô tả
-    IF @jsonImagesDescription IS NOT NULL
-    BEGIN
-        DELETE FROM Images WHERE IdSeaFoodDetail = @idSeafoodDetail;
-        
-        INSERT INTO Images (IdSeaFoodDetail, [Image])
-        SELECT @idSeafoodDetail, [Image]
-        FROM OPENJSON(@jsonImagesDescription) WITH (
-            [Image] NVARCHAR(255) '$.nameImage'
-        );
-    END
 
      -- Cập nhật primaryImage
     IF @primaryImage IS NOT NULL
@@ -773,7 +829,9 @@ END;
 
 
 -- Delete seafood
-create PROCEDURE deleteSeaFood
+select * from seafoods
+select * from SeaFoodDetail
+alter PROCEDURE deleteSeaFood
     @idSeaFood int,
     @result nvarchar(100) OUTPUT
 AS
@@ -927,3 +985,6 @@ EXEC updateSeaFood
 
 SELECT @result AS 'Result'
 
+select * from images
+select * from SeaFoods
+select * from SeaFoodDetail

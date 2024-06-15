@@ -22,6 +22,8 @@ create table SeaFoodDetail(
 )
 go
 
+select * from SeaFoods
+
 create table Vouchers(
 	Id int identity(1,1) primary key,
 	NameVoucher nvarchar(50),
@@ -34,16 +36,18 @@ create table Vouchers(
 )
 go
 
+
 create table SeaFoods (
 	Id int identity(1,1) primary key,
 	IdSeaFoodDetail int foreign key references SeaFoodDetail(Id),
-	Name nvarchar (50),
+	NameProduct  nvarchar (50),
 	Price decimal (10,2),
 	Unit nvarchar(10),
 	IdType int foreign key references Types(Id),
 	IdVoucher int foreign key references Vouchers(Id)
 )
 go
+
 
 create table Address(
 	Id uniqueidentifier primary key,
@@ -135,6 +139,107 @@ create table ShoppingCart(
 )
 go
 
+delete from Types
+DBCC CHECKIDENT ('Types', RESEED, 0);
+-- Insert Type
+INSERT INTO Types (NameType) VALUES (N'Chả');
+INSERT INTO Types (NameType) VALUES (N'Mực');
+INSERT INTO Types (NameType) VALUES (N'Tôm');
+INSERT INTO Types (NameType) VALUES (N'Cá');
+
+select * from Types
+
+
+delete from SeaFoodDetail
+DBCC CHECKIDENT ('SeaFoodDetail', RESEED, 0);
+-- Insert seafood detail chả mực
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (10, N'Cho nhiều dầu ăn, rán nhỏ lửa', N'12 tháng', N'Quảng Ninh', N'Chả mực là một trong những đặc sản...', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+
+-- Insert seafood detail chả tôm 
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (28, N'Dầu ăn cho vừa, rán nhỏ lửa', N'12 tháng', N'Quảng Ninh', N'Chả tôm là một trong những đặc sản...', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+
+-- Insert seafood detail chả cá 
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (50, N'Dầu ăn cho vừa, rán nhỏ lửa', N'12 tháng', N'Quảng Ninh', N'Chả cá là một trong những đặc sản...', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+
+-- Insert seafood detail chả mực loại 1
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (18, N'Cho nhiều dầu ăn, rán nhỏ lửa', N'12 tháng', N'Quảng Ninh', N'Chả mực là một trong những đặc sản...', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+
+-- Insert seafood detail chả mực loại 2
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (18, N'Cho nhiều dầu ăn, rán nhỏ lửa', N'12 tháng', N'Quảng Ninh', N'Chả mực là một trong những đặc sản...', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+-- Insert seafood detail chả mực loại 3
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (18, N'Cho nhiều dầu ăn, rán nhỏ lửa', N'12 tháng', N'Quảng Ninh', N'Chả mực là một trong những đặc sản...', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+
+-- Insert seafood detail Cá song
+DECLARE @CreateDate date = GETDATE();
+DECLARE @ModifyDate date = GETDATE();
+DECLARE @CreateBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+DECLARE @ModifyBy uniqueidentifier = '64A0B3AB-16A3-4B78-8FC8-A6ED74EC78F2';
+
+INSERT INTO SeaFoodDetail (Quantity, Instruct, ExpirationDate, Origin, Description, CreateDate, CreateBy, ModifyDate, ModifyBy)
+VALUES (5, N'Có thể nấu diêu, rán, om, ...', N'12 tháng', N'Quảng Ninh', N'Cá song là 1 trong những loại cá ....', @CreateDate, @CreateBy, @ModifyDate, @ModifyBy);
+
+select * from SeaFoodDetail
+
+delete from Seafoods
+DBCC CHECKIDENT ('SeaFoods', RESEED, 0);
+-- Insert Seafood
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (1, N'Chả mực', 225000, N'1 hộp/500g', 1, NULL);
+
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (2, N'Chả tôm', 70000, N'1 hộp/500g', 1, NULL);
+
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (3, N'Chả cá', 80000, N'1 hộp/500g', 1, NULL);
+
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (4, N'Chả mực loại 1', 250000, N'1 hộp/500g', 1, NULL);
+
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (5, N'Chả mực loại 2', 280000, N'1 hộp/500g', 1, NULL);
+
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (5, N'Chả mực loại 3', 300000, N'1 hộp/500g', 1, NULL);
+
+INSERT INTO SeaFoods (IdSeaFoodDetail, Name, Price, Unit, IdType, IdVoucher)
+VALUES (7, N'Chả mực loại 3', 300000, N'1 hộp/500g', 4, NULL);
+select * from SeaFoods
 
 
 
