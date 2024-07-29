@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/user-account-information.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="home">
+        <div class="header">
+            <div class="header_up flex-wrap d-flex align-items-center justify-content-between " >
+                <div class="header_navi--left ">
+                    <a href="" class="header_nav-homea d-flex align-items-center text-decoration-none" style="color: var(--red--color);">
+                        <svg class="d-none d-md-block" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M5.8335 14.8861C5.8335 13.3021 5.8335 12.5101 6.1537 11.8139C6.47391 11.1177 7.07526 10.6022 8.27796 9.57134L9.44462 8.57134C11.6185 6.70803 12.7054 5.77637 14.0002 5.77637C15.2949 5.77637 16.3818 6.70803 18.5557 8.57134L19.7224 9.57134C20.9251 10.6022 21.5264 11.1177 21.8466 11.8139C22.1668 12.5101 22.1668 13.3021 22.1668 14.8861V19.8333C22.1668 22.0331 22.1668 23.1331 21.4834 23.8165C20.8 24.4999 19.7001 24.4999 17.5002 24.4999H10.5002C8.30027 24.4999 7.20033 24.4999 6.51691 23.8165C5.8335 23.1331 5.8335 22.0331 5.8335 19.8333V14.8861Z" stroke="#E85D06" stroke-width="2"/>
+                            <path d="M16.9168 24.5V18.5C16.9168 17.9477 16.4691 17.5 15.9168 17.5H12.0835C11.5312 17.5 11.0835 17.9477 11.0835 18.5V24.5" stroke="#E85D06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="header_nav-homename d-none d-md-block fs-5 text-decoration-none fs-5 fw-semibold ms-1">
+                            Trang chủ
+                        </span>
+                    </a>
+                </div>
+                <div class="header_navi--right me-5 text-black d-none d-md-block">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item ">
+                            <a class="nav-link active text-decoration-none text-black" aria-current="page" href="#" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas1" aria-controls="offcanvas1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.398 19.804C13.881 19.0348 19 16.0163 19 11C19 7.13401 15.866 4 12 4C8.13401 4 5 7.13401 5 11C5 16.0163 10.119 19.0348 11.602 19.804C11.8548 19.9351 12.1452 19.9351 12.398 19.804ZM12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z" fill="#222222"/>
+                                </svg>
+                                Blog ẩm thực
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6.44784 7.96942C6.76219 5.14032 9.15349 3 12 3V3C14.8465 3 17.2378 5.14032 17.5522 7.96942L17.804 10.2356C17.8072 10.2645 17.8088 10.279 17.8104 10.2933C17.9394 11.4169 18.3051 12.5005 18.8836 13.4725C18.8909 13.4849 18.8984 13.4973 18.9133 13.5222L19.4914 14.4856C20.0159 15.3599 20.2782 15.797 20.2216 16.1559C20.1839 16.3946 20.061 16.6117 19.8757 16.7668C19.5971 17 19.0873 17 18.0678 17H5.93223C4.91268 17 4.40291 17 4.12434 16.7668C3.93897 16.6117 3.81609 16.3946 3.77841 16.1559C3.72179 15.797 3.98407 15.3599 4.50862 14.4856L5.08665 13.5222C5.10161 13.4973 5.10909 13.4849 5.11644 13.4725C5.69488 12.5005 6.06064 11.4169 6.18959 10.2933C6.19123 10.279 6.19283 10.2645 6.19604 10.2356L6.44784 7.96942Z" stroke="#33363F" stroke-width="2"/>
+                                    <path d="M8 17C8 17.5253 8.10346 18.0454 8.30448 18.5307C8.5055 19.016 8.80014 19.457 9.17157 19.8284C9.54301 20.1999 9.98396 20.4945 10.4693 20.6955C10.9546 20.8965 11.4747 21 12 21C12.5253 21 13.0454 20.8965 13.5307 20.6955C14.016 20.4945 14.457 20.1999 14.8284 19.8284C15.1999 19.457 15.4945 19.016 15.6955 18.5307C15.8965 18.0454 16 17.5253 16 17" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Thông báo
+                            </a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-black" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="8" stroke="#33363F" stroke-width="2"/>
+                                    <ellipse cx="12" cy="12" rx="3" ry="8" stroke="#33363F" stroke-width="2"/>
+                                    <path d="M4 12H20" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Tiếng việt
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li><a class="dropdown-item" href="#">Tiếng việt</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Tiếng Anh</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-black" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="10" r="3" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="12" cy="12" r="9" stroke="black" stroke-width="2"/>
+                                    <path d="M17.7805 18.8264C17.9076 18.7566 17.9678 18.6055 17.914 18.4708C17.5284 17.5045 16.7856 16.6534 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.21444 16.6534 6.4716 17.5045 6.08598 18.4708C6.03223 18.6055 6.09236 18.7566 6.21948 18.8264C9.81971 20.803 14.1803 20.803 17.7805 18.8264Z" fill="black"/>
+                                </svg>
+                                Tài khoản
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" href="./log-in_sign-up.html">Đăng nhập</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="./log-in_sign-up.html">Đăng ký</a></li>
+                            </ul>
+                        </li>
+                    </ul>   
+                </div>            
+            </div>
+            <div class="header_search d-flex justify-content-center ">
+                <div class="header_search-input border border-1 rounded border-dark-subtle ">
+                    <div class="input-group no--search d-flex flex-nowrap" style=" width: 60rem;">
+                        <input  type="search" placeholder="Nhập từ bạn cần tìm?" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="background-color: white !important;">
+                        <hr class="header-input_divider mx-0 my-1" style=" height: 2rem;border-left: 3px solid #827f7f;  transform: rotate(180deg); transform-origin: left center;">
+                        <div class="input-group-append">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary" style="padding: 0; width: 4rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" >
+                                    <circle cx="13.75" cy="13.75" r="8.75" stroke="#919191" stroke-width="2"/>
+                                    <path d="M25 25L21.25 21.25" stroke="#919191" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                      </div>
+                    </button>
+                </div>
+                <hr class="header_search-divider" style=" height: 2rem;border-left: 3px solid #827f7f;  transform: rotate(180deg); transform-origin: left center; margin: 0.5% 2% 0 3%;">
+                <a href="" class="header_search-shoppingcare">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35" fill="none">
+                        <path d="M6.6665 6.66675H10.105C10.8549 6.66675 11.2299 6.66675 11.5011 6.87854C11.7724 7.09034 11.8633 7.45412 12.0452 8.18168L12.5757 10.3036C12.9395 11.7587 13.1214 12.4862 13.6639 12.9098C14.2064 13.3334 14.9564 13.3334 16.4563 13.3334H16.6665" stroke="#E85D06" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M30 28.3333H12.5848C11.4981 28.3333 10.9548 28.3333 10.6585 28.0179C10.5993 27.9548 10.5485 27.8844 10.5074 27.8082C10.3019 27.4275 10.4737 26.912 10.8174 25.8811V25.8811C11.1961 24.7448 11.3855 24.1767 11.8044 23.8166C11.891 23.7422 11.9837 23.6754 12.0816 23.6168C12.5558 23.3333 13.1546 23.3333 14.3523 23.3333H23.3333" stroke="#E85D06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M27.0971 23.3333H15.0274C14.0497 23.3333 13.2154 22.6264 13.0546 21.6621L11.9576 15.0799C11.8052 14.1656 12.5103 13.3333 13.4372 13.3333H31.7151C32.4585 13.3333 32.942 14.1156 32.6096 14.7805L28.886 22.2277C28.5472 22.9052 27.8547 23.3333 27.0971 23.3333Z" stroke="#E85D06" stroke-width="2" stroke-linecap="round"/>
+                        <ellipse cx="28.3332" cy="33.3334" rx="1.66667" ry="1.66667" fill="#E85D06"/>
+                        <ellipse cx="15.0002" cy="33.3334" rx="1.66667" ry="1.66667" fill="#E85D06"/>
+                        <span class="position-absolute top-1 start-99 translate-middle badge rounded-pill bg-danger">
+                            0
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </svg>
+                </a>
+            </div>
+        </div>    
+    </div>
+    <div class="content">
+        <div class="content__top d-flex flex-wrap flex-column" style="width: 100%;">
+            <div class="content__top--above mt-3 d-none d-md-block" style="background-color: var(--primary--color);">
+                <ul class="d-flex justify-content-between px-0 py-0 align-items-center" style="  list-style-type: none; height: 3.2rem;  margin: 0px 5%;">
+                    <li class="mx-1" style=" width: 18%;">
+                        <a href="#" class="content__above--sidebar d-flex fs-6 mx-2 my-2 text-decoration-none align-items-center justify-content-center" style="background-color: #E85D06;height: 3.2rem;">
+                            <div class="content_sidebar--icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                                    <path d="M7.2915 10.2083H27.7082" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M7.2915 17.5H27.7082" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M7.2915 24.7917H27.7082" stroke="white" stroke-width="" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="content__sidebar--name fs-4 fw-semibold text-light"> DANH MỤC </div>
+                        </a>
+                    </li>
+                    <li class="mx-1" style=" width: 18%;">
+                        <a href="" class="content__above--information d-flex text-decoration-none align-items-center text-light" style="height: 2rem;">
+                            <div class="content__information--img me-3">
+                                <img class="rounded-circle "  src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222608.png" alt="" style="width: 2.4rem;">
+                            </div>
+                            <span style="font-size: 90%;">Đổi trả miễn phí tại nhà nhanh chóng</span>
+                        </a>
+                    </li>
+                    <li class="mx-1" style=" width: 18%;">
+                        <a href="" class="content__above--information d-flex text-decoration-none align-items-center text-light" style="height: 2rem;">
+                            <div class="content__information--img me-3">
+                                <img class="rounded-circle "  src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222615.png" alt="" style="width: 2.4rem;">
+                            </div>
+                            <span style="font-size: 90%;">GIAO HÀNG NHANH CHÓNG</span>
+                        </a>
+                    </li>
+                    <li class="mx-1" style=" width: 18%;"> 
+                        <a href="" class="content__above--information d-flex text-decoration-none align-items-center text-light" style="height: 2rem;">
+                            <div class="content__information--img me-3">
+                                <img class="rounded-circle "  src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222622.png" alt="" style="width: 2.4rem;">
+                            </div>
+                            <span style="font-size: 90%;">SẢN PHẨM ĐA DẠNG</span>
+                        </a>
+                    </li>
+                    <li class="mx-1" style=" width: 18%;">
+                        <a href="" class="content__above--information d-flex text-decoration-none align-items-center text-light" style="height: 2rem;">
+                            <div class="content__information--img me-3">
+                                <img class="rounded-circle " src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222629.png" alt="" style="width: 2.4rem;">
+                            </div>
+                            <span style="font-size: 90%;">CHƯƠNG CHÌNH KHÁCH HÀNG THÂN THIẾT</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content__top--breadcrumb d-flex align-items-center" style="background-color: #EEEEEE;height: 2.5rem; ">
+                <nav aria-label="breadcrumb d-flex">
+                    <ol class="breadcrumb" style="margin: 0;  padding: 0px 0 0 5rem !important;">
+                        <li class="breadcrumb-item active" aria-current="page"><a class="text-decoration-none text-dark" href="./home.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a class="text-decoration-none text-dark" href="./home.html">Tài khoản</a></li>
+                        <li class="breadcrumb-item"><a href="#" style="color: var(--text--color);" class="text-decoration-none text-secondary">Thông tin tài khoản</a></li>
+                    </ol>
+                </nav>
+            </div>            
+        </div>
+        <div class="content__between">
+                <div class="row px-0 py-0 mx-0 my-0 bg-body-tertiary">
+                    <div class=" col col-md-3 col-2 d-flex justify-content-center" style="height: 23rem;">
+                        <div class=" ms-md-5 mt-md-4 bg-white px-md-3 py-md-3">
+                            <div class="d-flex mb-3 align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="10" r="3" stroke="#222222" stroke-linecap="round"/>
+                                    <circle cx="12" cy="12" r="9" stroke="#222222"/>
+                                    <path d="M18 18.7059C17.6461 17.6427 16.8662 16.7033 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.13375 16.7033 6.35391 17.6427 6 18.7059" stroke="#222222" stroke-linecap="round"/>
+                                    </svg>
+                                <div>
+                                    <p class="mb-0 text-body-secondary d-none d-md-block">Tài khoản của</p>
+                                    <h4 class="d-none d-md-block">Lê Anh Minh</h4>
+                                </div>
+                            </div>
+                            <div class="list-group">
+                                <button type="button" onclick="displayname('.information','.button_information')" class="button_information list-group-item list-group-item-action active__buttom d-flex align-items-center border-start-0 border-end-0" aria-current="true" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="7" r="4" stroke="#919191" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M5.33788 18.3206C5.99897 15.5269 8.77173 14 11.6426 14H12.3574C15.2283 14 18.001 15.5269 18.6621 18.3206C18.79 18.8611 18.8917 19.4268 18.9489 20.0016C19.0036 20.5512 18.5523 21 18 21H6C5.44772 21 4.99642 20.5512 5.0511 20.0016C5.1083 19.4268 5.20997 18.8611 5.33788 18.3206Z" stroke="#919191" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    <p class="mb-0 ms-2 d-none d-md-block">Thông tin tài khoản</p>
+                                </button>
+                                <button type="button" onclick="displayname('.history','.button_history')" class="button_history  list-group-item list-group-item-action d-flex align-items-center border-start-0 border-end-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                        <path d="M5 11.25C5 7.71447 5 5.9467 6.09835 4.84835C7.1967 3.75 8.96447 3.75 12.5 3.75H17.5C21.0355 3.75 22.8033 3.75 23.9017 4.84835C25 5.9467 25 7.71447 25 11.25V19.7845C25 23.1386 25 24.8157 23.9446 25.3286C22.8893 25.8416 21.5706 24.8054 18.9332 22.7332L18.0891 22.07C16.6061 20.9048 15.8647 20.3222 15 20.3222C14.1353 20.3222 13.3939 20.9048 11.9109 22.07L11.0668 22.7332C8.42943 24.8054 7.11073 25.8416 6.05537 25.3286C5 24.8157 5 23.1386 5 19.7845V11.25Z" stroke="#919191" stroke-width="2"/>
+                                    </svg>
+                                    <p class="mb-0 ms-2 d-none d-md-block">Lịch sử đơn hàng</p>
+                                </button>
+                                <button type="button" onclick="displayname('.favourite','.button_favourite')" class="button_favourite list-group-item list-group-item-action d-flex align-items-center border-start-0 border-end-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                        <path d="M5.56335 17.3853L14.3153 25.6068C14.6398 25.9116 14.802 26.064 15 26.064C15.198 26.064 15.3602 25.9116 15.6847 25.6068L15.6847 25.6068L24.4367 17.3853C26.8819 15.0882 27.1788 11.3082 25.1223 8.65758L24.7356 8.15918C22.2753 4.98822 17.337 5.52002 15.6083 9.14206C15.3641 9.6537 14.6359 9.6537 14.3917 9.14206C12.663 5.52002 7.72465 4.98823 5.26443 8.15918L4.87773 8.65759C2.82118 11.3083 3.11813 15.0882 5.56335 17.3853Z" stroke="#919191" stroke-width="2"/>
+                                    </svg>
+                                    <p class="mb-0 ms-2 d-none d-md-block">Danh sách yêu thích</p>
+                                </button>
+                                <button  type="button" onclick="displayname('.address','.button_address')"  class="button_address list-group-item list-group-item-action d-flex align-items-center border-start-0 border-end-0" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12.398 19.804L12.8585 20.6917L12.8585 20.6917L12.398 19.804ZM11.602 19.804L11.1415 20.6917L11.1415 20.6917L11.602 19.804ZM18 11C18 13.1458 16.9079 14.9159 15.545 16.2906C14.183 17.6644 12.6342 18.555 11.9376 18.9163L12.8585 20.6917C13.6448 20.2838 15.397 19.2805 16.9653 17.6987C18.5326 16.1178 20 13.8706 20 11H18ZM12 5C15.3137 5 18 7.68629 18 11H20C20 6.58172 16.4183 3 12 3V5ZM6 11C6 7.68629 8.68629 5 12 5V3C7.58172 3 4 6.58172 4 11H6ZM12.0624 18.9163C11.3658 18.555 9.81702 17.6644 8.45503 16.2906C7.09211 14.9159 6 13.1458 6 11H4C4 13.8706 5.46741 16.1178 7.03474 17.6987C8.60299 19.2805 10.3552 20.2838 11.1415 20.6917L12.0624 18.9163ZM11.9376 18.9163C11.9514 18.9091 11.9733 18.9023 12 18.9023C12.0267 18.9023 12.0486 18.9091 12.0624 18.9163L11.1415 20.6917C11.6831 20.9726 12.3169 20.9726 12.8585 20.6917L11.9376 18.9163ZM14 11C14 12.1046 13.1046 13 12 13V15C14.2091 15 16 13.2091 16 11H14ZM12 9C13.1046 9 14 9.89543 14 11H16C16 8.79086 14.2091 7 12 7V9ZM10 11C10 9.89543 10.8954 9 12 9V7C9.79086 7 8 8.79086 8 11H10ZM12 13C10.8954 13 10 12.1046 10 11H8C8 13.2091 9.79086 15 12 15V13Z" fill="#919191"/>
+                                        </svg>
+                                    <p class="mb-0 ms-2 d-none d-md-block">Sổ địa chỉ</p>
+                                </button>
+                                <button type="button" class="list-group-item list-group-item-action d-flex align-items-center border-start-0 border-end-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                        <path d="M2.5 15L1.71913 14.3753L1.21938 15L1.71913 15.6247L2.5 15ZM13.75 16C14.3023 16 14.75 15.5523 14.75 15C14.75 14.4477 14.3023 14 13.75 14V16ZM6.71913 8.1253L1.71913 14.3753L3.28087 15.6247L8.28087 9.3747L6.71913 8.1253ZM1.71913 15.6247L6.71913 21.8747L8.28087 20.6253L3.28087 14.3753L1.71913 15.6247ZM2.5 16H13.75V14H2.5V16Z" fill="#919191"/>
+                                        <path d="M12.5 10.1649V8.38851C12.5 6.77017 12.5 5.961 12.974 5.4015C13.4479 4.84201 14.2461 4.70899 15.8424 4.44293L20.5136 3.6644C23.7567 3.12388 25.3782 2.85363 26.4391 3.75232C27.5 4.65102 27.5 6.29493 27.5 9.58276V20.4172C27.5 23.7051 27.5 25.349 26.4391 26.2477C25.3782 27.1464 23.7567 26.8761 20.5136 26.3356L15.8424 25.5571C14.2461 25.291 13.4479 25.158 12.974 24.5985C12.5 24.039 12.5 23.2298 12.5 21.6115V20.0825" stroke="#919191" stroke-width="2"/>
+                                    </svg>
+                                    <p class="mb-0 ms-2 d-none d-md-block">Đăng xuất</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-9">
+                        <div class="displaynamee">
+                            <div class="information">
+                                <div class="mt-4 bg-white px-2 py-2 mb-3 row"><h4 class="mb-0">Thông tin tài khoản</h4></div>
+                                <div class=" bg-white px-2 py-2 row">
+                                    <div class="d-flex align-items-center mt-3">
+                                        <p class="col-md-14 mb-0 ">Họ và tên: </p>
+                                        <input class="form-control change" type="text" placeholder="Họ và tên" aria-label="Disabled input example" disabled>
+                                    </div>
+                                    <div class=" d-flex align-items-center mt-2">
+                                        <p class="col-md-14 mb-0">Ngày sinh: </p>
+                                        <input class="form-control change" type="text" placeholder="Ngày/tháng/năm" aria-label="Disabled input example" disabled>
+                                    </div>
+                                    <div class=" d-flex align-items-center mt-2">
+                                        <p class="col-md-14 mb-0">Giới tính: </p>
+                                        <div class="form-check me-3">
+                                            <input class="form-check-input change" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioDisabled">
+                                              Nam
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input change" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                              Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class=" d-flex align-items-center mt-2">
+                                        <p class="col-md-14 mb-0">Số điện thoại: </p>
+                                        <input class="form-control change" type="text" placeholder="Số điện thoại" aria-label="Disabled input example" disabled>
+                                    </div>
+                                    <div class=" d-flex align-items-center mt-2">
+                                        <p class="col-md-14 mb-0">Địa chỉ: </p>
+                                        <input class="form-control change" type="text" placeholder="Địa chỉ" aria-label="Disabled input example" disabled>
+                                    </div>
+                                    <button type="button" class="btn btn-primary mt-3 fs-6 fw-semibold change__name"  style="margin-left: 7.5rem; width: 7rem;background-color: var(--buledeep--color)">Thay đổi</button>
+                                </div>
+                            </div>
+                            <div class="history d-none">
+                                <div class="mt-4 bg-white px-2 py-2 mb-3 row">
+                                    <h4 class="mb-0">Đơn hàng của tôi</h4>
+                                </div>
+                                <div>
+                                    <div class="mt-4 bg-white px-2 pt-2 pb-0 mb-3 row d-flex list-history" >
+                                        <button class="all__buttom mb-0 col-md-3 align-items-center border-0 bg-white active__history" onclick="displaymove('.all','.all__buttom')">
+                                            <p class="text-center mb-0">Tất cả</p>
+                                            <hr class="mt-2 mb-0">
+                                        </button>
+                                        <button class="transported__buttom mb-0  col-md-3 align-items-center border-0 bg-white" onclick="displaymove('.being__transported','.transported__buttom')">
+                                            <p class="text-center mb-0">Vận đang chuyển</p>
+                                            <hr class="mt-2 mb-0 d-none">
+                                        </button>
+                                        <button class="accomplished__buttom mb-0  col-md-3 align-items-center border-0 bg-white" onclick="displaymove('.accomplished','.accomplished__buttom')">
+                                            <p class="text-center mb-0">Hoàn thành</p>
+                                            <hr class="mt-2 mb-0 d-none">
+                                        </button>
+                                        <button class="cancelled__buttom mb-0  col-md-3 align-items-center border-0 bg-white" onclick="displaymove('.cancelled','.cancelled__buttom')">
+                                            <p class="text-center mb-0">Đã hủy</p>
+                                            <hr class="mt-2 mb-0 d-none">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <div class="d-flex px-0 bg-white">
+                                        <input type="search" placeholder="Bạn có thể tìm kiếm theo mã đơn hoặc tên sản phẩm" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="background-color: white !important; width: 60rem;">
+                                        <div class="">
+                                            <button id="searchProduct" type="submit" class="btn btn-link text-primary" style="padding: 0; width: 4rem;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" >
+                                                    <circle cx="13.75" cy="13.75" r="8.75" stroke="#919191" stroke-width="2"/>
+                                                    <path d="M25 25L21.25 21.25" stroke="#919191" stroke-width="2" stroke-linecap="round"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="move">
+                                    <div class="all">
+                                        <div class="row mt-4">
+                                            <div class="px-0 bg-white d-flex py-3">
+                                                <div class="col col-md-2 mx-0 ps-3" >
+                                                    <img src="./assets/img/img-product-discount/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" style="width: 8rem; height: 9rem;" alt="">
+                                                </div>
+                                                <div class="col col-md-7 ms-2">
+                                                    <h5 class="fw-medium">Chả mực</h5>
+                                                    <p class="mb-0 text-body-tertiary">Mã đơn: 001</p>
+                                                    <p class="mb-0">Loại hàng: Hộp 500g</p>
+                                                    <p class="mb-0">Số lượng: 1</p>
+                                                    <p class="mb-0">Tình trạng: Đã hoàn thành</p>
+                                                    <p class="mb-0">Ngày đặt: 24 - 2 - 2024</p>
+                                                    <p class="mb-0">Ngày nhận: 25 - 2 - 2024</p>
+                                                </div>
+                                                <div class="col col-md-3 d-flex align-items-center justify-content-center">
+                                                    <h5 style="color: var(--primary--color);">400.000đ</h5>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-0" style="border-top: 2px dashed #000; "> 
+                                            <div class="px-0 d-flex py-3 d-flex justify-content-end" style="background-color: #fffcf2;">
+                                                <div>
+                                                    <div class="d-flex align-items-center me-3 justify-content-end">
+                                                        <p class="mb-0 me-1">Thành tiền:</p>
+                                                        <h5 class="mb-0 " style="color: var(--primary--color);">450.000đ</h5>
+                                                    </div>
+                                                    <div class=" mt-3 me-3" >
+                                                        <button type="button" class="btn btn-primary text-light fs-5 px-4 me-2 rounded-0 border-0" style="background-color: #E85D06;">Đánh Giá</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-3 me-2 rounded-0 border-0">Liên Hệ Người Bán</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-4 rounded-0 border-0">Mua Lại</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="being__transported d-none">
+                                        <div class="row mt-4">
+                                            <div class="px-0 bg-white d-flex py-3">
+                                                <div class="col col-md-2 mx-0 ps-3" >
+                                                    <img src="./assets/img/img-product-discount/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" style="width: 8rem; height: 9rem;" alt="">
+                                                </div>
+                                                <div class="col col-md-7 ms-2">
+                                                    <h5 class="fw-medium">Chả mực</h5>
+                                                    <p class="mb-0 text-body-tertiary">Mã đơn: 001</p>
+                                                    <p class="mb-0">Loại hàng: Hộp 500g</p>
+                                                    <p class="mb-0">Số lượng: 1</p>
+                                                    <p class="mb-0">Tình trạng: Đã hoàn thành</p>
+                                                    <p class="mb-0">Ngày đặt: 24 - 2 - 2024</p>
+                                                    <p class="mb-0">Ngày dự kến nhận: 25 - 2 - 2024</p>
+                                                </div>
+                                                <div class="col col-md-3 d-flex align-items-center justify-content-center">
+                                                    <h5 style="color: var(--primary--color);">400.000đ</h5>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-0" style="border-top: 2px dashed #000; "> 
+                                            <div class="px-0 d-flex py-3 d-flex justify-content-end" style="background-color: #fffcf2;">
+                                                <div>
+                                                    <div class="d-flex align-items-center me-3 justify-content-end">
+                                                        <p class="mb-0 me-1">Thành tiền:</p>
+                                                        <h5 class="mb-0 " style="color: var(--primary--color);">450.000đ</h5>
+                                                    </div>
+                                                    <div class=" mt-3 me-3" >
+                                                        <button type="button" class="btn btn-primary text-light fs-5 px-4 me-2 rounded-0 border-0" style="background-color: #E85D06;">Đánh Giá</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-3 me-2 rounded-0 border-0">Liên Hệ Người Bán</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-4 rounded-0 border-0">Mua Lại</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                    <div class="accomplished d-none">
+                                        <div class="row mt-4">
+                                            <div class="px-0 bg-white d-flex py-3">
+                                                <div class="col col-md-2 mx-0 ps-3" >
+                                                    <img src="./assets/img/img-product-discount/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" style="width: 8rem; height: 9rem;" alt="">
+                                                </div>
+                                                <div class="col col-md-7 ms-2">
+                                                    <h5 class="fw-medium">Chả mực</h5>
+                                                    <p class="mb-0 text-body-tertiary">Mã đơn: 001</p>
+                                                    <p class="mb-0">Loại hàng: Hộp 500g</p>
+                                                    <p class="mb-0">Số lượng: 1</p>
+                                                    <p class="mb-0">Tình trạng: Đã hoàn thành</p>
+                                                    <p class="mb-0">Ngày đặt: 24 - 2 - 2024</p>
+                                                    <p class="mb-0">Ngày nhận: 25 - 2 - 2024</p>
+                                                </div>
+                                                <div class="col col-md-3 d-flex align-items-center justify-content-center">
+                                                    <h5 style="color: var(--primary--color);">400.000đ</h5>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-0" style="border-top: 2px dashed #000; "> 
+                                            <div class="px-0 d-flex py-3 d-flex justify-content-end" style="background-color: #fffcf2;">
+                                                <div>
+                                                    <div class="d-flex align-items-center me-3 justify-content-end">
+                                                        <p class="mb-0 me-1">Thành tiền:</p>
+                                                        <h5 class="mb-0 " style="color: var(--primary--color);">450.000đ</h5>
+                                                    </div>
+                                                    <div class=" mt-3 me-3" >
+                                                        <button type="button" class="btn btn-primary text-light fs-5 px-4 me-2 rounded-0 border-0" style="background-color: #E85D06;">Đánh Giá</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-3 me-2 rounded-0 border-0">Liên Hệ Người Bán</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-4 rounded-0 border-0">Mua Lại</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="cancelled d-none">
+                                        <div class="row mt-4">
+                                            <div class="px-0 bg-white d-flex py-3">
+                                                <div class="col col-md-2 mx-0 ps-3" >
+                                                    <img src="./assets/img/img-product-discount/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" style="width: 8rem; height: 9rem;" alt="">
+                                                </div>
+                                                <div class="col col-md-7 ms-2">
+                                                    <h5 class="fw-medium">Chả mực</h5>
+                                                    <p class="mb-0 text-body-tertiary">Mã đơn: 001</p>
+                                                    <p class="mb-0">Loại hàng: Hộp 500g</p>
+                                                    <p class="mb-0">Số lượng: 1</p>
+                                                    <p class="mb-0">Tình trạng: Đã hoàn thành</p>
+                                                    <p class="mb-0">Ngày đặt: 24 - 2 - 2024</p>
+                                                    <p class="mb-0">Ngày nhận: 25 - 2 - 2024</p>
+                                                </div>
+                                                <div class="col col-md-3 d-flex align-items-center justify-content-center">
+                                                    <h5 style="color: var(--primary--color);">400.000đ</h5>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-0" style="border-top: 2px dashed #000; "> 
+                                            <div class="px-0 d-flex py-3 d-flex justify-content-end" style="background-color: #fffcf2;">
+                                                <div>
+                                                    <div class="d-flex align-items-center me-3 justify-content-end">
+                                                        <p class="mb-0 me-1">Thành tiền:</p>
+                                                        <h5 class="mb-0 " style="color: var(--primary--color);">450.000đ</h5>
+                                                    </div>
+                                                    <div class=" mt-3 me-3" >
+                                                        <button type="button" class="btn btn-primary text-light fs-5 px-4 me-2 rounded-0 border-0" style="background-color: #E85D06;">Đánh Giá</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-3 me-2 rounded-0 border-0">Liên Hệ Người Bán</button>
+                                                        <button type="button" class="btn btn-primary bg-white text-black fs-5 px-4 rounded-0 border-0">Mua Lại</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="favourite d-none">
+                                <div class="mt-4 bg-white px-2 py-2 mb-3 row"><h4 class="mb-0">Danh sách yêu thích</h4></div>
+                                <div class="row" >
+                                    <div class="d-flex px-0 bg-white">
+                                        <input type="search" placeholder="Bạn có thể tìm kiếm theo mã đơn hoặc tên sản phẩm" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="background-color: white !important; width: 60rem;">
+                                        <div class="">
+                                            <button id="searchProduct" type="submit" class="btn btn-link text-primary" style="padding: 0; width: 4rem;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" >
+                                                    <circle cx="13.75" cy="13.75" r="8.75" stroke="#919191" stroke-width="2"/>
+                                                    <path d="M25 25L21.25 21.25" stroke="#919191" stroke-width="2" stroke-linecap="round"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row mt-4">
+                                    <div class="px-0 bg-white d-flex py-3">
+                                        <div class="col col-md-2 mx-0 ps-3" >
+                                            <img src="./assets/img/img-product-discount/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" style="width: 8rem; height: 9rem;" alt="">
+                                        </div>
+                                        <div class="col col-md-7 ms-2">
+                                            <h5 class="fw-medium">Chả mực</h5>
+                                            <p class="mb-0 text-body-tertiary">Mã đơn: 001</p>
+                                            <p>Chả mực là một món ăn quen thuộc trên mâm cơm của rất nhiều gia đình miền biển. Tuy nhiên, không phải nơi nào cũng tạo ra những miếng chả thơm ngon đặc biệt. </p>
+                                        </div>
+                                        <div class="col col-md-3 d-flex align-items-center justify-content-end" >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none" type="button" class="me-5">
+                                                <path d="M10.8333 16.25L10.8333 13" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                                <path d="M15.1667 16.25L15.1667 13" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                                <path d="M3.25 7.58325H22.75V7.58325C21.5827 7.58325 20.999 7.58325 20.5572 7.81941C20.2084 8.00588 19.9226 8.2916 19.7362 8.64046C19.5 9.08228 19.5 9.66594 19.5 10.8333V17.6666C19.5 19.5522 19.5 20.495 18.9142 21.0808C18.3284 21.6666 17.3856 21.6666 15.5 21.6666H10.5C8.61438 21.6666 7.67157 21.6666 7.08579 21.0808C6.5 20.495 6.5 19.5522 6.5 17.6666V10.8332C6.5 9.66594 6.5 9.08228 6.26384 8.64046C6.07738 8.2916 5.79165 8.00588 5.44279 7.81941C5.00097 7.58325 4.41732 7.58325 3.25 7.58325V7.58325Z" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                                <path d="M10.9072 3.65147C11.0306 3.5363 11.3026 3.43452 11.681 3.36193C12.0594 3.28935 12.5231 3.25 13 3.25C13.477 3.25 13.9406 3.28935 14.319 3.36193C14.6974 3.43452 14.9694 3.5363 15.0929 3.65147" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="address d-none">
+                                <div class="mt-4 bg-white px-2 py-2 mb-3 row">
+                                    <h4 class="mb-0">Danh sách địa chỉ</h4>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="px-0 bg-white d-flex py-3 px-2">
+                                        <div class="col col-md-9 ms-2">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <p class="me-2 mb-0 ">Lê Anh Minh</p>
+                                                <p class="mb-0 d-flex align-items-center" style="color: var(--primary--color);">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                        <circle cx="9" cy="9" r="6.75" stroke="#F98858"/>
+                                                        <path d="M6 9L8.25 11.25L12 6.75" stroke="#F98858"/>
+                                                    </svg>
+                                                    Địa chỉ mặc định
+                                                </p>
+                                            </div>
+                                            <p class="mb-1">Địa chỉ: Nam Từ Liêm, Hà Nội, Việt Nam</p>
+                                            <p>Điện thoại: 000.000.0000</p>
+                                        </div>
+                                        <div class="col col-md-2 d-flex justify-content-end ms-5" >
+                                            <p type="button" style="color: var(--primary--color);" data-bs-toggle="offcanvas" data-bs-target="#editInformation" aria-controls="editInformation">Chính sửa</p>
+                                        </div>
+                                        <div class="offcanvas offcanvas-end" data-bs-scroll="true"  tabindex="-1" id="editInformation" aria-labelledby="editInformationLabel" style="height: 20rem; width: 50rem;top: 30%;right: 25%;">
+                                            <div class="offcanvas-header">
+                                                <h5 class="offcanvas-title" id="editInformation">Điền thông tin địa chỉ </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                                <div class="d-flex align-items-center mt-3">
+                                                    <p class="col-md-14 mb-0" style="width: 5rem;">Họ và tên:</p>
+                                                    <input class="form-control" type="text" placeholder="Họ và tên" aria-label="input example" value="Lê Anh Minh" >
+    
+                                                </div>
+                                                <div class=" d-flex align-items-center mt-2">
+                                                    <p class="col-md-14 mb-0" style="width: 5rem;">Địa chỉ:</p>
+                                                    <input class="form-control" type="text" placeholder="Địa chỉ" aria-label="input example" value="Nam Từ Liêm, Hà Nội, Việt Nam" >
+                                                </div>
+                                                <div class=" d-flex align-items-center mt-2">
+                                                    <p class="col-md-14 mb-0" style="width: 5rem;">Điện thoại:</p>
+                                                    <input class="form-control" type="text" placeholder="Điện thoại" aria-label="input example" value="000.000.0000" >
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div> 
+                                <div class=" mt-4 px-0 row">
+                                    <div class=" bg-white d-flex py-2 px-2 mx-0 d-flex align-items-center justify-content-center">
+                                        <p class="mb-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#addressInformation" aria-controls="addressInformation">+ Thêm địa chỉ mới</p>
+                                        <div class="offcanvas offcanvas-end" data-bs-scroll="true"  tabindex="-1" id="addressInformation" aria-labelledby="addressInformationLabel" style="height: 20rem; width: 50rem;top: 30%;right: 25%;">
+                                            <div class="offcanvas-header">
+                                                <h5 class="offcanvas-title" id="addressInformation">Điền thông tin địa chỉ </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                                <div class="d-flex align-items-center mt-3">
+                                                    <p class="col-md-14 mb-0" style="width: 5rem;">Họ và tên:</p>
+                                                    <input class="form-control" type="text" placeholder="Họ và tên" aria-label="input example" >
+                                                </div>
+                                                <div class=" d-flex align-items-center mt-2">
+                                                    <p class="col-md-14 mb-0" style="width: 5rem;">Địa chỉ:</p>
+                                                    <input class="form-control" type="text" placeholder="Địa chỉ" aria-label="input example">
+                                                </div>
+                                                <div class=" d-flex align-items-center mt-2">
+                                                    <p class="col-md-14 mb-0" style="width: 5rem;">Điện thoại:</p>
+                                                    <input class="form-control" type="text" placeholder="Điện thoại" aria-label="input example">
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div> 
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script src="./assets/js/user-account-information.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

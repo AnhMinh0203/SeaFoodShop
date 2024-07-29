@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/payment.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="content">
+        <div class="contnet__top">
+            <hr class="hr--top">
+            <div class="contnet__top--inside col-md-6 ms__content">
+                <h3>Hải Sản -Hải sản tươi ngon sạch, giao hàng tận nơi</h3>
+                <div class="content__top--breadcrumb breadcrumb__ms">
+                    <nav aria-label="breadcrumb d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"><a href="./home.html" class="text-decoration-none" style="color: var(--bule--color);">Giỏ hàng</a></li>
+                            <li class="breadcrumb-item"><a href="#" style="color: var(--text--color);" class="text-decoration-none">Thông tin giao hàng</a></li>
+                            <li class="breadcrumb-item active " aria-current="page"><a href="./home.html" class="text-decoration-none" style="color: var(--bule--color);">Phương thúc thanh toán</a></li>
+                        </ol>
+                    </nav>
+                </div> 
+                <h4 class="mx-0 mt-5 mb-3">
+                    Thông tin giao hàng
+                </h4>   
+                <p>Bạn đã có tài khoản?<a href="" class="text-decoration-none mx-1" style="color: var(--bule--color);">Đăng nhập </a></p>
+                <div class="col col-md-8">
+                    <label for="exampleInputName1" class="form-label">Họ và tên</label>
+                    <input type="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Họ và tên">
+                    <div id="nameHelp" class="form-text">Vui lòng nhập họ và tên</div>
+                  </div>
+                <div class="col col-md-8 d-flex">
+                    <div class="col col-md-8 col-7">
+                        <label for="exampleInputemail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleInputemail1" aria-describedby="emailHelp" placeholder="Email">
+                        <div id="emailHelp" class="form-text">Vui lòng nhập Email</div>
+                    </div>
+                    <div class="col col-ms-3 col-26 ms-md-4 ms-2 ms-sm-3">
+                        <label for="exampleInputNumber1" class="form-label ">Số điện thoại</label>
+                        <input type="Number1" class="form-control" id="exampleInputNumber1" aria-describedby="NumberHelp" placeholder="Số điện thoại">
+                        <div id="NumberHelp" class="form-text">Nhập số điện thoại</div>
+                    </div>
+                </div>
+                <div class="col col-md-8">
+                    <label for="exampleInputAddress1" class="form-label">Địa chỉ</label>
+                    <input type="Address" class="form-control" id="exampleInputAddress1" aria-describedby="AddressHelp" placeholder="Địa chỉ">
+                    <div id="AddressHelp" class="form-text">Vui lòng nhập địa chỉ</div>
+                </div>
+                <div class="col col-md-8 d-flex">
+                    <div class="col col">
+                        <label for="exampleInputCity1" class="form-label">Tỉnh / thành</label>
+                        <div class="input-group">
+                            <select class="form-select" id="inputCity" aria-label="Example select with button addon" placeholder="Tỉnh / thành">
+                                <option selected>Choose...</option>
+                                <option value="1">Quảng Ninh</option>
+                                <option value="2">Hà Nội</option>
+                                <option value="3">Hải Phòng</option>
+                            </select>
+                            <hr class="hr__form">
+                        </div>
+                        <div id="CityHelp" class="form-text">Vui lòng chọn tỉnh / thành</div>
+                    </div>
+                    <div class="col col ms-sm-4 ms-1 ">
+                        <label for="exampleInputCounty1" class="form-label">Quận / huyện</label>
+                        <div class="input-group">
+                            <select class="form-select" id="inputCounty" aria-label="Example select with button addon" placeholder="Tỉnh / thành">
+                                <option selected>Choose...</option>
+                                <option value="1">Hà Đông</option>
+                                <option value="2">Hà Tây</option>
+                                <option value="3">Cầu Giâys</option>
+                            </select>
+                            <hr class="hr__form">
+                        </div>
+                        <div id="CountyHelp" class="form-text">Vui lòng chọn quận / huyện</div>
+                    </div>
+                </div>
+                <div class="col col-md-8 d-flex justify-content-end mt-3 mb-3">
+                    <a class="text-body-secondary" href="" >Thay đổi địa chỉ</a>
+                </div>
+                <div class="col col-md-8 d-flex justify-content-between">
+                    <a class="btn btn-primary px-1 py-1 me-1 px-sm-3 py-sm-3 me-sm-1 text-light"  href="#" role="button" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)">Quay về giỏ hàng</a>
+                    <button class="btn btn-primary px-1 py-1 ms-1 px-sm-4 py-sm-3 ms-sm-2 text-light" id="ContinueToPaymentMethod" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)"  onclick="displayname('.contnet__between')">Tiếp tục đến phương thức thanh toán</button>
+                </div>
+            </div>
+        </div>
+        <div class="contnet__between d-none">
+            <hr class="hr--between">
+            <div class="contnet__between--inside col-md-6 ms__content d">
+                <h3>Hải Sản -Hải sản tươi ngon sạch, giao hàng tận nơi</h3>
+                <div class="content__between--breadcrumb breadcrumb__ms">
+                    <nav aria-label="breadcrumb d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"><a href="#" class="text-decoration-none" style="color: var(--bule--color);">Giỏ hàng</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="#" style="color: var(--bule--color);" class="text-decoration-none">Thông tin giao hàng</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="text-decoration-none" style="color: var(--text--color);">Phương thúc thanh toán</a></li>
+                        </ol>
+                    </nav>
+                </div> 
+                <h4 class="mx-0 mt-5 mb-3">
+                    Phương thức vận chuyển
+                </h4>
+                <div class="col col-md-8 border border-1 border-secondary-subtle rounded px-3 py-2 d-flex justify-content-between">
+                    <div class="check-left">
+                        <input class="form-check-input" type="radio" name="ship" id="ship1">
+                        <label class="form-check-label text-body-tertiary" for="ship1">
+                            Giao hàng tận nơi
+                        </label>
+                    </div>
+                    <div class="check-right">
+                        <label class="form-check-label text-body-tertiary" for="ship1">
+                            32,000đ
+                        </label>
+                    </div>
+                </div>
+                <h4 class="mx-0 mt-5 mb-3">
+                    Phương thức thanh toán
+                </h4>
+                <div class="col col-md-8 border border-1 border-secondary-subtle rounded px-3 py-2 d-flex my-2">
+                    <div class="check-inside my-0 d-flex align-items-center">
+                        <input class="form-check-input" type="radio" name="Payment" id="Payment1">
+                        <img class="mx-2 rounded" src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225814.png"  for="Payment1" alt="" style="width: 2rem;">
+                        <label class="form-check-label" for="Payment1">
+                            Thanh Toán khi Nhận Hàng (COD)
+                        </label>
+                    </div>
+                </div>
+                <div class="col col-md-8 border border-1 border-secondary-subtle rounded px-3 py-2 d-flex  my-2">
+                    <div class="check-inside my-0 d-flex align-items-center">
+                        <input class="form-check-input" type="radio" name="Payment" id="Payment2">
+                        <img class="mx-2 rounded" src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225818.png"  for="Payment2" alt="" style="width: 2rem;">
+                        <label class="form-check-label" for="Payment2">
+                            Thanh Toán Chuyển Khoản
+                        </label>
+                    </div>
+                </div>
+                <div class="col col-md-8 border border-1 border-secondary-subtle rounded px-3 py-2 d-flex  my-2">
+                    <div class="check-inside my-0 d-flex align-items-center">
+                        <input class="form-check-input" type="radio" name="Payment" id="Payment3">
+                        <img class="mx-2 rounded" src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225821.png"  for="Payment3" alt="" style="width: 2rem;">
+                        <label class="form-check-label" for="Payment3">
+                            Thẻ ATM
+                        </label>
+                    </div>
+                </div>
+                <div class="col col-md-8 border border-1 border-secondary-subtle rounded px-3 py-2 d-flex  my-2">
+                    <div class="check-inside my-0 d-flex align-items-center">
+                        <input class="form-check-input" type="radio" name="Payment" id="Payment4">
+                        <img class="mx-2 rounded" src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225808.png"  for="Payment4" alt="" style="width: 2rem;">
+                        <label class="form-check-label" for="Payment4">
+                            Ví MoMo
+                        </label>
+                    </div>
+                </div>
+                <h4 class="mx-0 mt-5 mb-3">
+                    Mã giảm giá
+                </h4>
+                <a class="btn btn-primary px-2 py-2 me-1 px-sm-3 py-sm-3 me-sm-1 text-light bg-secondary border-white btn btn-primary" role="button" data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample">Chọn mã hoặc nhập mã</a>
+                <div class="offcanvas offcanvas-end margin-move " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 35rem;">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Chọn Voucherr</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="row d-flex align-items-center justify-content-between bg-secondary-subtle" style="height: 4rem;">
+                            <p class="col-3 col-md-3 col-sm-3 mb-0 ms-2 px-0 py-0 text-body-secondary fs-7">Mã Voucher: </p>
+                            <div class="col-5 col-md-6 col-sm-6 px-0 py-0 text-body-tertiary">
+                                <input type="voucher" class="form-control fs-7 " id="voucherInput1" placeholder="Nhập Voucher">
+                            </div>
+                            <button class="col-3 col-md-2 col-sm-2 btn btn-primary px-1 py-1 me-1 px-sm-1 py-sm-2 text-body-secondary border-white bg-white border-white fs-7" role="button">Áp Dụng</button>
+                        </div>
+                        <p class="text-body-tertiary fw-medium mt-3">Mã Giảm Giá Sản Phẩm</p>
+                        <div class="card mb-3">
+                            <div class="row g-0 d-flex align-items-center">
+                                <div class="col col-md-3 col-3 col-sm-3">
+                                    <img src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225808.png" class="img-fluid rounded-start img__heigh" alt="..." >
+                                </div>
+                                <div class="col col-md-8 col-8 col-sm-8">
+                                    <div class="card-body px-3 py-2">
+                                        <p class="card-title mb-1 fw-semibold" for="Voucher1">Miễn phí vẫn chuyển</p>
+                                        <p class="card-text mb-0 " style="font-size: 0.9rem;" for="Voucher1">Giảm tối đa 25,000đ </p>
+                                        <p class="card-text mb-0 " style="font-size: 0.8rem;" for="Voucher1">Đơn tối thiểu 50,000đ</p>
+                                        <p class="card-text mb-0 " style="font-size: 0.75rem;" for="Voucher1"><small class="text-body-secondary">HSD: 29.02.2024  <a class="text-decoration-none" href="" style="color: var(--bule--color);">Điều Kiện</a></small></p>
+                                    </div>
+                                </div>
+                                <div class="col col-md-1 col-1 col-sm-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Voucher" id="Voucher1">
+                                        <label class="form-check-label" for="Voucher1">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="card mb-3">
+                            <div class="row g-0 d-flex align-items-center">
+                                <div class=" col col-md-3 col-3 col-sm-3">
+                                    <img src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225808.png" class="img-fluid rounded-start img__heigh" alt="..." >
+                                </div>
+                                <div class=" col col-md-8 col-8 col-sm-8">
+                                    <div class="card-body px-3 py-2">
+                                        <p class="card-title mb-1 fw-semibold" for="Voucher1">Miễn phí vẫn chuyển</p>
+                                        <p class="card-text mb-0 " style="font-size: 0.9rem;" for="Voucher1">Giảm tối đa 25,000đ </p>
+                                        <p class="card-text mb-0 " style="font-size: 0.8rem;" for="Voucher1">Đơn tối thiểu 50,000đ</p>
+                                        <p class="card-text mb-0 " style="font-size: 0.75rem;" for="Voucher1"><small class="text-body-secondary">HSD: 29.02.2024  <a class="text-decoration-none" href="" style="color: var(--bule--color);">Điều Kiện</a></small></p>
+                                    </div>
+                                </div>
+                                <div class="col col-md-1 col-1 col-sm-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Voucher" id="Voucher1">
+                                        <label class="form-check-label" for="Voucher1">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
+                        <div class="card mb-3">
+                            <div class="row g-0 d-flex align-items-center">
+                                <div class="col col-md-3 col-3 col-sm-3">
+                                    <img src="./assets/img/img-icon-pay/Ảnh chụp màn hình 2024-05-29 225808.png" class="img-fluid rounded-start img__heigh" alt="..." >
+                                </div>
+                                <div class="col col-md-8 col-8 col-sm-8">
+                                    <div class="card-body px-3 py-2">
+                                        <p class="card-title mb-1 fw-semibold" for="Voucher1">Miễn phí vẫn chuyển</p>
+                                        <p class="card-text mb-0 " style="font-size: 0.9rem;" for="Voucher1">Giảm tối đa 25,000đ </p>
+                                        <p class="card-text mb-0 " style="font-size: 0.8rem;" for="Voucher1">Đơn tối thiểu 50,000đ</p>
+                                        <p class="card-text mb-0 " style="font-size: 0.75rem;" for="Voucher1"><small class="text-body-secondary">HSD: 29.02.2024  <a class="text-decoration-none" href="" style="color: var(--bule--color);">Điều Kiện</a></small></p>
+                                    </div>
+                                </div>
+                                <div class="col col-md-1 col-1 col-sm-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Voucher" id="Voucher1">
+                                        <label class="form-check-label" for="Voucher1">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>           
+                    </div>
+                </div>
+                <div class="col col-md-8 d-flex justify-content-between mt-3">
+                    <a class="btn btn-primary px-1 py-1 me-1 px-sm-3 py-sm-3 me-sm-1 text-light" href="#" role="button" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)" onclick="displayname('.contnet__top')"  >Quay về thông tin giao hàng</a>
+                    <button class="btn btn-primary px-1 py-1 ms-1 px-sm-4 py-sm-3 ms-sm-2 text-light" href="#" role="button" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)" onclick="displayname('.contnet__middle')" >Tiếp tục thanh toán</button>
+                </div>
+            </div>
+        </div>
+        <div class="contnet__middle d-none">
+            <div class="" style="height:3vh"></div>
+            <div class="content__minddle--inside bg-body-secondary border-top d-flex justify-content-center align-items-center height__middle " style="height:97vh ">
+                <div class="row d-flex justify-content-center px-0 width__middle">
+                    <div class="row d-flex justify-content-center px-0">
+                        <div class="middle__top col col-md-6 px-0">
+                            <div class="product1 d-flex align-items-center">
+                                <div class="col col-md-3 me-2">
+                                    <img class="rounded position-relative img-middle" src="./assets/img/img-porduct-roll/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" alt="" style="width: 6rem;height: 7rem;">
+                                    <span class="position-absolute top-5 start-95 translate-middle badge rounded-pill bg-danger">
+                                        2
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </div>
+                                <div class="col col-md-7 col-6">
+                                    <h5 class="fs-10">CHẢ MỰC HẠ LONG</h5>
+                                    <p class="mb-0 fs-8">Giá cả sản phẩm liên tục thay đổi theo thời điểm. Liên hệ chi tiết Hotline 000.000.0000 </p>
+                                </div>
+                                <div class="col col-md-2">
+                                    <p class="mb-0 ms-2 fs-6">640,000đ</p>
+                                </div>
+                            </div>
+                            <hr class="my-5 border-2">
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center px-0">
+                        <div class="middle__between col col-md-6">
+                            <div class=" ">
+                                <div class="d-flex justify-content-between">
+                                    <p>Tạm tính </p>
+                                    <p>640,000đ</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p>Phí vận chuyển </p>
+                                    <p>32,000đ</p>
+                                </div>
+                                <div class="d-flex">
+                                    <p>Mã giảm giá</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="ms-3">giảm giá trên website</p>
+                                    <hr class="hr-middle border-2 my-1">
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="ms-3">giảm giá qua voucher</p>
+                                    <hr class="hr-middle border-2 my-1">
+                                </div>
+                            </div>
+                            <hr class="my-5 border-2 ">
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center px-0">
+                        <div class="middle__down col col-md-6">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Tổng cộng</p>
+                                <div class="d-flex align-items-center">
+                                    <p class="mb-0 me-2">VND:</p>
+                                    <h4 class="mb-0" style="color: var(--bule--color);">672,000đ</h4>
+                                </div>                          
+                            </div>  
+                            <div class="mt-4 d-flex justify-content-between">
+                                <button class="btn btn-primary px-1 py-1 me-1 px-sm-3 py-sm-3 me-sm-1 text-light" href="#" role="button" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)"  onclick="displayname('.contnet__between')" >Quay về phương thức thanh toán</button>
+                                <button class="btn btn-primary px-1 py-1 ms-1 px-sm-4 py-sm-3 ms-sm-2 text-light" href="#" role="button" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)" onclick="displayname('.contnet__down')">Thanh toán đơn hàng</button>
+                            </div>                                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contnet__down d-none">
+            <div class="" style="height:3vh"></div>
+            <div class="content__down--inside bg-body-secondary border-top d-flex justify-content-center align-items-center height__middle " style="height:97vh ">
+                <div class="col col-md-4 justify-content-center px-0 width__middle">
+                    <h4 class="mb-4">Hải Sản -Hải sản tươi ngon sạch, giao hàng tận nơi</h4>
+                    <h5>Đặt đơn hàng thàng công</h5>
+                    <h6 class="text-body-tertiary">Mã đơn hàng #021654</h6>
+                    <h6 style="color: var(--buledeep--color);">Cảm ơn bạn đã mua hàng!</h6>
+                    <div class="border border-3 rounded border-dark-subtle px-3 py-3 bg-white">
+                        <h5>Thông tin đơn hàng</h5>
+                        <p >Thông tin giao hàng</p>
+                        <p class="mb-1 text-body-tertiary">Họ và tên:</p>
+                        <p class="mb-1 text-body-tertiary">Email:</p>
+                        <p class="mb-1 text-body-tertiary">Địa chỉ:</p>
+                        <p class="mb-1 text-body-tertiary"> Quận / Huyện:</p>
+                        <p class="text-body-tertiary">Tỉnh / thành:</p>
+                        <p class="mb-1">Phương thức thanh toán:</p>
+                        <p class="mb-1 text-body-tertiary">Chuyển khoản qua ngân hàng</p>
+                    </div>
+                    <div class="mt-4 d-flex justify-content-end">
+                        <a class="btn btn-primary px-sm-3 py-sm-3 me-sm-1 text-light" href="#" role="button" style="background-color: var( --buledeep--color);border-color: var( --buledeep--color)">Tiếp tục mua hàng</a>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./assets/js/payment.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

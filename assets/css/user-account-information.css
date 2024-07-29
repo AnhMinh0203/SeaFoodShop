@@ -1,0 +1,54 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header_up {
+    height: 8vh;
+    line-height: 6vh;
+}
+.header_navi--left{
+    margin-left: 5%;
+}  
+.header_navi--right a:hover{
+    color: #8f8f8f;
+}
+.header_search-shoppingcare:hover{
+    filter: grayscale(30%); 
+}
+.breadcrumb-item a:hover {
+    color: var(--primary--color); 
+}
+.col-md-14{
+    flex: 0 0 auto;
+    width: 12.333333%;
+} 
+.active__buttom{
+    background-color: var(--buledeep--color) !important;
+    color: white !important;
+}
+.active__history{
+    color: var(--primary--color);
+}
+@media (max-width: 768px) {
+    .header{
+        background-color: var(--primary--color);
+    }   
+    .header_up{
+        justify-content: center !important;
+    }
+    .header_nav-homea::after {
+        content: "sea food"; 
+        font-size: 140%;
+        text-align: center;
+        font-weight: 600;
+        color: var(--white--color);
+        text-transform: uppercase;
+    }
+    .no--search{
+        width: 20rem !important;
+    }
+}
+
+

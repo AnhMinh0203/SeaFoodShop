@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="head">
+        <div class="header_up d-flex align-items-center">
+            <div class="header_navi--left">
+                <a href="" class="header_nav-homea">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M5.8335 14.8861C5.8335 13.3021 5.8335 12.5101 6.1537 11.8139C6.47391 11.1177 7.07526 10.6022 8.27796 9.57134L9.44462 8.57134C11.6185 6.70803 12.7054 5.77637 14.0002 5.77637C15.2949 5.77637 16.3818 6.70803 18.5557 8.57134L19.7224 9.57134C20.9251 10.6022 21.5264 11.1177 21.8466 11.8139C22.1668 12.5101 22.1668 13.3021 22.1668 14.8861V19.8333C22.1668 22.0331 22.1668 23.1331 21.4834 23.8165C20.8 24.4999 19.7001 24.4999 17.5002 24.4999H10.5002C8.30027 24.4999 7.20033 24.4999 6.51691 23.8165C5.8335 23.1331 5.8335 22.0331 5.8335 19.8333V14.8861Z" stroke="#E85D06" stroke-width="2"/>
+                        <path d="M16.9168 24.5V18.5C16.9168 17.9477 16.4691 17.5 15.9168 17.5H12.0835C11.5312 17.5 11.0835 17.9477 11.0835 18.5V24.5" stroke="#E85D06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="header_nav-homename">
+                        Trang chủ
+                    </span>
+                </a>
+            </div>
+            <div class="header_navi--right">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item ">
+                        <a class="nav-link active" aria-current="page" href="#" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas1" aria-controls="offcanvas1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.398 19.804C13.881 19.0348 19 16.0163 19 11C19 7.13401 15.866 4 12 4C8.13401 4 5 7.13401 5 11C5 16.0163 10.119 19.0348 11.602 19.804C11.8548 19.9351 12.1452 19.9351 12.398 19.804ZM12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z" fill="#222222"/>
+                            </svg>
+                            Blog ẩm thực
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M6.44784 7.96942C6.76219 5.14032 9.15349 3 12 3V3C14.8465 3 17.2378 5.14032 17.5522 7.96942L17.804 10.2356C17.8072 10.2645 17.8088 10.279 17.8104 10.2933C17.9394 11.4169 18.3051 12.5005 18.8836 13.4725C18.8909 13.4849 18.8984 13.4973 18.9133 13.5222L19.4914 14.4856C20.0159 15.3599 20.2782 15.797 20.2216 16.1559C20.1839 16.3946 20.061 16.6117 19.8757 16.7668C19.5971 17 19.0873 17 18.0678 17H5.93223C4.91268 17 4.40291 17 4.12434 16.7668C3.93897 16.6117 3.81609 16.3946 3.77841 16.1559C3.72179 15.797 3.98407 15.3599 4.50862 14.4856L5.08665 13.5222C5.10161 13.4973 5.10909 13.4849 5.11644 13.4725C5.69488 12.5005 6.06064 11.4169 6.18959 10.2933C6.19123 10.279 6.19283 10.2645 6.19604 10.2356L6.44784 7.96942Z" stroke="#33363F" stroke-width="2"/>
+                                <path d="M8 17C8 17.5253 8.10346 18.0454 8.30448 18.5307C8.5055 19.016 8.80014 19.457 9.17157 19.8284C9.54301 20.1999 9.98396 20.4945 10.4693 20.6955C10.9546 20.8965 11.4747 21 12 21C12.5253 21 13.0454 20.8965 13.5307 20.6955C14.016 20.4945 14.457 20.1999 14.8284 19.8284C15.1999 19.457 15.4945 19.016 15.6955 18.5307C15.8965 18.0454 16 17.5253 16 17" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Thông báo
+                        </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link " href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="8" stroke="#33363F" stroke-width="2"/>
+                                <ellipse cx="12" cy="12" rx="3" ry="8" stroke="#33363F" stroke-width="2"/>
+                                <path d="M4 12H20" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Tiếng việt
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <li><a class="dropdown-item" href="#">Tiếng việt</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Tiếng Anh</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="10" r="3" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="12" cy="12" r="9" stroke="black" stroke-width="2"/>
+                                <path d="M17.7805 18.8264C17.9076 18.7566 17.9678 18.6055 17.914 18.4708C17.5284 17.5045 16.7856 16.6534 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.21444 16.6534 6.4716 17.5045 6.08598 18.4708C6.03223 18.6055 6.09236 18.7566 6.21948 18.8264C9.81971 20.803 14.1803 20.803 17.7805 18.8264Z" fill="black"/>
+                            </svg>
+                            Tài khoản
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><a class="dropdown-item" href="./log-in_sign-up.html">Đăng nhập</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="./log-in_sign-up.html">Đăng ký</a></li>
+                        </ul>
+                    </li>
+                </ul>   
+            </div>            
+        </div>
+    </div>
+    </div>
+    <div class="content">
+        <div class="content__top">
+            <div class="content__top--above">
+                <ul>
+                    <li>
+                        <a href="#" class="content__above--sidebar">
+                            <div class="content_sidebar--icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                                    <path d="M7.2915 10.2083H27.7082" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M7.2915 17.5H27.7082" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M7.2915 24.7917H27.7082" stroke="white" stroke-width="" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="content__sidebar--name"> DANH MỤC </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="content__above--information">
+                            <div class="content__information--img">
+                                <img src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222608.png" alt="">
+                            </div>
+                            <span>Đổi trả miễn phí tại nhà nhanh chóng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="content__above--information">
+                            <div class="content__information--img">
+                                <img src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222615.png" alt="">
+                            </div>
+                            <span>GIAO HÀNG NHANH CHÓNG</span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="" class="content__above--information">
+                            <div class="content__information--img">
+                                <img src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222622.png" alt="">
+                            </div>
+                            <span>SẢN PHẨM ĐA DẠNG</span>
+                        </a>
+                    </li>
+                    <li>
+                         <a href="" class="content__above--information">
+                            <div class="content__information--img">
+                                <img src="./assets/img/img-icon-information/Ảnh chụp màn hình 2024-02-21 222629.png" alt="">
+                            </div>
+                            <span>CHƯƠNG CHÌNH KHÁCH HÀNG THÂN THIẾT</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content__top--breadcrumb">
+                <nav aria-label="breadcrumb d-flex">
+                    <ol class="breadcrumb" style="margin: 0;">
+                        <li class="breadcrumb-item active" aria-current="page"><a href="./home.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#" style="color: var(--text--color);" class="text-decoration-none text-dark">Giỏ hàng </a></li>
+                    </ol>
+                </nav>
+            </div>            
+        </div>
+        <div class="content__product">
+            <div class="product__top">
+                <h2>Giỏ hàng</h2>
+            </div>
+            <div class="product__center responsive-text">
+                <div class="row">
+                    <div class="col-5 text-center border border-end-0 border-start-0 col-padding">Sản phẩm</div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding">Giá</div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding">Số lượng</div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding">Tổng</div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding">Xóa</div>
+                </div>
+                <div class="row">
+                    <div class="col-5 text-center border border-end-0 border-start-0 col-padding d-flex align-items-center">
+                        <img src="./assets/img/img-porduct-roll/img_1579__6__517be5119ce34c4c8d8a4ccc1dacaf60_compact.webp" alt="">
+                        <p>Chả Mực Hạ Long</p>
+                    </div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding d-flex align-items-center justify-content-center">320,000đ</div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding d-flex align-items-center justify-content-center">
+                        <div class="minus" onclick="decrement()">-</div>
+                        <div id="number" class="number">1</div>
+                        <div class="plus" onclick="increment()">+</div>
+                    </div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding d-flex align-items-center justify-content-center">640,000đ</div>
+                    <div class="col text-center border border-end-0 border-start-0 col-padding d-flex align-items-center justify-content-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none" style="cursor: pointer;">
+                            <path d="M10.8333 16.25L10.8333 13" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M15.1667 16.25L15.1667 13" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3.25 7.58325H22.75V7.58325C21.5827 7.58325 20.999 7.58325 20.5572 7.81941C20.2084 8.00588 19.9226 8.2916 19.7362 8.64046C19.5 9.08228 19.5 9.66594 19.5 10.8333V17.6666C19.5 19.5522 19.5 20.495 18.9142 21.0808C18.3284 21.6666 17.3856 21.6666 15.5 21.6666H10.5C8.61438 21.6666 7.67157 21.6666 7.08579 21.0808C6.5 20.495 6.5 19.5522 6.5 17.6666V10.8332C6.5 9.66594 6.5 9.08228 6.26384 8.64046C6.07738 8.2916 5.79165 8.00588 5.44279 7.81941C5.00097 7.58325 4.41732 7.58325 3.25 7.58325V7.58325Z" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M10.9072 3.65147C11.0306 3.5363 11.3026 3.43452 11.681 3.36193C12.0594 3.28935 12.5231 3.25 13 3.25C13.477 3.25 13.9406 3.28935 14.319 3.36193C14.6974 3.43452 14.9694 3.5363 15.0929 3.65147" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="product__down d-flex justify-content-between responsive-text">
+                <div class="note">
+                    <div class="note__type ">
+                        <h5 class="responsive-h5">Chú thích</h5>
+                    </div>
+                    <div class="note__content">
+                        <div class="input-group">
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Viết ghi chú"></textarea>
+                          </div>
+                    </div>
+                </div>
+                <div class="pay">
+                    <div class="pay__money d-flex align-items-center justify-content-end">
+                        <h5 class="responsive-h5">Tổng:</h5>
+                        <h3 class="responsive-h3">640,000đ</h3>
+                    </div>
+                    <div class="pay__buttom">
+                        <button class="btn btn-primary button1" type="button"  id="liveToastBtn" style="color: var(--white--color); background-color: var(--primary--color); border-color: var(--primary--color);">Tiếp tục mua sắm</button>
+                        <a class="btn btn-primary button2" href="#" role="button" style="color: var(--white--color); background-color: var(--primary--color);border-color: var(--primary--color)">Mua ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
