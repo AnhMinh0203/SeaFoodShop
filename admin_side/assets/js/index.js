@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Load page
+    // Load page
     function loadPageContent(href, container) {
         if (href.includes("log-in-sign-up.html")) {
             window.location.href = '../../user_side/pages/log-in-sign-up.html';
@@ -68,9 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     handleUsersPage(pageIndex, pageSize);
                 }
                 else if (href.includes("products.html")) {
-                    loadParagraphEdit() // Load trình edit văn bản
+                    loadParagraphEdit();
                     handleProductsPage(pageIndex, pageSize)
-
                 }
                 else if (href.includes("dashboard.html")) {
                     handleAdminPage();
@@ -79,12 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     initChart();
                 }
                 else if(href.includes("blog.html")){
-                    loadParagraphEdit() // Load trình edit văn bản
+                    loadParagraphEdit();
+                    handleBlogsPage(1,10);
                 }
                 moveHomeSection();
             })
             .catch(error => console.error("Error:", error));
     }
+    
 });
 
 // Xử lý load page với ajax
@@ -299,8 +301,19 @@ function toggleUpdateProductForm(idProduct) {
 }
 
 // Hiển thị form tạo blog
-// Hiển thị form thêm sản phẩm
+function resetForm(){
+    document.getElementById("imageInput").value = "";
+    document.getElementById("selectedBlogImage").src = "";
+    document.getElementById("blog_detail--name").value = "";
+    tinymce.get("textPalce").setContent("");
+  }
 function toggleAddBlogForm() {
+    resetForm()
+    document.getElementById("imageInput").value = "";
+    document.getElementById("selectedBlogImage").src = "";
+    document.getElementById("blog_detail--name").value = "";
+    tinymce.get("textPalce").setContent("");
+
     var form = document.querySelector(".add_blog--form");
     var overlay = document.querySelector(".overlay");
     var addBtn = document.querySelector("#addBlogBtn");
@@ -309,7 +322,7 @@ function toggleAddBlogForm() {
         addBtn.classList.remove('d-none');
     }
     updateBtn.classList.add('d-none');
-    addBtn.setAttribute('onclick', 'addBlog()');
+    // addBtn.setAttribute('onclick', 'addBlogImg()');
     if (form.classList.contains("d-none")) {
         overlay.classList.remove("d-none")
         form.classList.remove("d-none");
@@ -318,7 +331,6 @@ function toggleAddBlogForm() {
         form.classList.add("d-none");
     }
 }
-
 function toggleUpdateBlogForm(idBlog) {
     var form = document.querySelector(".add_blog--form");
     var overlay = document.querySelector(".overlay");

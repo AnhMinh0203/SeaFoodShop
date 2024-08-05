@@ -2,8 +2,8 @@
 function loadParagraphEdit() {
     tinymce.init({
         selector: 'textarea#textPalce',
-        plugins: 'table autolink image link lists media',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        plugins: 'table autolink image link lists media wordcount visualblocks searchreplace emoticons',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table| addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
         mergetags_list: [
@@ -20,7 +20,6 @@ function loadParagraphEdit() {
             input.setAttribute('accept', 'image/*');
             input.onchange = function () {
                 var file = this.files[0];
-
                 var reader = new FileReader();
                 reader.onload = function () {
                     var id = 'blobid' + (new Date()).getTime();
@@ -38,3 +37,4 @@ function loadParagraphEdit() {
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
     });
 }
+
