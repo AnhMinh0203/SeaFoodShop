@@ -286,7 +286,7 @@ namespace SeaFoodShop.Repository.Repositories
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
-                    parameters.Add("@@IdUser", idUser);
+                    parameters.Add("@IdUser", idUser);
                     parameters.Add("@IdSeafood", idSeaFood);
 
                     await connection.QueryAsync(

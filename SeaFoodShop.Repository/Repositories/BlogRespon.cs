@@ -20,7 +20,7 @@ namespace SeaFoodShop.Repository.Repositories
             _context = context;
         }
 
-        public async Task<List<BlogModel>?> getBlogsAsync(int pageNumber, int pageSize)
+        public async Task<List<BlogDetailModel>?> getBlogsAsync(int pageNumber, int pageSize)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace SeaFoodShop.Repository.Repositories
                 {
                     await connection.OpenAsync();
 
-                    var blogList = await connection.QueryAsync<BlogModel>(
+                    var blogList = await connection.QueryAsync<BlogDetailModel>(
                         "getBlogs",
                         new { PageNumber = pageNumber, PageSize = pageSize },
                         commandType: CommandType.StoredProcedure);
@@ -42,7 +42,7 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }
 
-        public async Task<BlogDetailModel?> getBlogDetailAsync(string idBlog)
+        public async Task<BlogDetailModel?> GetBlogDetailAsync(string idBlog)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace SeaFoodShop.Repository.Repositories
                 {
                     await connection.OpenAsync();
                     var parameters = new DynamicParameters();
-                    parameters.Add("@idBlog", idBlog);
+                    parameters.Add("@idBlog", idBlog, DbType.Int32);
                     var result = await connection.QuerySingleOrDefaultAsync<BlogDetailModel>("getBlogDetail", parameters, commandType: CommandType.StoredProcedure);
                     return result;
                 }

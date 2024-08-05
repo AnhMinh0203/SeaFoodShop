@@ -1,4 +1,5 @@
-﻿using SeaFoodShop.DataContext.Data;
+﻿using Microsoft.AspNetCore.Http;
+using SeaFoodShop.DataContext.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +8,21 @@ using System.Threading.Tasks;
 
 namespace SeaFoodShop.DataContext.Models
 {
-    public class BlogModel
+    public class BlogUpdateModel
+    {
+        public string Title { get; set; }
+        public string Thumbnail { get; set; }
+        public string Content { get; set; }
+    }
+    public class BlogDetailModel: BlogUpdateModel
     {
         public int Id { get; set; }
         public Guid IdUser { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-        public DateTime PublishDate { get; set; }
-        public string Thumbnail { get; set; }
-        public int View {  get; set; }
-        public int Like { get; set; }
+       
+        public DateTime PublishedDate { get; set; }
+        public int Views { get; set; }
+        public int Likes { get; set; }
     }
 
-    public class BlogDetailModel: BlogModel
-    {
-        public List<ImageBlogModel> listBlogImage { get; set; }
-    }
 
-    public class ImageBlogModel
-    {
-        public string nameImage { get; set; }
-    }
 }

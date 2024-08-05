@@ -10,6 +10,7 @@ using SeaFoodShop.DataContext.Data;
 using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Models;
 using SeaFoodShop.Repository.Interface;
+using SeaFoodShop.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +27,7 @@ namespace SeaFoodShop.Repository.Repositories
         private readonly ConnectToSql _context;
         private readonly IConfiguration _config;
 
-        private string PathToServiceAccountKey = @"D:\Rac\seafood-425116-b1657c549db1.json";
+/*        private string PathToServiceAccountKey = @"D:\Rac\seafood-425116-b1657c549db1.json";*/
         public ManagerSeaFoodRespon(ConnectToSql context, IConfiguration config)
         {
             _context = context;
@@ -162,15 +163,17 @@ namespace SeaFoodShop.Repository.Repositories
             }
         }
 
-        public async Task<UploadImageDriveModel> UploadImgProduct(IFormFile file)
+        /*public async Task<UploadImageDriveModel> UploadImgProduct(IFormFile file, string idFolder)
         {
             try
             {
+                // "1nSplZRyY7PZB1617yBC3ejoaeS3ajS3d"
                 //string credentialsPath = @"C:\Users\nguye\OneDrive\Máy tính\MinhLe\BE\BE\SeaFoodShop\SeaFoodShop\credentials.json";
+                CommonFunction commonFunction = new CommonFunction();
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string credentialsPath = Path.Combine(currentDirectory, "credentials.json");
-                string folderId = "1nSplZRyY7PZB1617yBC3ejoaeS3ajS3d";
-                var FileId = await UpdateFileToGoogledrive(credentialsPath, folderId, file);
+                string folderId = idFolder;
+                var FileId = await commonFunction.UpdateFileToGoogledrive(credentialsPath, folderId, file);
                 UploadImageDriveModel uploadImageDriveModel = new UploadImageDriveModel();
                 uploadImageDriveModel.Id = FileId;
                 return uploadImageDriveModel;
@@ -192,9 +195,9 @@ namespace SeaFoodShop.Repository.Repositories
                 }
             }
             return null;
-        }
+        }*/
 
-        static async Task<string> UpdateFileToGoogledrive(string credentialsPath, string folderId, IFormFile file)
+        /*static async Task<string> UpdateFileToGoogledrive(string credentialsPath, string folderId, IFormFile file)
         {
             var FileId = "";
 
@@ -227,6 +230,6 @@ namespace SeaFoodShop.Repository.Repositories
                 FileId = fileRespon.Id;
             }
             return FileId;
-        }
+        }*/
     }
 }

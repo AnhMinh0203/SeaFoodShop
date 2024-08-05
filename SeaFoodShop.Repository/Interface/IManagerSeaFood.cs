@@ -10,6 +10,6 @@ namespace SeaFoodShop.Repository.Interface
 {
     public interface IManagerSeaFood
     {
-        public Task<UploadImageDriveModel> UploadImgProduct(IFormFile file);
+        /*public Task<UploadImageDriveModel> UploadImgProduct(IFormFile file, string idFolder);*/
     }
 }

@@ -14,15 +14,15 @@ namespace SeaFoodShop.API.Controllers
         {
             _blogRespon = blogRespon;
         }
-        [HttpGet("getBlog")]
-        public async Task<List<BlogModel>?> getBlogs (int pageNumber, int pageSize)
+        [HttpGet("getBlogs")]
+        public async Task<List<BlogDetailModel>?> getBlogs (int pageNumber, int pageSize)
         {
             return await _blogRespon.getBlogsAsync (pageNumber, pageSize);
         }
         [HttpGet("getBlogDetail")]
         public async Task<BlogDetailModel?> getBlogDetail (string idBlog)
         {
-            return await _blogRespon.getBlogDetailAsync(idBlog);
+            return await _blogRespon.GetBlogDetailAsync(idBlog);
         }
     }
 }

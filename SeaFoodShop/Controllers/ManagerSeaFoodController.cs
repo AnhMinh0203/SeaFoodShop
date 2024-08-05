@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SeaFoodShop.DataContext.Models;
 using SeaFoodShop.Models;
 using SeaFoodShop.Repository.Repositories;
-
+using SeaFoodShop.Repository.Common;
 namespace SeaFoodShop.API.Controllers
 {
     [Route("api/[controller]")]
@@ -23,6 +23,10 @@ namespace SeaFoodShop.API.Controllers
         public async Task<string> DeleteSeaFood(string token, string seafoodId) => await _mSeafoodRes.DeleteSeaFoodAsync(token, seafoodId);
 
         [HttpPost("UploadImgProduct")]
-        public async Task<UploadImageDriveModel> UploadImgProduct(IFormFile file) => await _mSeafoodRes.UploadImgProduct(file);
+        public async Task<UploadImageDriveModel> UploadImgProduct(IFormFile file, string idFolder) {
+            CommonFunction commonFunction = new CommonFunction();
+            var result = await commonFunction.UploadImg(file, idFolder);
+            return result;
+        } 
     }
 }

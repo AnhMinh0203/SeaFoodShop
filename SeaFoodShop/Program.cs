@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using SeaFoodShop.API.Controllers;
 using SeaFoodShop.DataContext.Data;
@@ -56,6 +56,7 @@ builder.Services.AddScoped<AddressRespon>();
 builder.Services.AddScoped<BlogRespon>();
 builder.Services.AddScoped<ManagerCustomerRespon>();
 builder.Services.AddScoped<ManagerSeaFoodRespon>();
+builder.Services.AddScoped<ManagerBlogRespon>();
 
 
 var app = builder.Build();

@@ -9,7 +9,7 @@ namespace SeaFoodShop.Repository.Interface
 {
     public interface IBlogRespon
     {
-        public Task<List<BlogModel>?> getBlogsAsync(int pageNumber, int pageSize);
+        public Task<List<BlogDetailModel>?> getBlogsAsync(int pageNumber, int pageSize);
         public Task<BlogDetailModel?> getBlogDetailAsync(string idBlog);
     }
 }
